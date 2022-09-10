@@ -37,18 +37,17 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public void Update(User u) throws SQLException {
+    public void Update(String name,String place,int phone,String email,String job,int Uid) throws SQLException {
         String sql = "Update User set place=?,"
-                + "name=?,email=?,phone=?,picture=?,workingUnit=? where Uid=?";
+                + "name=?,email=?,phone=?,workingUnit=? where Uid=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, u.getPlace());
-            st.setString(2, u.getName());
-            st.setString(3, u.getEmail());
-            st.setInt(4, u.getPhone());
-            st.setString(5, u.getPicture());
-            st.setString(6, u.getWorkingUnit());
-            st.setInt(7, u.getUid());
+            st.setString(1, place);
+            st.setString(2, name);
+            st.setString(3, email);
+            st.setInt(4, phone);
+            st.setString(5, job);
+            st.setInt(6, Uid);
         } catch (SQLException e) {
             System.out.println(e);
         }

@@ -12,6 +12,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Account;
 import model.User;
 
@@ -85,9 +88,19 @@ public class Profile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-
+        int uid = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        int phone = Integer.parseInt(request.getParameter("phone"));
+        String place = request.getParameter("place");
+        String job = request.getParameter("workingUnit");
+        UserDAO ud = new UserDAO();
+        try {
+            ud.Update(name, place, phone, email, job, uid);
+        } catch (SQLException ex) {
+            Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        response.sendRedirect("profile");
     }
 
     /**
