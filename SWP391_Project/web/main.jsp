@@ -72,24 +72,23 @@
             <li><a id="this" class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a id="this" class="nav-link scrollto" href="#about">About</a></li>
           <li><a id="this" class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a id="this" class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a id="this" class="nav-link scrollto" href="#pricing">Pricing</a></li>
-          <li><a id="this" class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a id="this" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <li><a id="this" class="nav-link scrollto " href="#portfolio">Recruitment</a></li>
+          <li><a id="this" class="nav-link scrollto" href="#pricing">Contract</a></li>
+          <li><a id="this" class="nav-link scrollto" href="#team">Department</a></li>
+          <li class="dropdown"><a id="this" href="#"><span>Employee</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a id="this" href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a id="this" href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <li><a id="this" href="#">Employee List</a></li>
+              <li class="dropdown"><a id="this" href="#"><span>Manage Employee</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a id="this" href="#">Deep Drop Down 1</a></li>
-                  <li><a id="this" href="#">Deep Drop Down 2</a></li>
-                  <li><a id="this" href="#">Deep Drop Down 3</a></li>
-                  <li><a id="this" href="#">Deep Drop Down 4</a></li>
-                  <li><a id="this" href="#">Deep Drop Down 5</a></li>
+                  <li><a id="this" href="#">Approval list</a></li>
+                  <li><a id="this" href="#">Attendance list</a></li>
+                  <li><a id="this" href="#">Expenses list</a></li>
+                  <li><a id="this" href="#">Payroll</a></li>
                 </ul>
               </li>
-              <li><a id="this" href="#">Drop Down 2</a></li>
-              <li><a id="this" href="#">Drop Down 3</a></li>
-              <li><a id="this" href="#">Drop Down 4</a></li>
+              <li><a id="this" href="#">Department list</a></li>
+              <li><a id="this" href="#">Contract list</a></li>
+              <li><a id="this" href="#">Expenses list</a></li>
             </ul>
           </li>
           <li><a id="this" class="nav-link scrollto" href="#contact">Contact</a></li>
