@@ -70,47 +70,47 @@
                             <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                                 <h3 class="mb-4">Account Settings</h3>
                                 <div class="row">
-                                    <%--<c:forEach items="${list}" var="o">--%>
+                                    <c:forEach items="${list}" var="o">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>UserID</label>
-                                            <input type="text" class="form-control" value="" name="id" readonly>
+                                            <input type="text" class="form-control" value="${o.getUid()}" name="id" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Full Name</label>
-                                            <input type="text" class="form-control" value="" name="fullname">
+                                            <input type="text" class="form-control" value="${o.getName()}" name="fullname">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" class="form-control" value="" name="email">
+                                            <input type="text" class="form-control" value="${o.getEmail()}" name="email">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Phone number</label>
-                                            <input type="text" class="form-control" value="" name="phone">
+                                            <input type="number" class="form-control" value="${o.getPhone()}" name="phone">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Place</label>
-                                            <input type="text" class="form-control" value="" name="place">
+                                            <input type="text" class="form-control" value="${o.getPlace()}" name="place">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Current Jobs</label>
-                                            <input type="text" class="form-control" value="" name="workingUnit">
+                                            <input type="text" class="form-control" value="${o.getWorkingUnit()}" name="workingUnit">
                                         </div>
                                     </div>
-                                    <%--</c:forEach>--%>
+                                    </c:forEach>
                                 </div>
                                 <div>
-                                    <button type="submit" form="form1" class="btn btn-primary" name="UpdateInfo">Update</button>
+                                    <input type="submit" class="btn btn-primary" value="Update">
                                     <button  class="btn btn-light" onclick="window.location.href = 'main';">Cancel</button>
                                 </div>
                             </div>

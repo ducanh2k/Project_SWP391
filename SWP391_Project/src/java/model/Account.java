@@ -11,36 +11,37 @@ package model;
  */
 public class Account {
 
-    private int aID;
-    private int uID;
+    private int id;
+    private int Uid;
     private String username;
-    private String pass;
-    private boolean role;
+    private String password;
+    private int roleid;
 
     public Account() {
     }
 
-    public Account(int uID, String username, String pass, boolean role) {
-        this.uID = uID;
+    public Account(int id, int Uid, String username, String password, int roleid) {
+        this.id = id;
+        this.Uid = Uid;
         this.username = username;
-        this.pass = pass;
-        this.role = role;
+        this.password = password;
+        this.roleid = roleid;
     }
 
-    public int getaID() {
-        return aID;
+    public int getId() {
+        return id;
     }
 
-    public void setaID(int aID) {
-        this.aID = aID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getuID() {
-        return uID;
+    public int getUid() {
+        return Uid;
     }
 
-    public void setuID(int uID) {
-        this.uID = uID;
+    public void setUid(int Uid) {
+        this.Uid = Uid;
     }
 
     public String getUsername() {
@@ -51,29 +52,22 @@ public class Account {
         this.username = username;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public boolean isRole() {
-        return role;
+    public int getRoleid() {
+        return roleid;
     }
 
-    public void setRole(boolean role) {
-        this.role = role;
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
     }
 
-    public Account(int aID, int uID, String username, String pass, boolean role) {
-        this.aID = aID;
-        this.uID = uID;
-        this.username = username;
-        this.pass = pass;
-        this.role = role;
-    }
-
+    
     
 }

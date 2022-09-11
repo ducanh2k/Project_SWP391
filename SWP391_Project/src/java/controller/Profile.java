@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
@@ -62,17 +64,13 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
         UserDAO ud = new UserDAO();
-        User user = ud.getUser(account.getuID());
-        request.setAttribute("UserID", user.getUid());
-        request.setAttribute("fullname", user.getName());
-        request.setAttribute("email", user.getEmail());
-        request.setAttribute("phone", user.getPhone());
-        request.setAttribute("place", user.getPlace());
-        request.setAttribute("workingUnit", user.getWorkingUnit());
+        User user = (User) session.getAttribute("user");
+        List<User> list = new LinkedList<>();
+        list.add(ud.getUser(user.getUid()));
+        request.setAttribute("list", list);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
@@ -87,7 +85,8 @@ public class Profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        HttpSession session = request.getSession();
+        PrintWriter out = response.getWriter();
         int uid = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("fullname");
         String email = request.getParameter("email");
@@ -96,7 +95,7 @@ public class Profile extends HttpServlet {
         String job = request.getParameter("workingUnit");
         UserDAO ud = new UserDAO();
         try {
-            ud.Update(name, place, phone, email, job, uid);
+            ud.Update(place, name, email, phone, job, uid);
         } catch (SQLException ex) {
             Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
         }

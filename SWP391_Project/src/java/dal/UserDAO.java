@@ -7,6 +7,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import model.Account;
 import model.User;
 
@@ -17,7 +18,7 @@ import model.User;
 public class UserDAO extends DBContext {
 
     public User getUser(int uID) {
-        String sql = "select * from User where Uid=?";
+        String sql = "select * from [Human Resource Service].[dbo].[User] where Uid=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, uID);
@@ -37,19 +38,10 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public void Update(String name,String place,int phone,String email,String job,int Uid) throws SQLException {
-        String sql = "Update User set place=?,"
-                + "name=?,email=?,phone=?,workingUnit=? where Uid=?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, place);
-            st.setString(2, name);
-            st.setString(3, email);
-            st.setInt(4, phone);
-            st.setString(5, job);
-            st.setInt(6, Uid);
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+    public void Update(String place,String name,String email,int phone,String job,int Uid) throws SQLException {
+        String sql = "Update [Human Resource Service].[dbo].[User] set place='"+place+"',name='"+name
+                +"',email='"+email+"',phone="+phone+",workingUnit='"+job+"' where Uid="+Uid;
+        Statement statement = connection.createStatement();
+        statement.execute(sql);
     }
 }

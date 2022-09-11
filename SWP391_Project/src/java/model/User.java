@@ -17,6 +17,15 @@ public class User {
     private String picture;
     private String workingUnit;
 
+    public User(int Uid, String place, String name, String email, int phone, String workingUnit) {
+        this.Uid = Uid;
+        this.place = place;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.workingUnit = workingUnit;
+    }
+
     public User(int Uid, String place, String name, String email, int phone, String picture, String workingUnit) {
         this.Uid = Uid;
         this.place = place;
@@ -29,6 +38,7 @@ public class User {
 
     public User() {
     }
+
 
     public int getUid() {
         return Uid;

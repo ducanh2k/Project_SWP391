@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Account;
+import model.User;
 
 /**
  *
@@ -57,11 +59,12 @@ public class Main extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
-        request.setAttribute("name", account.getUsername());
-        request.getRequestDispatcher("test.html").forward(request, response);
+        User user = new UserDAO().getUser(account.getUid());
+        session.setAttribute("user",user);
+        request.getRequestDispatcher("main.jsp").forward(request, response);
     }
 
     /**

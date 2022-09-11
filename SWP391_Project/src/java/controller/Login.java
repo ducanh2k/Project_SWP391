@@ -100,42 +100,44 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+//        try {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        boolean remember = request.getParameter("remember") != null;
+        Account account = null;
         try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            boolean remember = request.getParameter("remember") != null;
-            Account account = new AccountDAO().getAdmin(username, password);
-            HttpSession session = request.getSession();
-
-            if (account != null) {
-                if (remember) {
-                    Cookie usernameCookie = new Cookie("username", username);
-                    usernameCookie.setMaxAge(60 * 60 * 24);
-                    Cookie passCookie = new Cookie("password", password);
-                    passCookie.setMaxAge(60 * 60 ^ 24);
-                    response.addCookie(usernameCookie);
-                    response.addCookie(passCookie);
-                    session.setAttribute("remember", remember);
-                } else {
-                    Cookie[] cookies = request.getCookies();
-                    for (Cookie cooky : cookies) {
-                        if (cooky.getName().equals("username")) {
-                            cooky.setMaxAge(0);
-                            response.addCookie(cooky);
-                        }
-                        if (cooky.getName().equals("password")) {
-                            cooky.setMaxAge(0);
-                            response.addCookie(cooky);
-                        }
-                    }
-                    session.removeAttribute("remember");
-                }
-                int accountId = account.getuID();
-                session.setAttribute("account", account);
-                response.sendRedirect("main");
-            }
+            account = new AccountDAO().getAdmin(username, password);
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        HttpSession session = request.getSession();
+        if (account != null) {
+            if (remember) {
+                Cookie usernameCookie = new Cookie("username", username);
+                usernameCookie.setMaxAge(60 * 60 * 24);
+                Cookie passCookie = new Cookie("password", password);
+                passCookie.setMaxAge(60 * 60 ^ 24);
+                response.addCookie(usernameCookie);
+                response.addCookie(passCookie);
+                session.setAttribute("remember", remember);
+            } else {
+                Cookie[] cookies = request.getCookies();
+                for (Cookie cooky : cookies) {
+                    if (cooky.getName().equals("username")) {
+                        cooky.setMaxAge(0);
+                        response.addCookie(cooky);
+                    }
+                    if (cooky.getName().equals("password")) {
+                        cooky.setMaxAge(0);
+                        response.addCookie(cooky);
+                    }
+                }
+                session.removeAttribute("remember");
+            }
+            int accountId = account.getUid();
+            session.setAttribute("account", account);
+            response.sendRedirect("main");
         }
     }
 

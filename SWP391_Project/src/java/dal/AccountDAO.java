@@ -16,7 +16,7 @@ import model.Account;
 public class AccountDAO extends DBContext {
 
     public Account getAdmin(String user, String pass) throws SQLException {
-        String sql = "select * from Account where username=? and pass=?";
+        String sql = "select * from [Human Resource Service].[dbo].[Account] where username=? and password=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user);
@@ -24,12 +24,11 @@ public class AccountDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return new Account(
-                        rs.getInt("uID"),
-                        //                        rs.getInt("Aid"),
-                        //                        rs.getInt("Uid"),
+                        rs.getInt("id"),
+                        rs.getInt("Uid"),
                         rs.getString("username"),
-                        rs.getString("pass"),
-                        rs.getBoolean("isAdmin")
+                        rs.getString("password"),
+                        rs.getInt("roleid")
                 );
             }
         }catch(SQLException e){
