@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dal.UserDAO;
+import dal.EmployeeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Account;
-import model.User;
+import model.Employee;
 
 /**
  *
@@ -62,8 +62,8 @@ public class Main extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
-        User user = new UserDAO().getUser(account.getUid());
-        session.setAttribute("user",user);
+        Employee emp = new EmployeeDAO().getEmployee(account.getEid());
+        session.setAttribute("employee", emp);
         request.getRequestDispatcher("main.jsp").forward(request, response);
     }
 

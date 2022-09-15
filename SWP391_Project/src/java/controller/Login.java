@@ -106,6 +106,7 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         boolean remember = request.getParameter("remember") != null;
         Account account = null;
+//        out.print(username+" "+password);
         try {
             account = new AccountDAO().getAdmin(username, password);
         } catch (SQLException ex) {
@@ -135,7 +136,6 @@ public class Login extends HttpServlet {
                 }
                 session.removeAttribute("remember");
             }
-            int accountId = account.getUid();
             session.setAttribute("account", account);
             response.sendRedirect("main");
         }

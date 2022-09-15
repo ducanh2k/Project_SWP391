@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dal.UserDAO;
+import dal.EmployeeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
-import model.User;
+import model.Employee;
 
 /**
  *
@@ -64,12 +64,13 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        UserDAO ud = new UserDAO();
-        User user = (User) session.getAttribute("user");
-        List<User> list = new LinkedList<>();
-        list.add(ud.getUser(user.getUid()));
+        EmployeeDAO ed = new EmployeeDAO();
+        Employee emp = (Employee) session.getAttribute("employee");
+        List<Employee> list = new LinkedList<>();
+        list.add(emp);
         request.setAttribute("list", list);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
@@ -85,20 +86,43 @@ public class Profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
-        int uid = Integer.parseInt(request.getParameter("id"));
+        int eid = Integer.parseInt(request.getParameter("id"));
+        int did = Integer.parseInt(request.getParameter("department"));
         String name = request.getParameter("fullname");
+        int mentor = Integer.parseInt(request.getParameter("mentor"));
+        int cerID = Integer.parseInt(request.getParameter("certificate"));
+        String manager = request.getParameter("manager");
+        String work = request.getParameter("workingTime");
+        String approver = request.getParameter("approver");
+        String place = request.getParameter("workingPlace");
         String email = request.getParameter("email");
+        int eContact = Integer.parseInt(request.getParameter("emergencyContact"));
         int phone = Integer.parseInt(request.getParameter("phone"));
-        String place = request.getParameter("place");
-        String job = request.getParameter("workingUnit");
-        UserDAO ud = new UserDAO();
+        String picture = request.getParameter("img");
+        String cLevel = request.getParameter("certificateLevel");
+        String rArea = request.getParameter("researchArea");
+        String nation = request.getParameter("nationality");
+        int idNumber = Integer.parseInt(request.getParameter("idNumber"));
+        int passport = Integer.parseInt(request.getParameter("passport"));
+        boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+        String bPlace = request.getParameter("birthplace");
+        int vNumber = Integer.parseInt(request.getParameter("visaNumber"));
+        int wNumber = Integer.parseInt(request.getParameter("workLicenseNumber"));
+        String vDate = request.getParameter("visaExpirationDate");
+        String wDate = request.getParameter("workLicenseExpirationDate");
+        String position = request.getParameter("position");
+        Employee employee = new Employee(eid, did, name, mentor, cerID, manager, work, approver, place, email, eContact, phone, picture, cLevel, rArea, nation, idNumber, passport, gender, bPlace, vNumber, wNumber, vDate, wDate, position);
+        EmployeeDAO ed = new EmployeeDAO();
         try {
-            ud.Update(place, name, email, phone, job, uid);
+            ed.Update(employee);
         } catch (SQLException ex) {
             Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        out.print(picture);
+        session.setAttribute("employee", employee);
         response.sendRedirect("profile");
     }
 

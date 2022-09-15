@@ -12,7 +12,7 @@ package model;
 public class Account {
 
     private int id;
-    private int Uid;
+    private int Eid;
     private String username;
     private String password;
     private int roleid;
@@ -20,9 +20,9 @@ public class Account {
     public Account() {
     }
 
-    public Account(int id, int Uid, String username, String password, int roleid) {
+    public Account(int id, int Eid, String username, String password, int roleid) {
         this.id = id;
-        this.Uid = Uid;
+        this.Eid = Eid;
         this.username = username;
         this.password = password;
         this.roleid = roleid;
@@ -36,12 +36,12 @@ public class Account {
         this.id = id;
     }
 
-    public int getUid() {
-        return Uid;
+    public int getEid() {
+        return Eid;
     }
 
-    public void setUid(int Uid) {
-        this.Uid = Uid;
+    public void setUid(int Eid) {
+        this.Eid = Eid;
     }
 
     public String getUsername() {

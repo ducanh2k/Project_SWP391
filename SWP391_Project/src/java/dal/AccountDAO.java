@@ -25,7 +25,7 @@ public class AccountDAO extends DBContext {
             while (rs.next()) {
                 return new Account(
                         rs.getInt("id"),
-                        rs.getInt("Uid"),
+                        rs.getInt("Eid"),
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getInt("roleid")
