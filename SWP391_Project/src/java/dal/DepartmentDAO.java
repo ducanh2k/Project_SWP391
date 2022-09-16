@@ -43,6 +43,7 @@ public class DepartmentDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                System.out.println(rs.getInt("did"));
                 Department d = new Department(rs.getInt("did"),
                         rs.getString("dname"),true);
                 d.setCount_employee(rs.getInt("count_employee"));

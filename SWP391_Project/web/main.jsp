@@ -74,7 +74,7 @@
           <li><a id="this" class="nav-link scrollto" href="#services">Services</a></li>
           <li><a id="this" class="nav-link scrollto " href="#portfolio">Recruitment</a></li>
           <li><a id="this" class="nav-link scrollto" href="#pricing">Contract</a></li>
-          <li><a id="this" class="nav-link scrollto" href="#team">Department</a></li>
+          <li><a id="this" class="nav-link scrollto" href="Department">Department</a></li>
           <li class="dropdown"><a id="this" href="#"><span>Employee</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a id="this" href="#">Employee List</a></li>

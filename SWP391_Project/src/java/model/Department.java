@@ -55,5 +55,10 @@ public class Department {
     public void setCount_employee(int count_employee) {
         this.count_employee = count_employee;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" + "Did=" + Did + ", Dname=" + Dname + ", count_employee=" + count_employee + ", is_active=" + is_active + '}';
+    }
     
 }

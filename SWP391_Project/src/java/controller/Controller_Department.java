@@ -10,10 +10,10 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import model.Department;
 
 /**
@@ -38,22 +38,25 @@ public class Controller_Department extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = (HttpSession) request.getSession();
-            String service = (String) session.getAttribute("service");
-            if(service == null){
-                service = "list_dep";
+            String service = "list_dep";
+            
+            if(session.getAttribute("service") != null){
+                service = (String) session.getAttribute("service");
             }
             
             if(service.equals("list_dep")){
-                ArrayList<Department> list_dep = dep_dao.getListDep();
+//                ArrayList<Department> list_dep = dep_dao.getListDep(); 
+                ArrayList<Department> list_dep = new ArrayList<>();
+                Department d1 = new Department(0, "abc", true);
+                d1.setCount_employee(2);
+                list_dep.add(d1);
                 request.setAttribute("list_dep", list_dep);
                 request.getRequestDispatcher("department_list.jsp").forward(request, response);
-            }
-            
-            if(service=="get_Dep"){
+            }else if(service=="get_Dep"){
                 int did = (int) session.getAttribute("did");
                 Department dep = dep_dao.getDep(did);
                 request.setAttribute("dep_detail", dep);
-                request.getRequestDispatcher("department_view.jsp").forward(request, response);
+//                request.getRequestDispatcher("department_view.jsp").forward(request, response);
             }
         }
     }
