@@ -71,9 +71,13 @@
                             </c:forEach>
                         </div>
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+                            <a class="nav-link active" id="work-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
                                 <i class="fa fa-home text-center mr-1"></i> 
-                                Account
+                                Work Information
+                            </a>
+                            <a class="nav-link" id="personal-tab" data-toggle="pill" href="#personal" role="tab" aria-controls="personal" aria-selected="false">
+                                <i class="fa fa-key text-center mr-1"></i> 
+                                Personal Information
                             </a>
                             <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
                                 <i class="fa fa-key text-center mr-1"></i> 
@@ -91,10 +95,97 @@
                     </div>
                     <form action="profile" method="post" id="form1">
                         <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-                                <h3 class="mb-4">Account Settings</h3>
+                            <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="work-tab">
+                                <h3 class="mb-4">Work Information Settings</h3>
                                 <div class="row">
                                     <c:forEach items="${list}" var="o">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Manager</label>
+                                                <input type="text" class="form-control" value="${o.getManager()}" name="manager">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Working time</label>
+                                                <input type="text" class="form-control" value="${o.getWorkingTime()}" name="workingTime">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Approver</label>
+                                                <input type="text" class="form-control" value="${o.getApprover()}" name="approver">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Certificate Level</label>
+                                                <input type="text" class="form-control" value="${o.getCertificateLevel()}" name="certificateLevel">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Research Area</label>
+                                                <input type="text" class="form-control" value="${o.getResearchArea()}" name="researchArea">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Id number</label>
+                                                <input type="number" class="form-control" value="${o.getIdNumber()}" name="idNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Passport</label>
+                                                <input type="number" class="form-control" value="${o.getPassport()}" name="passport">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Visa Number</label>
+                                                <input type="number" class="form-control" value="${o.getVisaNumber()}" name="visaNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Work license number</label>
+                                                <input type="number" class="form-control" value="${o.getWorkLicenseNumber()}" name="workLicenseNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Visa expiration date</label>
+                                                <input type="text" class="form-control" value="${o.getVisaExpirationDate()}" name="visaExpirationDate">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Work license expiration date</label>
+                                                <input type="text" class="form-control" value="${o.getWorkLicenseExpirationDate()}" name="workLicenseExpirationDate">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Position</label>
+                                                <input type="text" class="form-control" value="${o.getPosition()}" name="position">
+                                            </div>
+                                        </div>
+                                    </c:forEach>          
+
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" value="Update" hidden>
+                                    <button  class="btn btn-light" onclick="window.location.href = 'main';">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                                <h3 class="mb-4">Personal Information Settings</h3>
+                                <c:forEach items="${list}" var="o">
+                                    <div class="row">
                                         <input type="text" class="form-control" hidden value="${o.getPicture()}" name="img">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -128,24 +219,6 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Manager</label>
-                                                <input type="text" class="form-control" value="${o.getManager()}" name="manager">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Working time</label>
-                                                <input type="text" class="form-control" value="${o.getWorkingTime()}" name="workingTime">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Approver</label>
-                                                <input type="text" class="form-control" value="${o.getApprover()}" name="approver">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
                                                 <label>Working Place</label>
                                                 <input type="text" class="form-control" value="${o.getWorkingPlace()}" name="workingPlace">
                                             </div>
@@ -170,32 +243,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Certificate Level</label>
-                                                <input type="text" class="form-control" value="${o.getCertificateLevel()}" name="certificateLevel">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Research Area</label>
-                                                <input type="text" class="form-control" value="${o.getResearchArea()}" name="researchArea">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
                                                 <label>Nationality</label>
                                                 <input type="text" class="form-control" value="${o.getNationality()}" name="nationality">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Id number</label>
-                                                <input type="number" class="form-control" value="${o.getIdNumber()}" name="idNumber">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Passport</label>
-                                                <input type="number" class="form-control" value="${o.getPassport()}" name="passport">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -210,42 +259,8 @@
                                                 <input type="text" class="form-control" value="${o.getBirthPlace()}" name="birthplace">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Visa Number</label>
-                                                <input type="number" class="form-control" value="${o.getVisaNumber()}" name="visaNumber">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Work license number</label>
-                                                <input type="number" class="form-control" value="${o.getWorkLicenseNumber()}" name="workLicenseNumber">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Visa expiration date</label>
-                                                <input type="text" class="form-control" value="${o.getVisaExpirationDate()}" name="visaExpirationDate">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Work license expiration date</label>
-                                                <input type="text" class="form-control" value="${o.getWorkLicenseExpirationDate()}" name="workLicenseExpirationDate">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Position</label>
-                                                <input type="text" class="form-control" value="${o.getPosition()}" name="position">
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                </div>
-                                <div>
-                                    <input type="submit" class="btn btn-primary" value="Update" hidden>
-                                    <button  class="btn btn-light" onclick="window.location.href = 'main';">Cancel</button>
-                                </div>
+                                    </div>
+                                </c:forEach>
                             </div>
                             <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                                 <h3 class="mb-4">Password Settings</h3>
