@@ -5,12 +5,15 @@
  */
 package controller;
 
+import dal.EmployeeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.Employee;
 
 /**
  *
@@ -35,7 +38,7 @@ public class EmployeeDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EmployeeDetail</title>");            
+            out.println("<title>Servlet EmployeeDetail</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EmployeeDetail at " + request.getContextPath() + "</h1>");
@@ -56,7 +59,15 @@ public class EmployeeDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String eid = request.getParameter("eid");
+            EmployeeDAO edao = new EmployeeDAO();
+            Employee e = edao.getEmployeeDetail(eid);
+            request.setAttribute("e", e);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -70,7 +81,7 @@ public class EmployeeDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**
