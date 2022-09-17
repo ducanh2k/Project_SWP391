@@ -64,7 +64,7 @@ public class EmployeeDetail extends HttpServlet {
             EmployeeDAO edao = new EmployeeDAO();
             Employee e = edao.getEmployeeDetail(eid);
             request.setAttribute("e", e);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("employeedetail.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -51,8 +51,11 @@ public class EmployeeList extends HttpServlet {
             throws ServletException, IOException {
         try {
          EmployeeDAO edao = new EmployeeDAO();
-        ArrayList<Employee> list = edao.getAdmin();
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        ArrayList<Employee> list = edao.getAllEmployee();
+        request.setAttribute("elist", list);
+        request.getRequestDispatcher("employeelist.jsp").forward(request, response);
+        
+//      response.getWriter().println(123);
         } catch (Exception e) {
             System.out.println(e);
         }

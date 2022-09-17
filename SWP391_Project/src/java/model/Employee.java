@@ -40,8 +40,7 @@ public class Employee {
     String position;
     Department department;
     Certificate certificate;
-
-
+    Account mentorAccount;
 
     public Employee(int Eid, int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, String emergencyContact, String phone, String picture, String certificateLevel, String researchArea, String nationality, Long idNumber, Long passport, Boolean gender, String birthplace, Long visaNumber, Long workLicenceNumber, Date visaExpirationDate, Date workLicenceExpirationDate, String position) {
         this.Eid = Eid;
@@ -70,6 +69,16 @@ public class Employee {
         this.workLicenceExpirationDate = workLicenceExpirationDate;
         this.position = position;
     }
+
+    public Account getMentorAccount() {
+        return mentorAccount;
+    }
+
+    public void setMentorAccount(Account mentorAccount) {
+        this.mentorAccount = mentorAccount;
+    }
+
+ 
 
     public int getEid() {
         return Eid;
@@ -270,6 +279,7 @@ public class Employee {
     public void setPosition(String position) {
         this.position = position;
     }
+
     public Department getDepartment() {
         return department;
     }

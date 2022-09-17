@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>EmployeeList</servlet-name>
-        <servlet-class>dal.EmployeeList</servlet-class>
+        <servlet-class>controller.EmployeeList</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EmployeeDetail</servlet-name>
