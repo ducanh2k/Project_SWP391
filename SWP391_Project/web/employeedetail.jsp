@@ -17,8 +17,6 @@
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     </head>
     <body>
-
-
         <h1>Employee Detail</h1>
         <form class="form-control">
 
@@ -87,17 +85,14 @@
                     <label class="label-control">Birth Place</label>
                     <input class="form-control" value="${e.getBirthplace()}" type="text" readonly>
                 </div>
-
                 <div class="col-md-6">
                     <label class="label-control">Visa Number</label>
                     <input class="form-control" value="${e.getVisaNumber()}" type="text" readonly>
                 </div>
-
                 <div class="col-md-6">
                     <label class="label-control">Work Licence Number</label>
                     <input class="form-control" value="${e.getWorkLicenceNumber()}" type="text" readonly>
                 </div>
-
                 <div class="col-md-6">
                     <label class="label-control">Visa Expiration date</label>
                     <input class="form-control" value="${e.getVisaExpirationDate()}" type="text" readonly>
