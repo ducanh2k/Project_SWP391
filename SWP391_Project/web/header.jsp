@@ -29,13 +29,13 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a id="this" class="nav-link scrollto" href="index.html">Trang chủ</a></li>
-                <li><a id="this" class="nav-link scrollto" href="#">Nhân viên</a></li>
-                <li><a id="this" class="nav-link scrollto " href="#">Phòng ban</a></li>
-                <li><a id="this" class="nav-link scrollto" href="#">Dự án</a></li>
-                <li><a id="this" class="nav-link scrollto" href="#">Chứng chỉ</a></li>
-                <li><button type="button" class="btn btn-primary btn-lg" href="login.jsp">Đăng nhập</button></li>
-                <li><button type="button" class="btn btn-secondary btn-lg" href="register.jsp">Đăng ký</button></li>
+                <li><a id="this" class="nav-link scrollto" href="index.html">Home</a></li>
+                <li><a id="this" class="nav-link scrollto" href="#">Employee</a></li>
+                <li><a id="this" class="nav-link scrollto " href="#">Department</a></li>
+                <li><a id="this" class="nav-link scrollto" href="#">Project</a></li>
+                <li><a id="this" class="nav-link scrollto" href="#">Certification</a></li>
+                <li><button type="button" class="btn btn-primary btn-lg" href="login.jsp">Login</button></li>
+                <li><button type="button" class="btn btn-secondary btn-lg" href="register.jsp">Logout</button></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav> 

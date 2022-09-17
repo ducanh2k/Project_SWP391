@@ -18,15 +18,15 @@
 <div id="body-pd">
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
-            <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i><span class="nav_logo-name">Quản lý nhân sự</span></a>
+            <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i><span class="nav_logo-name">Human Resource Management</span></a>
                 <div class="nav_list"> 
 <!--                    <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> -->
-                    <a href="#" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Nhân viên</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-briefcase nav_icon'></i> <span class="nav_name">Phòng ban</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-task nav_icon'></i> <span class="nav_name">Hợp đồng</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-money nav_icon'></i> <span class="nav_name">Lương</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Điểm danh</span> </a> </div>
-            </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Đăng xuất</span> </a>
+                    <a href="#" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Employee</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-briefcase nav_icon'></i> <span class="nav_name">Department</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-task nav_icon'></i> <span class="nav_name">Contract</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-money nav_icon'></i> <span class="nav_name">Payroll</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Attendance</span> </a> </div>
+            </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span> </a>
         </nav>
     </div>
 </div>

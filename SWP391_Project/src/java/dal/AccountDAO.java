@@ -28,10 +28,11 @@ public class AccountDAO extends DBContext {
                         rs.getInt("Uid"),
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getInt("roleid")
+                        rs.getInt("roleid"),
+                        rs.getString("email")
                 );
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return null;

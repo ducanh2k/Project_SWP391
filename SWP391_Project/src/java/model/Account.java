@@ -16,16 +16,18 @@ public class Account {
     private String username;
     private String password;
     private int roleid;
-
+    private String email;
+    
     public Account() {
     }
 
-    public Account(int id, int Uid, String username, String password, int roleid) {
+    public Account(int id, int Uid, String username, String password, int roleid, String email) {
         this.id = id;
         this.Uid = Uid;
         this.username = username;
         this.password = password;
         this.roleid = roleid;
+        this.email = email;
     }
 
     public int getId() {
@@ -66,6 +68,14 @@ public class Account {
 
     public void setRoleid(int roleid) {
         this.roleid = roleid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     
