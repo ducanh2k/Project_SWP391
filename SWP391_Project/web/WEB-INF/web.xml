@@ -16,6 +16,18 @@
         <servlet-name>Department</servlet-name>
         <servlet-class>controller.Controller_Department</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ForgotPwd1</servlet-name>
+        <servlet-class>controller.ForgotPwd1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewPwd</servlet-name>
+        <servlet-class>controller.NewPwd</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OTP</servlet-name>
+        <servlet-class>controller.OTP</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>Department</servlet-name>
         <url-pattern>/Department</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPwd1</servlet-name>
+        <url-pattern>/ForgotPwd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewPwd</servlet-name>
+        <url-pattern>/NewPwd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OTP</servlet-name>
+        <url-pattern>/OTP</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

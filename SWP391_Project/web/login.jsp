@@ -160,7 +160,7 @@
                                         </label>
                                     </div>
                                     <div class="w-50 text-md-right">
-                                        <a href="#" style="color: #fff">Forgot Password</a>
+                                        <a href="forgotPassword.jsp" style="color: #fff">Forgot Password</a>
                                     </div>
                                 </div>
                             </form>

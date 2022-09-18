@@ -16,16 +16,26 @@ public class Account {
     private String username;
     private String password;
     private int roleid;
+    private String email;
 
-    public Account() {
+    public String getEmail() {
+        return email;
     }
 
-    public Account(int id, int Eid, String username, String password, int roleid) {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Account(int id, int Eid, String username, String password, int roleid, String email) {
         this.id = id;
         this.Eid = Eid;
         this.username = username;
         this.password = password;
         this.roleid = roleid;
+        this.email = email;
+    }
+
+    public Account() {
     }
 
     public int getId() {
@@ -42,6 +52,11 @@ public class Account {
 
     public void setUid(int Eid) {
         this.Eid = Eid;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" + "id=" + id + ", Eid=" + Eid + ", username=" + username + ", password=" + password + ", roleid=" + roleid + ", email=" + email + '}';
     }
 
     public String getUsername() {
@@ -68,6 +83,4 @@ public class Account {
         this.roleid = roleid;
     }
 
-    
-    
 }

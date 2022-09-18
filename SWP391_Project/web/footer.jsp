@@ -27,31 +27,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 col-sm-6 col-md-3 col-lg-6 footer-contact">
-                    <h3>Địa chỉ và thông tin liên hệ</h3>
+                    <h3>Address and Contact Information</h3>
                     <div class="mb-3">                  
-                        <p>Khu Giáo dục và Đào tạo – Khu Công nghệ cao Hòa Lạc – Km29 Đại lộ Thăng Long</p>
-                        <p>H. Thạch Thất - TP. Hà Nội</p>
+                        <p>Hoa Lac High Tech Park, Hanoi, Vietnam</p>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-3">
-                        <p><strong>Điện thoại:</strong> 024 7300 1866</p>
+                        <p><strong>Phone:</strong> 024 7300 1866</p>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-3">
 
-                        <p><strong>Email:</strong> daihocfpt@fpt.edu.vn</p>
+                        <p><strong>Email:</strong> fpteducation@fe.edu.vn</p>
                     </div>
                 </div>
 
                 <div class="col-6 col-sm-6 col-md-3 col-lg-3 footer-links">
-                    <h3>Thông tin</h3>
+                    <h3>Information</h3>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Giới thiệu</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Hỏi đáp</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Chính sách bảo mật</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Introduction</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Q&A</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
 
                 <div class="col-6 col-sm-6 col-md-3 col-lg-3 footer-links">
-                    <h3>Mạng xã hội</h3>
+                    <h3>Social Network</h3>
                     <ul>
                         <li><a href="https://www.facebook.com/" target="_blank"
                                class="d-flex align-items-center text-white">
@@ -63,7 +62,7 @@
                             </a></li>
                         <li><a href="https://www.youtube.com/" target="_blank"
                                class="d-flex align-items-center text-white">
-                                <span class="youtube mr-2"><i class="bx bxl-youtube text-white"></i></span>Youtube
+                                <span class="youtube mr-2"><i class="bx bxl-youtube text-white"></i></span>YouTube
                             </a></li>
                     </ul>
                 </div>

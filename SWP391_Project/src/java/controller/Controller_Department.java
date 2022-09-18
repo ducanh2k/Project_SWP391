@@ -35,17 +35,16 @@ public class Controller_Department extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DepartmentDAO dep_dao = new DepartmentDAO();
-        
-        try (PrintWriter out = response.getWriter()) {
+
+        try ( PrintWriter out = response.getWriter()) {
             HttpSession session = (HttpSession) request.getSession();
             String service = "list_dep";
-            
-            if(session.getAttribute("service") != null){
-                service = (String) session.getAttribute("service");
+
+            if (request.getParameter("service") != null) {
+                service = request.getParameter("service");
             }
-            
-            if(service.equals("list_dep")){
-                ArrayList<Department> list_dep = dep_dao.getListDep(); 
+            if (service.equals("list_dep")) {
+                ArrayList<Department> list_dep = dep_dao.getListDep();
 //                ArrayList<Department> list_dep = new ArrayList<>();
 //                Department d1 = new Department(0, "abc", true);
 //                d1.setCount_employee(2);
@@ -54,7 +53,6 @@ public class Controller_Department extends HttpServlet {
                 request.getRequestDispatcher("department_list.jsp").forward(request, response);
             }else if(service=="view_Dep"){
                 int did = (int) session.getAttribute("did");
-//                Department dep = new Department(did, "abc", true);
                 Department dep = dep_dao.getDep(did);
                 request.setAttribute("dep_detail", dep);
                 request.getRequestDispatcher("department_view.jsp").forward(request, response);

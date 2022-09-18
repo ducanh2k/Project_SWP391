@@ -7,6 +7,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import model.Account;
 
 /**
@@ -28,12 +29,18 @@ public class AccountDAO extends DBContext {
                         rs.getInt("Eid"),
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getInt("roleid")
+                        rs.getInt("roleid"),
+                        rs.getString("email")
                 );
             }
         }catch(SQLException e){
             System.out.println(e);
         }
         return null;
+    }
+    public void updatePass(String pass,String email) throws SQLException{
+        String sql = "update Account set password ='"+pass+"' where email ='"+email+"'";
+        Statement statement = connection.createStatement();
+        statement.execute(sql);
     }
 }
