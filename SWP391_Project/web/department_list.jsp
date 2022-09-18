@@ -50,7 +50,7 @@
                                             <td>${o.getDname()}</td>
                                             <td>${o.isIs_active()}</td>
                                             <td>${o.getCount_employee()}</td>
-                                            <td><a href="Department?service=view_Dep&did=1" class="fas fa-eye fa-2x"></a></td>
+                                            <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-edit fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-trash fa-2x"></a></td>
                                         </tr>                                   
