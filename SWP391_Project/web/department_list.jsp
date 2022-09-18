@@ -18,21 +18,18 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="css/style.css">
-
+        <link rel="stylesheet" href="css/style_2.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <section class="ftco-section">
             <div class="container">
-                <!--			<div class="row justify-content-center">
-                                                <div class="col-md-6 text-center mb-5">
-                                                        <h2 class="heading-section">Table #03</h2>
-                                                </div>
-                                        </div>-->
-
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="text-center mb-4">Department List</h4>
+                        <div class="mb-4 d-flex justify-content-between align-items-center">
+                            <h2>Department List</h2>
+                            <button class="font-weight-bold">ADD NEW</button>
+                        </div>
                         <div class="table-wrap">
                             <table class="table">
                                 <thead class="thead-primary">
@@ -53,11 +50,29 @@
                                             <td>${o.getDname()}</td>
                                             <td>${o.isIs_active()}</td>
                                             <td>${o.getCount_employee()}</td>
-                                            <td><a href="#" class="btn btn-primary">View</a></td>
-                                            <td><a href="#" class="btn btn-primary">Edit</a></td>
-                                            <td><a href="#" class="btn btn-primary">Delete</a></td>
+                                            <td><a href="Department?service=view_Dep&did=1" class="fas fa-eye fa-2x"></a></td>
+                                            <td><a href="#" class="fas fa-edit fa-2x"></a></td>
+                                            <td><a href="#" class="fas fa-trash fa-2x"></a></td>
                                         </tr>                                   
                                     </c:forEach>
+<!--                                    <tr>
+                                        <th scope="row" class="scope" >1</th>
+                                        <td>abc</td>
+                                        <td>true</td>
+                                        <td>2</td>
+                                        <td><a href="Department?service=view_Dep&did=1" class="fas fa-eye fa-2x"></a></td>
+                                        <td><a href="#" class="fas fa-edit fa-2x"></a></td>
+                                        <td><a href="#" class="fas fa-trash fa-2x"></a></td>
+                                    </tr> 
+                                    <tr>
+                                        <th scope="row" class="scope" >1</th>
+                                        <td>abc</td>
+                                        <td>true</td>
+                                        <td>2</td>
+                                        <td><a href="#" class="fas fa-eye fa-2x"></a></td>
+                                        <td><a href="#" class="fas fa-edit fa-2x"></a></td>
+                                        <td><a href="#" class="fas fa-trash fa-2x"></a></td>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

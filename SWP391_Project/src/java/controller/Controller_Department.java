@@ -45,18 +45,19 @@ public class Controller_Department extends HttpServlet {
             }
             
             if(service.equals("list_dep")){
-//                ArrayList<Department> list_dep = dep_dao.getListDep(); 
-                ArrayList<Department> list_dep = new ArrayList<>();
-                Department d1 = new Department(0, "abc", true);
-                d1.setCount_employee(2);
-                list_dep.add(d1);
+                ArrayList<Department> list_dep = dep_dao.getListDep(); 
+//                ArrayList<Department> list_dep = new ArrayList<>();
+//                Department d1 = new Department(0, "abc", true);
+//                d1.setCount_employee(2);
+//                list_dep.add(d1);
                 request.setAttribute("list_dep", list_dep);
                 request.getRequestDispatcher("department_list.jsp").forward(request, response);
-            }else if(service=="get_Dep"){
+            }else if(service=="view_Dep"){
                 int did = (int) session.getAttribute("did");
+//                Department dep = new Department(did, "abc", true);
                 Department dep = dep_dao.getDep(did);
                 request.setAttribute("dep_detail", dep);
-//                request.getRequestDispatcher("department_view.jsp").forward(request, response);
+                request.getRequestDispatcher("department_view.jsp").forward(request, response);
             }
         }
     }
