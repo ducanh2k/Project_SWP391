@@ -25,7 +25,7 @@
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-        <h1 class="logo"><a>Quản lý nhân sự</a></h1>
+        <h1 class="logo"><a>Human Resource Management</a></h1>
 
         <nav id="navbar" class="navbar">
             <ul>
