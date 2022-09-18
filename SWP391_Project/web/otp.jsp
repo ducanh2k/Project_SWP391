@@ -52,7 +52,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-envelope color-blue"></i></span> <input
-                                                    id="opt" name="otp" placeholder="Enter OTP"
+                                                    id="otp" name="otp" placeholder="Enter OTP"
                                                     class="form-control" type="text" required="required">
                                             </div>
                                         </div>

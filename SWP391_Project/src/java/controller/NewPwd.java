@@ -16,7 +16,6 @@ import jakarta.servlet.http.*;
  * @author Admin
  */
 public class NewPwd extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
 
     @Override

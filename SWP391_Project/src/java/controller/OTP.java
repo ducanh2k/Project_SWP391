@@ -33,5 +33,4 @@ public class OTP extends HttpServlet {
             dispatcher.forward(request, response);
         }
     }
-
 }

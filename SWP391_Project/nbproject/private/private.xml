@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/src/java/dal/DBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/src/java/controller/NewPwd.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/login.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/footer.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/forgotPassword.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/src/java/controller/ForgotPwd.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/src/java/controller/OTP.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/header.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/otp.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/sideMenu.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/web/newPwd.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
