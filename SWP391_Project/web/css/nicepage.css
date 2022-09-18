@@ -27353,7 +27353,7 @@ section.u-white:before,
 .u-container-layout.u-container-layout.u-white:before,
 .u-table-alt-white tr:nth-child(even) {
   color: #111111;
-  background-color: #ffffff;
+  background-color: #e0e0e0;
 }
 .u-button-style.u-white,
 .u-button-style.u-white[class*="u-border-"] {
