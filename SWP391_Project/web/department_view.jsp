@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-Department dep_detail= (Department) session.getAttribute("dep_detail");
+Department dep_detail= (Department) request.getAttribute("dep_detail");
 %>
 
 <html style="font-size: 16px;" lang="en"><head>
@@ -35,16 +35,16 @@ Department dep_detail= (Department) session.getAttribute("dep_detail");
                                                                     <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-24 u-form-vertical u-inner-form" source="email" name="form" style="padding: 6px;">
                                                                         <div class="u-form-group u-form-name u-label-left u-form-group-1">
                                                                             <label for="name-e0f0" class="u-label u-spacing-12 u-label-1">Department ID : </label>
-                                                                            <input type="text" value="${dep_detail.getDid()}" placeholder="Department ID" id="name-e0f0" name="name" class="u-input u-input-rectangle u-radius-7 u-white u-input-1" required="">
+                                                                            <input disabled="true" type="text" value="${dep_detail.getDid()}" placeholder="Department ID" id="name-e0f0" name="name" class="u-input u-input-rectangle u-radius-7 u-white u-input-1" required="">
                                                                         </div>
                                                                         <div class="u-form-email u-form-group u-label-left u-form-group-2">
                                                                             <label for="email-e0f0" class="u-label u-spacing-12 u-label-2">Department name : </label>
-                                                                            <input type="email" value="${dep_detail.getDname()}" placeholder="Department name" id="email-e0f0" name="email" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required="">
+                                                                            <input disabled="true" type="email" value="${dep_detail.getDname()}" placeholder="Department name" id="email-e0f0" name="email" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required="">
                                                                         </div>
                                                                         <div class="u-form-group u-form-select u-label-left u-form-group-3">
                                                                             <label for="select-73f7" class="u-label u-spacing-12 u-label-3">Active status : </label>
                                                                             <div class="u-form-select-wrapper" style="width: 50%">
-                                                                                <select id="select-73f7" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-7 u-white u-input-3">
+                                                                                <select disabled="true" id="select-73f7" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-7 u-white u-input-3">
                                                                                     <option value="Active" <%if(dep_detail.isIs_active()==true){%> selected <%}%>>Active</option>
                                                                                     <option value="Deactive" <%if(dep_detail.isIs_active()==false){%> selected <%}%>>Deactive</option>
                                                                                 </select>
