@@ -23,8 +23,10 @@ public class DepartmentDAO extends DBContext {
             st.setInt(1, dID);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                return new Department(rs.getInt("Did"),
+                Department d =  new Department(rs.getInt("Did"),
                         rs.getString("name"),true);
+                d.setCount_employee(0);
+                return d;
             }
         } catch (SQLException e) {
             System.out.println(e);

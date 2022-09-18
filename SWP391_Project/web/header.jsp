@@ -30,7 +30,7 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a id="this" class="nav-link scrollto" href="index.html">Home</a></li>
-                <li><a id="this" class="nav-link scrollto" href="#">Employee</a></li>
+                <li><a id="this" class="nav-link scrollto" href="EmployeeList">Employee</a></li>
                 <li><a id="this" class="nav-link scrollto " href="Department">Department</a></li>
                 <li><a id="this" class="nav-link scrollto" href="#">Project</a></li>
                 <li><a id="this" class="nav-link scrollto" href="#">Certification</a></li>

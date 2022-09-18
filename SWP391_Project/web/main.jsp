@@ -60,45 +60,6 @@
                 </div>
             </div>
         </section>
-
-        <!--   ======= Header ======= -->
-        <!--        <header id="header" class="d-flex align-items-center">
-                    <div class="container d-flex align-items-center justify-content-between">
-        
-                        <h3 class="logo"><a href="main.jsp">Human Resource</a></h3>
-                        <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-        
-                        <nav id="navbar" class="navbar">
-                            <ul>
-                                <li><a id="this" class="nav-link scrollto active" href="#hero">Home</a></li>
-                                <li><a id="this" class="nav-link scrollto" href="#about">About</a></li>
-                                <li><a id="this" class="nav-link scrollto" href="#services">Services</a></li>
-                                <li><a id="this" class="nav-link scrollto " href="#portfolio">Recruitment</a></li>
-                                <li><a id="this" class="nav-link scrollto" href="#pricing">Contract</a></li>
-                                <li><a id="this" class="nav-link scrollto" href="#team">Department</a></li>
-                                <li class="dropdown"><a id="this" href="#"><span>Employee</span> <i class="bi bi-chevron-down"></i></a>
-                                    <ul>
-                                        <li><a id="this" href="#">Employee List</a></li>
-                                        <li class="dropdown"><a id="this" href="#"><span>Manage Employee</span> <i class="bi bi-chevron-right"></i></a>
-                                            <ul>
-                                                <li><a id="this" href="#">Approval list</a></li>
-                                                <li><a id="this" href="#">Attendance list</a></li>
-                                                <li><a id="this" href="#">Expenses list</a></li>
-                                                <li><a id="this" href="#">Payroll</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a id="this" href="#">Department list</a></li>
-                                        <li><a id="this" href="#">Contract list</a></li>
-                                        <li><a id="this" href="#">Expenses list</a></li>
-                                    </ul>
-                                </li>
-                                <li><a id="this" class="nav-link scrollto" href="#contact">Contact</a></li>
-                                <li><button onclick="window.location.href = 'profile'" type="button" class="btn btn-secondary btn-lg">Your Profile</button></li>
-                            </ul>
-                            <i class="bi bi-list mobile-nav-toggle"></i>
-                        </nav>
-                    </div>
-                </header>-->
         <jsp:include page="header.jsp"></jsp:include>
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="d-flex align-items-center">

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import model.Employee;
 
@@ -71,5 +72,53 @@ public class EmployeeDAO extends DBContext {
                 + " WHERE Eid =" + e.getEid();
         Statement statement = connection.createStatement();
         statement.execute(sql);
+    }
+
+    public ArrayList<Employee> getAllEmployee() {
+        ArrayList<Employee> list = new ArrayList<>();
+        String sql = "select * from Employee";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                list.add(new Employee(rs.getInt("Eid"), rs.getInt("Did"), rs.getString("name"),
+                        rs.getInt("mentor"), rs.getInt("CertificateID"), rs.getString("manager"),
+                        rs.getString("workingTime"), rs.getString("approver"), rs.getString("workingPlace"),
+                        rs.getString("email"), rs.getInt("emergencyContact"), rs.getInt("phone"),
+                        rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
+                        rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
+                        rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position")));
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    public Employee getEmployeeDetail(String eid) throws SQLException {
+
+        String sql = "  select * from [Employee] e, [Certificate] c,Department d\n"
+                + "  where e.CertificateID = c.CertificateID and d.Did = e.Did and e.Eid =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, eid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return new Employee(rs.getInt("Eid"), rs.getInt("Did"), rs.getString("name"),
+                        rs.getInt("mentor"), rs.getInt("CertificateID"), rs.getString("manager"),
+                        rs.getString("workingTime"), rs.getString("approver"), rs.getString("workingPlace"),
+                        rs.getString("email"), rs.getInt("emergencyContact"), rs.getInt("phone"),
+                        rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
+                        rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
+                        rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 }

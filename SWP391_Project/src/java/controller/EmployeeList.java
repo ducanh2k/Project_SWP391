@@ -6,21 +6,23 @@
 package controller;
 
 import dal.DepartmentDAO;
-import jakarta.servlet.http.HttpSession;
+import dal.EmployeeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import model.Department;
+import model.Employee;
+import sun.font.EAttribute;
 
 /**
  *
- * @author User
+ * @author DUCHIEUPC.COM
  */
-public class Controller_Department extends HttpServlet {
+public class EmployeeList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,30 +36,6 @@ public class Controller_Department extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        DepartmentDAO dep_dao = new DepartmentDAO();
-
-        try ( PrintWriter out = response.getWriter()) {
-            HttpSession session = (HttpSession) request.getSession();
-            String service = "list_dep";
-
-            if (request.getParameter("service") != null) {
-                service = request.getParameter("service");
-            }
-            if (service.equals("list_dep")) {
-                ArrayList<Department> list_dep = dep_dao.getListDep();
-//                ArrayList<Department> list_dep = new ArrayList<>();
-//                Department d1 = new Department(0, "abc", true);
-//                d1.setCount_employee(2);
-//                list_dep.add(d1);
-                request.setAttribute("list_dep", list_dep);
-                request.getRequestDispatcher("department_list.jsp").forward(request, response);
-            }else if(service.equals("view_Dep")){
-                int did = Integer.parseInt(request.getParameter("did"));
-                Department dep = dep_dao.getDep(did);
-                request.setAttribute("dep_detail", dep);
-                request.getRequestDispatcher("department_view.jsp").forward(request, response);
-            }
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +50,12 @@ public class Controller_Department extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        EmployeeDAO edao = new EmployeeDAO();
+        DepartmentDAO dd= new DepartmentDAO();
+        ArrayList<Employee> list = edao.getAllEmployee();
+        request.setAttribute("elist", list);
+        request.getRequestDispatcher("employeelist.jsp").forward(request, response);
     }
 
     /**
@@ -86,7 +69,7 @@ public class Controller_Department extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**
