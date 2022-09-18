@@ -32,6 +32,7 @@
                 <!-- Page content-->
                 <div class="col-md-10">
                     <h1>Employee Detail</h1>
+                    
                     <form class="form-control">
 
                         <div class="row">
