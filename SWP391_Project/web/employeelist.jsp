@@ -65,7 +65,6 @@
                                     <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                             </c:forEach>
-
                         </tbody>
                     </table>
                 </div>

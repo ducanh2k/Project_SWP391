@@ -77,9 +77,7 @@ public class Employee {
     public void setMentorAccount(Account mentorAccount) {
         this.mentorAccount = mentorAccount;
     }
-
  
-
     public int getEid() {
         return Eid;
     }

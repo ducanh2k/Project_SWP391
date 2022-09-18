@@ -68,7 +68,7 @@ public class EmployeeDAO extends DBContext {
         }
         return null;
     }
-    public static void main(String[] args) throws SQLException {
-        System.out.println(new EmployeeDAO().getEmployeeDetail("1"));
-    }
+//    public static void main(String[] args) throws SQLException {
+//        System.out.println(new EmployeeDAO().getEmployeeDetail("1"));
+//    }
 }
