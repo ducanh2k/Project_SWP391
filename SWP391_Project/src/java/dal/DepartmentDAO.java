@@ -55,4 +55,32 @@ public class DepartmentDAO extends DBContext {
         }
         return null;
     }
+
+    public String getCName(int cerID) {
+        String sql = "select CName from Certificate where CertificateID = " + cerID ;
+        try{
+            PreparedStatement st= connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                return rs.getString("CName");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public String getDName(int did) {
+        String sql = "select name from Department where Did = " + did ;
+        try{
+            PreparedStatement st= connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                return rs.getString("name");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
 }

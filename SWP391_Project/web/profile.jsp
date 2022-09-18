@@ -93,6 +93,11 @@
                             </a>
                         </div>
                     </div>
+                    <%
+                        String certi =(String) request.getAttribute("certi");
+                        String depart =(String) request.getAttribute("depart");
+                        String mentor = (String) request.getAttribute("mentor");
+                    %>
                     <form action="profile" method="post" id="form1">
                         <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="work-tab">
@@ -196,7 +201,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Department</label>
-                                                <input type="number" class="form-control" value="${o.getDid()}" name="department">
+                                                <input type="text" class="form-control" value="<%= depart %>" name="department">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -208,13 +213,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Mentor</label>
-                                                <input type="number" class="form-control" value="${o.getMentor()}" name="mentor">
+                                                <input type="text" class="form-control" value="<%= mentor %>" name="mentor">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Certificate</label>
-                                                <input type="text" class="form-control" value="${o.getCertificateID()}" name="certificate">
+                                                <input type="text" class="form-control" value="<%= certi %>" name="certificate">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
