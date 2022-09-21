@@ -34,7 +34,7 @@
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
         <!-- Template Main CSS File -->
-        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/style_1.css" rel="stylesheet">
         <style>
             .navbar-brand{
                 font-size: 27px;

@@ -27,37 +27,85 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <style>
+            .filterable {
+                margin-top: 15px;
+            }
+            .filterable .panel-heading .pull-right {
+                margin-top: -20px;
+            }
+            .filterable .filters input[disabled] {
+                background-color: transparent;
+                border: none;
+                cursor: auto;
+                box-shadow: none;
+                padding: 0;
+                height: auto;
+            }
+            .filterable .filters input[disabled]::-webkit-input-placeholder {
+                color: #333;
+            }
+            .filterable .filters input[disabled]::-moz-placeholder {
+                color: #333;
+            }
+            .filterable .filters input[disabled]:-ms-input-placeholder {
+                color: #333;
+            }
+
+
+            /* Style the input field */
+            #myInput {
+                padding: 20px;
+                margin-top: -6px;
+                border: 0;
+                border-radius: 0;
+                background: #f1f1f1;
+            }
+        </style>
     </head>
     <body>
 
         <jsp:include page="sideMenu.jsp"></jsp:include>
             <section class="ftco-section">
                 <div class="container">
-
-
                     <div class="row">
+                        <input class="form-control" id="myInput" type="text" placeholder="Search..">
                         <div class="col-md-12">
-                            <div class="mb-4 d-flex justify-content-between align-items-center">
-                                <h2>Department List</h2>
-                                <button class="font-weight-bold">ADD NEW</button>
-                            </div>
-                            <div class="table-wrap">
+                            <div class="panel panel-primary filterable">
+                                <div class="mb-4 d-flex justify-content-between align-items-center">
+                                    <h2>Department List</h2>
+                                    <button class="font-weight-bold">ADD NEW</button>
+                                </div>
+
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Department</h3>
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                                    </div>
+                                </div> 
                                 <table class="table">
                                     <thead class="thead-primary">
-                                        <tr>
-                                            <th>Department ID</th>
-                                            <th>Department Name</th>
-                                            <th>Number of Employees</th>
-                                            <th>Active Status</th>
+                                        <tr class="filters">
+                                            <th><input type="text" class="form-control" disabled>Department ID</th>
+                                            <th><input type="text" class="form-control" disabled>Department Name</th>
+                                            <th><input type="text" class="form-control" disabled>Active Status</th>
+                                            <th><input type="text" class="form-control" disabled>Number of Employees</th>
                                             <th>View</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="myTable">
                                     <c:forEach items="${list_dep}" var="o">
                                         <tr>
-                                            <th scope="row" class="scope" >${o.getDid()}</th>
+                                            <th scope="row" class="scope">${o.getDid()}</th>
                                             <td>${o.getDname()}</td>
                                             <td>${o.isIs_active()}</td>
                                             <td>${o.getCount_employee()}</td>
@@ -78,8 +126,61 @@
         <script src="js/popper.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>        
-        <jsp:include page="footer.jsp"></jsp:include>
+        <script>
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('.filterable .btn-filter').click(function () {
+                    var $panel = $(this).parents('.filterable'),
+                            $filters = $panel.find('.filters input'),
+                            $tbody = $panel.find('.table tbody');
+                    if ($filters.prop('disabled') == true) {
+                        $filters.prop('disabled', false);
+                        $filters.first().focus();
+                    } else {
+                        $filters.val('').prop('disabled', true);
+                        $tbody.find('.no-result').remove();
+                        $tbody.find('tr').show();
+                    }
+                });
+
+                $('.filterable .filters input').keyup(function (e) {
+                    /* Ignore tab key */
+                    var code = e.keyCode || e.which;
+                    if (code == '9')
+                        return;
+                    /* Useful DOM data and selectors */
+                    var $input = $(this),
+                            inputContent = $input.val().toLowerCase(),
+                            $panel = $input.parents('.filterable'),
+                            column = $panel.find('.filters th').index($input.parents('th')),
+                            $table = $panel.find('.table'),
+                            $rows = $table.find('tbody tr');
+                    /* Dirtiest filter function ever ;) */
+                    var $filteredRows = $rows.filter(function () {
+                        var value = $(this).find('td').eq(column).text().toLowerCase();
+                        return value.indexOf(inputContent) === -1;
+                    });
+                    /* Clean previous no-result if exist */
+                    $table.find('tbody .no-result').remove();
+                    /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+                    $rows.show();
+                    $filteredRows.hide();
+                    /* Prepend no-result row if all rows are filtered */
+                    if ($filteredRows.length === $rows.length) {
+                        $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">No result found</td></tr>'));
+                    }
+                });
+            });
+        </script>
     </body>
+    <jsp:include page="footer.jsp"></jsp:include>
 </html>
 
 
