@@ -91,7 +91,7 @@
                                     </div>
                                 </div> 
                                 <table class="table">
-                                    <thead class="thead-primary">
+                                    <thead>
                                         <tr class="filters">
                                             <th><input type="text" class="form-control" disabled>Department ID</th>
                                             <th><input type="text" class="form-control" disabled>Department Name</th>
@@ -105,14 +105,14 @@
                                     <tbody id="myTable">
                                     <c:forEach items="${list_dep}" var="o">
                                         <tr>
-                                            <th scope="row" class="scope">${o.getDid()}</th>
+                                            <td>${o.getDid()}</td>
                                             <td>${o.getDname()}</td>
                                             <td>${o.isIs_active()}</td>
                                             <td>${o.getCount_employee()}</td>
                                             <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-edit fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-trash fa-2x"></a></td>
-                                        </tr>                                   
+                                        </tr>     
                                     </c:forEach>
                                 </tbody>
                             </table>
