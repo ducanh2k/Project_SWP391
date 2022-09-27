@@ -23,8 +23,8 @@ public class DepartmentDAO extends DBContext {
             st.setInt(1, dID);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Department d =  new Department(rs.getInt("Did"),
-                        rs.getString("name"),true);
+                Department d = new Department(rs.getInt("Did"),
+                        rs.getString("name"), true);
                 d.setCount_employee(0);
                 return d;
             }
@@ -32,6 +32,21 @@ public class DepartmentDAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+
+    public int getDepID(String name) {
+        String sql = "select Did from [Human Resource Service].[dbo].Department where name=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Did");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
     }
 
     public ArrayList<Department> getListDep() {
@@ -47,7 +62,7 @@ public class DepartmentDAO extends DBContext {
             while (rs.next()) {
                 System.out.println(rs.getInt("did"));
                 Department d = new Department(rs.getInt("did"),
-                        rs.getString("dname"),true);
+                        rs.getString("dname"), true);
                 d.setCount_employee(rs.getInt("count_employee"));
                 list_dept.add(d);
             }
@@ -59,28 +74,63 @@ public class DepartmentDAO extends DBContext {
     }
 
     public String getCName(int cerID) {
-        String sql = "select CName from Certificate where CertificateID = " + cerID ;
-        try{
-            PreparedStatement st= connection.prepareStatement(sql);
+        String sql = "select CName from Certificate where CertificateID = " + cerID;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return rs.getString("CName");
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
     }
 
-    public String getDName(int did) {
-        String sql = "select name from Department where Did = " + did ;
-        try{
-            PreparedStatement st= connection.prepareStatement(sql);
+    public int getCID(String name) throws SQLException {
+        String sql = "USE [Human Resource Service]\n"
+                + "GO\n"
+                + "\n"
+                + "SELECT [CertificateID]\n"
+                + "      \n"
+                + "  FROM [dbo].[Certificate] where [CName] = '"+name+"'\n"
+                + "\n"
+                + "GO";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
+                return rs.getInt("CertificateID");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public int getCerID(String name) {
+        String sql = "select CertificateID from [Human Resource Service].[dbo].Certificate where CName=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("CertificateID");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    public String getDName(int did) {
+        String sql = "select name from Department where Did = " + did;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
                 return rs.getString("name");
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return null;

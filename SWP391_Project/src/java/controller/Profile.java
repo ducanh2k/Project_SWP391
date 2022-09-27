@@ -77,6 +77,7 @@ public class Profile extends HttpServlet {
         request.setAttribute("certi", dd.getCName(emp.getCertificateID()));
         request.setAttribute("depart", dd.getDName(emp.getDid()));
         request.setAttribute("mentor", ed.getEmployee(emp.getMentor()).getName());
+//        out.print(dd.getCName(emp.getCertificateID()));
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
@@ -93,12 +94,14 @@ public class Profile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        EmployeeDAO ed = new EmployeeDAO();
+        DepartmentDAO dd = new DepartmentDAO();
         PrintWriter out = response.getWriter();
         int eid = Integer.parseInt(request.getParameter("id"));
-        int did = Integer.parseInt(request.getParameter("department"));
+        int did = dd.getDepID(request.getParameter("department"));
         String name = request.getParameter("fullname");
-        int mentor = Integer.parseInt(request.getParameter("mentor"));
-        int cerID = Integer.parseInt(request.getParameter("certificate"));
+        int mentor = ed.getEmID(request.getParameter("mentor"));
+        int cerID = dd.getCerID(request.getParameter("certificate"));
         String manager = request.getParameter("manager");
         String work = request.getParameter("workingTime");
         String approver = request.getParameter("approver");
@@ -120,18 +123,18 @@ public class Profile extends HttpServlet {
         String wDate = request.getParameter("workLicenseExpirationDate");
         String position = request.getParameter("position");
         Employee employee = new Employee(eid, did, name, mentor, cerID, manager, work, approver, place, email, eContact, phone, picture, cLevel, rArea, nation, idNumber, passport, gender, bPlace, vNumber, wNumber, vDate, wDate, position);
-        EmployeeDAO ed = new EmployeeDAO();
-        DepartmentDAO dd = new DepartmentDAO();
         try {
             ed.Update(employee);
+            
         } catch (SQLException ex) {
-            Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("update fail");
         }
         session.setAttribute("employee", employee);
-        request.setAttribute("certificate", dd.getCName(cerID));
-        request.setAttribute("department", dd.getDName(did));
-        request.setAttribute("mentor", ed.getEmployee(mentor).getName());
-        request.getRequestDispatcher("profile").forward(request, response);
+        request.setAttribute("certificate", request.getParameter("certificate"));
+        request.setAttribute("department", request.getParameter("department"));
+        request.setAttribute("mentor", request.getParameter("mentor"));
+        //            request.getRequestDispatcher("profile").forward(request, response);
+        response.sendRedirect("profile");
     }
 
     /**

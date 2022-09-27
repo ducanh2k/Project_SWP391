@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -31,7 +31,8 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), rs.getString("workLicenseExpirationDate"), rs.getString("position"));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive"));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -39,11 +40,52 @@ public class EmployeeDAO extends DBContext {
         return null;
     }
 
+    public int getEmID(String name) {
+        String sql = "select Eid from [Human Resource Service].[dbo].Employee where name=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Eid");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
     public void Update(Employee e) throws SQLException {
         int gender = 0;
         if(e.isGender()==true){
             gender = 1;
         }
+//        String sql = "UPDATE [dbo].[Employee]\n" +
+//"   SET [Did] = 8\n" +
+//"      ,[name] = 'Duc Anh'\n" +
+//"      ,[mentor] = 4\n" +
+//"      ,[CertificateID] = 5\n" +
+//"      ,[manager] = 'duc'\n" +
+//"      ,[workingTime] = '40h/week'\n" +
+//"      ,[approver] = 'ngan trinhh'\n" +
+//"      ,[workingPlace] = 'Hà Noi'\n" +
+//"      ,[email] = 'tdanhaltt18@gmail.com'\n" +
+//"      ,[emergencyContact] = 377778899\n" +
+//"      ,[phone] = 766000089\n" +
+//"      ,[picture] = 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=2000'\n" +
+//"      ,[certificateLevel] = 'master'\n" +
+//"      ,[researchArea] = 'master'\n" +
+//"      ,[nationality] = 'Viet Nam'\n" +
+//"      ,[idNumber] = 1\n" +
+//"      ,[passport] = 5028441\n" +
+//"      ,[gender] = 0\n" +
+//"      ,[birthplace] = 'Hà Noi'\n" +
+//"      ,[visaNumber] = 18821309\n" +
+//"      ,[workLicenseNumber] = 95902\n" +
+//"      ,[visaExpirationDate] = '2030-02-02'\n" +
+//"      ,[workLicenseExpirationDate] = '2025-01-25'\n" +
+//"      ,[position] = 'Manager'\n" +
+//"      \n" +
+//" WHERE Eid = 1";
         String sql = "UPDATE [dbo].[Employee]\n"
                 + "   SET [Did] = " + e.getDid()
                 + "      ,[name] = '" + e.getName() + "'"
@@ -89,7 +131,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
                         rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position")));
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive")));
             }
             return list;
         } catch (SQLException e) {

@@ -14,6 +14,34 @@ public class Employee {
     private int Did;
     private String name;
     private int mentor;
+
+    public Employee(int Eid, int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String picture, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position) {
+        this.Eid = Eid;
+        this.Did = Did;
+        this.name = name;
+        this.mentor = mentor;
+        this.CertificateID = CertificateID;
+        this.manager = manager;
+        this.workingTime = workingTime;
+        this.approver = approver;
+        this.workingPlace = workingPlace;
+        this.email = email;
+        this.emergencyContact = emergencyContact;
+        this.phone = phone;
+        this.picture = picture;
+        this.certificateLevel = certificateLevel;
+        this.researchArea = researchArea;
+        this.nationality = nationality;
+        this.idNumber = idNumber;
+        this.passport = passport;
+        this.gender = gender;
+        this.birthPlace = birthPlace;
+        this.visaNumber = visaNumber;
+        this.workLicenseNumber = workLicenseNumber;
+        this.visaExpirationDate = visaExpirationDate;
+        this.workLicenseExpirationDate = workLicenseExpirationDate;
+        this.position = position;
+    }
     private int CertificateID;
     private String manager;
     private String workingTime;
@@ -35,7 +63,7 @@ public class Employee {
     private String visaExpirationDate;
     private String workLicenseExpirationDate;
     private String position;
-
+    private boolean isActive;
     public Employee(int Eid, int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position) {
         this.Eid = Eid;
         this.Did = Did;
@@ -65,11 +93,6 @@ public class Employee {
 
     public int getEid() {
         return Eid;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" + "Eid=" + Eid + ", Did=" + Did + ", name=" + name + ", mentor=" + mentor + ", CertificateID=" + CertificateID + ", manager=" + manager + ", workingTime=" + workingTime + ", approver=" + approver + ", workingPlace=" + workingPlace + ", email=" + email + ", emergencyContact=" + emergencyContact + ", phone=" + phone + ", picture=" + picture + ", certificateLevel=" + certificateLevel + ", researchArea=" + researchArea + ", nationality=" + nationality + ", idNumber=" + idNumber + ", passport=" + passport + ", gender=" + gender + ", birthPlace=" + birthPlace + ", visaNumber=" + visaNumber + ", workLicenseNumber=" + workLicenseNumber + ", visaExpirationDate=" + visaExpirationDate + ", workLicenseExpirationDate=" + workLicenseExpirationDate + '}';
     }
 
     public void setEid(int Eid) {
@@ -260,7 +283,7 @@ public class Employee {
         this.workLicenseExpirationDate = workLicenseExpirationDate;
     }
 
-    public Employee(int Eid, int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String picture, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position) {
+    public Employee(int Eid, int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String picture, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position, boolean isActive) {
         this.Eid = Eid;
         this.Did = Did;
         this.name = name;
@@ -286,10 +309,19 @@ public class Employee {
         this.visaExpirationDate = visaExpirationDate;
         this.workLicenseExpirationDate = workLicenseExpirationDate;
         this.position = position;
+        this.isActive = isActive;
     }
 
     public String getPosition() {
         return position;
+    }
+
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public void setPosition(String position) {
