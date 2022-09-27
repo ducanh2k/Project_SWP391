@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import model.Account;
+import model.SendEmail;
 
 /**
  *
@@ -42,5 +43,43 @@ public class AccountDAO extends DBContext {
         String sql = "update Account set password ='"+pass+"' where email ='"+email+"'";
         Statement statement = connection.createStatement();
         statement.execute(sql);
+    }
+    
+     public String register(Account acc) throws SQLException{
+        String email = acc.getEmail();
+        String username = acc.getUsername();
+        String password = acc. getPassword();
+        PreparedStatement st;
+//        String hash;
+//        Random rd = new Random();
+//        rd.nextInt(999999);
+//        hash = DigestUtils.md5Hex(""+rd);
+        try {
+            st = connection.prepareStatement("SELECT * FROM Account where username=?");
+            st.setString(1, username);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                String checkUser = rs.getString("username");
+                if(username.equals(checkUser)){
+                    return "Username already exist";
+                }
+            }else{
+                st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
+                st.setString(1, username);
+                st.setString(2, password);
+                st.setInt(3, 1);
+                st.setString(4, email);
+                
+                int i = st.executeUpdate();
+                
+                if(i!=0){
+                    SendEmail se = new SendEmail(email, username);
+                    se.sendMail();
+                    return "Success";
+                }
+            }
+        } catch (Exception e) {
+        }
+        return "error";   
     }
 }
