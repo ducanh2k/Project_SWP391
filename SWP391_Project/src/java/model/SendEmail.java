@@ -49,7 +49,7 @@ public class SendEmail {
 				message.setFrom(new InternetAddress(email));// change accordingly
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 				message.setSubject("Verification link: ");
-				message.setText("Click here to verify your account: " + "http://localhost:8080/SWP391_Project/Activation?key1="+email+"key2="+username);
+				message.setText("Click here to verify your account: " + "http://localhost:8080/SWP391_Project/Activation?key1="+email+"&key2="+username);
 				// send message
 				Transport.send(message);
 				System.out.println("message sent successfully");

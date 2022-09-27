@@ -37,6 +37,12 @@
         <servlet-class>controller.EmployeeDetail</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Activation</servlet-name>
+        <servlet-class>controller.Activation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>controller.Register</servlet-class>
         <servlet-name>MiddleServlet</servlet-name>
         <servlet-class>controller.MiddleServlet</servlet-class>
     </servlet>
@@ -77,6 +83,12 @@
         <url-pattern>/EmployeeDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Activation</servlet-name>
+        <url-pattern>/Activation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/register</url-pattern>
         <servlet-name>MiddleServlet</servlet-name>
         <url-pattern>/mid</url-pattern>
     </servlet-mapping>
