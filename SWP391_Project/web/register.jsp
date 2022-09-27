@@ -157,7 +157,6 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
-                            <form action="Register" class="signin-form" method="post">
 
                             <form action="register" class="signin-form" method="post">
 
@@ -175,7 +174,7 @@
                                     <!--<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>-->
                                     <input type="submit" class="btn btn-primary btn-block btn-lg" name="btn-register" value="Register">
                                 </div>
-                           
+
                             </form>
                             <p style='color:red'>${requestScope.message}</p>
                             <p class="w-100 text-center">&mdash; Already have an account &mdash;</p>

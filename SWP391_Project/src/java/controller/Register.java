@@ -22,64 +22,10 @@ import org.apache.commons.codec.digest.DigestUtils;
  *
  * @author Admin
  */
-
-
 public class Register extends HttpServlet {
 
     private final AccountDAO account = new AccountDAO();
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Register</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        request.getRequestDispatcher("register.jsp").forward(request, response);
-processRequest(request, response);
-
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -100,16 +46,18 @@ processRequest(request, response);
             try {
                 str = ad.register(acc);
                 if (str.equals("Success")) {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Check your email to verify');");
-                    out.println("window.location.href = \"login.jsp\";");
-                    out.println("</script>");
-
+//                    out.println("<script type=\"text/javascript\">");
+//                    out.println("alert('Check your email to verify');");
+//                    out.println("window.location.href = \"login.jsp\";");
+//                    out.println("</script>");
+                    request.setAttribute("error", str + "! Check your email to verify");
+                    RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                    rd.include(request, response);
                 } else if (str.equals("Username already exist")) {
                     request.setAttribute("error", str);
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
-                } else{
+                } else {
                     request.setAttribute("error", str);
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
