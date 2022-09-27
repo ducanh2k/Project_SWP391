@@ -43,6 +43,8 @@
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>controller.Register</servlet-class>
+        <servlet-name>MiddleServlet</servlet-name>
+        <servlet-class>controller.MiddleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -87,6 +89,8 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
+        <servlet-name>MiddleServlet</servlet-name>
+        <url-pattern>/mid</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
