@@ -45,17 +45,28 @@ public class Controller_Department extends HttpServlet {
             }
             if (service.equals("list_dep")) {
                 ArrayList<Department> list_dep = dep_dao.getListDep();
-//                ArrayList<Department> list_dep = new ArrayList<>();
-//                Department d1 = new Department(0, "abc", true);
-//                d1.setCount_employee(2);
-//                list_dep.add(d1);
                 request.setAttribute("list_dep", list_dep);
                 request.getRequestDispatcher("department_list.jsp").forward(request, response);
-            }else if(service.equals("view_Dep")){
+            } else if (service.equals("view_Dep")) {
                 int did = Integer.parseInt(request.getParameter("did"));
                 Department dep = dep_dao.getDep(did);
                 request.setAttribute("dep_detail", dep);
+                request.setAttribute("mode", "view");
                 request.getRequestDispatcher("department_view.jsp").forward(request, response);
+            } else if (service.equals("edit_del_Dep")) {
+                if (request.getParameter("edit") != null) {
+                    int did = Integer.parseInt(request.getParameter("did"));
+                    Department dep = dep_dao.getDep(did);
+                    request.setAttribute("dep_detail", dep);
+                    request.setAttribute("mode", "edit");
+                    request.getRequestDispatcher("department_view.jsp").forward(request, response);
+                } else if (request.getParameter("delete") != null) {
+                    int did = Integer.parseInt(request.getParameter("did"));
+                } else {
+                    out.print("abc");
+                }
+            } else if (service.equals("save_cancel_Dep")) {
+
             }
         }
     }

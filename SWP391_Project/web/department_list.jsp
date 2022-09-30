@@ -142,6 +142,15 @@
                                 </div> 
                                 <table class="table" id="myTable">
                                     <thead>
+                                    <th>Department ID</th>
+                                    <th>Department Name</th>
+                                    <th>Active Status</th>
+                                    <th>Number of Employees</th>
+                                    <th>View</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    </thead>
+                                    <tbody id="myTable">
                                         <tr class="filters">
                                             <th><input type="text" class="form-control" disabled>Department ID</th>
                                             <th><input type="text" class="form-control" disabled>Department Name</th>
@@ -151,25 +160,12 @@
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Department ID</th>
-                                            <th>Department Name</th>
-                                            <th>Active Status</th>
-                                            <th>Number of Employees</th>
-                                            <th>View</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody id="myTable">
                                     <c:forEach items="${list_dep}" var="o">
                                         <tr>
                                             <td>${o.getDid()}</td>
                                             <td>${o.getDname()}</td>
+                                            <td><a href="EmployeeList?did=${o.getDid()}"></a>${o.getCount_employee()}</td>
                                             <td>${o.isIs_active()}</td>
-                                            <td>${o.getCount_employee()}</td>
                                             <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-edit fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-trash fa-2x"></a></td>
