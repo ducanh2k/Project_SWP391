@@ -29,29 +29,30 @@ public class AccountDAO extends DBContext {
 //                if(user.equals(checkUser)){
 //                    
 //                }else
-                return new Account(
-                        rs.getInt("id"),
-                        rs.getInt("Eid"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getInt("roleid"),
-                        rs.getString("email")
-                );
-        }catch(SQLException e){
+            return new Account(
+                    rs.getInt("id"),
+                    rs.getInt("Eid"),
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getInt("roleid"),
+                    rs.getString("email")
+            );
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
     }
-    public void updatePass(String pass,String email) throws SQLException{
-        String sql = "update Account set password ='"+pass+"' where email ='"+email+"'";
+
+    public void updatePass(String pass, String email) throws SQLException {
+        String sql = "update Account set password ='" + pass + "' where email ='" + email + "'";
         Statement statement = connection.createStatement();
         statement.execute(sql);
     }
-    
-     public String register(Account acc) throws SQLException{
+
+    public String register(Account acc) throws SQLException {
         String email = acc.getEmail();
         String username = acc.getUsername();
-        String password = acc. getPassword();
+        String password = acc.getPassword();
         PreparedStatement st;
 //        String hash;
 //        Random rd = new Random();
@@ -61,21 +62,21 @@ public class AccountDAO extends DBContext {
             st = connection.prepareStatement("SELECT * FROM Account where username=?");
             st.setString(1, username);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 String checkUser = rs.getString("username");
-                if(username.equals(checkUser)){
+                if (username.equals(checkUser)) {
                     return "Username already exist";
                 }
-            }else{
+            } else {
                 st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
                 st.setString(1, username);
                 st.setString(2, password);
                 st.setInt(3, 1);
                 st.setString(4, email);
-                
+
                 int i = st.executeUpdate();
-                
-                if(i!=0){
+
+                if (i != 0) {
                     SendEmail se = new SendEmail(email, username);
                     se.sendMail();
                     return "Success";
@@ -83,6 +84,7 @@ public class AccountDAO extends DBContext {
             }
         } catch (Exception e) {
         }
-        return "error";   
+        return "error";
     }
+
 }

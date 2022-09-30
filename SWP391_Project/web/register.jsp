@@ -158,7 +158,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
 
-                            <form action="register" class="signin-form" method="post" onclick="saveUn()">
+                            <form action="register" class="signin-form" method="post"">
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Email" required name="email">
@@ -166,10 +166,11 @@
                                 <div class="form-group">
                                     <input id="username" type="text" class="form-control" placeholder="Username" required name="username">
                                     <p style="color:red">${userError}</p>
+                                    <p style="color:white">${example}</p>
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" type="password" class="form-control" placeholder="Password" required name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <input id="password" type="password" class="form-control" placeholder="Password" required name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" title="Must contain at least one number and one uppercase and lowercase letter, the length is 8-16 characters">
+                                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
                                     <!--<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>-->
@@ -182,7 +183,7 @@
                                 <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
                                 <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
                                 <p id="number" class="invalid">A <b>number</b></p>
-                                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                                <p id="length" class="invalid"> <b>8-16 characters</b></p>
                             </div>
                             <p style='color:red'>${requestScope.message}</p>
                             <p class="w-100 text-center">&mdash; Already have an account &mdash;</p>
@@ -206,17 +207,14 @@
             var number = document.getElementById("number");
             var length = document.getElementById("length");
 
-// When the user clicks on the password field, show the message box
             myInput.onfocus = function () {
                 document.getElementById("message").style.display = "block";
             }
 
-// When the user clicks outside of the password field, hide the message box
             myInput.onblur = function () {
                 document.getElementById("message").style.display = "none";
             }
 
-// When the user starts to type something inside the password field
             myInput.onkeyup = function () {
                 // Validate lowercase letters
                 var lowerCaseLetters = /[a-z]/g;
@@ -228,7 +226,6 @@
                     letter.classList.add("invalid");
                 }
 
-                // Validate capital letters
                 var upperCaseLetters = /[A-Z]/g;
                 if (myInput.value.match(upperCaseLetters)) {
                     capital.classList.remove("invalid");
@@ -238,7 +235,6 @@
                     capital.classList.add("invalid");
                 }
 
-                // Validate numbers
                 var numbers = /[0-9]/g;
                 if (myInput.value.match(numbers)) {
                     number.classList.remove("invalid");
@@ -248,18 +244,13 @@
                     number.classList.add("invalid");
                 }
 
-                // Validate length
-                if (myInput.value.length >= 8) {
+                if (myInput.value.length >= 8 && myInput.value.length <= 16) {
                     length.classList.remove("invalid");
                     length.classList.add("valid");
                 } else {
                     length.classList.remove("valid");
                     length.classList.add("invalid");
                 }
-            }
-            function saveUn() {
-                var username = document.getElementById('username').value;
-                return false;
             }
         </script>
     </body>

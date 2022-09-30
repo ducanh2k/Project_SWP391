@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -19,7 +19,7 @@ import model.Employee;
 public class EmployeeDAO extends DBContext {
 
     public Employee getEmployee(int Eid) {
-        String sql = "select * from Employee where Eid = "+Eid;
+        String sql = "select * from Employee where Eid = " + Eid;
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -31,8 +31,8 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive"));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive"));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -54,9 +54,10 @@ public class EmployeeDAO extends DBContext {
         }
         return 0;
     }
+
     public void Update(Employee e) throws SQLException {
         int gender = 0;
-        if(e.isGender()==true){
+        if (e.isGender() == true) {
             gender = 1;
         }
 //        String sql = "UPDATE [dbo].[Employee]\n" +
@@ -130,8 +131,8 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive")));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive")));
             }
             return list;
         } catch (SQLException e) {
@@ -139,6 +140,7 @@ public class EmployeeDAO extends DBContext {
         }
         return null;
     }
+
     public Employee getEmployeeDetail(String eid) throws SQLException {
 
         String sql = "  select * from [Employee] e, [Certificate] c,Department d\n"
@@ -155,12 +157,20 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
                         rs.getString("workLicenseExpirationDate"), rs.getString("position"));
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
+    }
+
+    public void deactiveEmployee(String eid) throws SQLException {
+        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=2 "
+                + "UPDATE Account SET Account.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=2";
+        PreparedStatement st = connection.prepareStatement(sql);
+        st.setString(1, eid);
+        ResultSet rs = st.executeQuery();
     }
 }

@@ -54,7 +54,8 @@ public class Register extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
                 } else if (str.equals("Username already exist")) {
-                    request.setAttribute("userError", str);
+                    request.setAttribute("userError", "Username '" + username +"' already exist");
+                    request.setAttribute("example", "You can try: " + username + "1, " + username + "12, " + username + "123");
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
                 } else {
