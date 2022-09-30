@@ -165,7 +165,7 @@
                                             <td>${o.getDid()}</td>
                                             <td>${o.getDname()}</td>
                                             <td>${o.isIs_active()}</td>
-                                            <td><a href="EmployeeList?did=${o.getDid()}"></a>${o.getCount_employee()}</td>
+                                            <td><a href="EmployeeList?did=${o.getDid()}" >${o.getCount_employee()}</a></td>
                                             <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
                                             <td><a href="Department?service=edit_del_Dep&edit=EDIT&did=${o.getDid()}" class="fas fa-edit fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-trash fa-2x"></a></td>

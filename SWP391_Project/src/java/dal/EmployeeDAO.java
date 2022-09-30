@@ -167,9 +167,10 @@ public class EmployeeDAO extends DBContext {
 
     public ArrayList<Employee> getEmployeesByDep(int did) {
         ArrayList<Employee> list = new ArrayList<>();
-        String sql = "select * from Employee where Did";
+        String sql = "select * from Employee where Did = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, did);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 list.add(new Employee(rs.getInt("Eid"), rs.getInt("Did"), rs.getString("name"),
