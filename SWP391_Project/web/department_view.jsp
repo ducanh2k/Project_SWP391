@@ -4,12 +4,17 @@
     Author     : User
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.Department"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    ArrayList<Department> list_dep = new ArrayList<Department>();
     Department dep_detail = (Department) request.getAttribute("dep_detail");
     String mode = (String) request.getAttribute("mode");
+    if (mode.equals("view")) {
+        list_dep = (ArrayList<Department>) request.getAttribute("list_dep");
+    }
 %>
 
 <html style="font-size: 16px;" lang="en">
@@ -36,19 +41,25 @@
                                         <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
                                             <form action="Department" class="u-clearfix u-form-spacing-24 u-form-vertical u-inner-form" source="email" name="form" style="padding: 6px;">
                                                 <div class="u-form-group u-form-name u-label-left u-form-group-1">
-                                                    <label for="name-e0f0" class="u-label u-spacing-12 u-label-1">Department ID : </label>
-                                                    <input <%if (mode == "view") {%> disabled <%}%> type="text" value="${dep_detail.getDid()}" placeholder="Department ID" id="name-e0f0" name="did" class="u-input u-input-rectangle u-radius-7 u-white u-input-1" required=""/>
+                                                    <label for="name-e0f0" class="u-label u-spacing-12 u-label-1">Department ID : </label>                                                    
+                                                    <input disabled value="${dep_detail.getDid()}" type="text"  placeholder="Department ID" id="name-e0f0" name="did" class="u-input u-input-rectangle u-radius-7 u-white u-input-1" required=""/>
                                             </div>
                                             <div class="u-form-email u-form-group u-label-left u-form-group-2">
                                                 <label for="email-e0f0" class="u-label u-spacing-12 u-label-2">Department name : </label>
-                                                <input <%if (mode == "view") {%> disabled <%}%> type="text" value="${dep_detail.getDname()}" placeholder="Department name" id="email-e0f0" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""/>
+                                                <input <%if (mode == "add") {%> value="" <%} else if (mode == "view") {%> disabled value="${dep_detail.getDname()}"<%} else {%> value="${dep_detail.getDname()}" <%}%>
+                                                                                type="text" placeholder="Department name" id="email-e0f0" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""/>
                                             </div>
                                             <div class="u-form-group u-form-select u-label-left u-form-group-3">
                                                 <label for="select-73f7" class="u-label u-spacing-12 u-label-3">Active status : </label>
                                                 <div class="u-form-select-wrapper" style="width: 50%">
-                                                    <select <%if (mode == "view") {%> disabled <%}%> id="select-73f7" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-7 u-white u-input-3">
+                                                    <select <%if (mode == "view" || mode == "add") {%> disabled <%}%> id="select-73f7" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-7 u-white u-input-3">
+                                                        <%if (mode == "add") {%>
+                                                        <option value="Active" selected >Active</option>
+                                                        <option value="Deactive" >Deactive</option>
+                                                        <%} else {%>
                                                         <option value="Active" <%if (dep_detail.isIs_active() == true) {%> selected <%}%>>Active</option>
                                                         <option value="Deactive" <%if (dep_detail.isIs_active() == false) {%> selected <%}%>>Deactive</option>
+                                                        <%}%>
                                                     </select>
                                                 </div>
                                             </div>
@@ -56,15 +67,19 @@
                                                 <label class="u-label u-spacing-12 u-label-4"></label>
                                                 <input type="submit" value="submit" class="u-form-control-hidden"/>
                                                 <div class="u-align-left u-btn-submit-container">
-                                                    <%if (mode == "view") {
-                                                    %>
+                                                    <%if (mode == "view") {%>
                                                     <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="edit" value="EDIT"/>      
                                                     <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="delete" value="DELETE"/>  
                                                     <input type="hidden" name="service" value="edit_del_Dep"/>
+                                                    <input type="hidden" name="did" value="${dep_detail.getDid()}"/>
                                                     <%} else if (mode == "edit") {%>
                                                     <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="save" value="SAVE"/>      
                                                     <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="cancel" value="CANCEL"/>  
-                                                    <input type="hidden" name="service" value="save_cancel_Dep"/>
+                                                    <input type="hidden" name="service" value="save_edit_Dep"/>
+                                                    <input type="hidden" name="did" value="${dep_detail.getDid()}"/>
+                                                    <%} else if (mode == "add") {%>
+                                                    <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="save" value="SAVE"/>     
+                                                    <input type="hidden" name="service" value="save_add_Dep"/>
                                                     <%}%>
                                                 </div>  
                                             </div>
@@ -78,8 +93,6 @@
             </div>
         </div>
     </section>
-
-
     <jsp:include page="footer.jsp"></jsp:include>
 </body>
 

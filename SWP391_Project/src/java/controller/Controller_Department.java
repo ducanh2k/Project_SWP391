@@ -35,6 +35,7 @@ public class Controller_Department extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DepartmentDAO dep_dao = new DepartmentDAO();
+        ArrayList<Department> list_dep = dep_dao.getListDep();
 
         try ( PrintWriter out = response.getWriter()) {
             HttpSession session = (HttpSession) request.getSession();
@@ -43,30 +44,77 @@ public class Controller_Department extends HttpServlet {
             if (request.getParameter("service") != null) {
                 service = request.getParameter("service");
             }
+
+            //department list
             if (service.equals("list_dep")) {
-                ArrayList<Department> list_dep = dep_dao.getListDep();
                 request.setAttribute("list_dep", list_dep);
                 request.getRequestDispatcher("department_list.jsp").forward(request, response);
-            } else if (service.equals("view_Dep")) {
+            }
+
+            //view detail department
+            if (service.equals("view_Dep")) {
                 int did = Integer.parseInt(request.getParameter("did"));
                 Department dep = dep_dao.getDep(did);
                 request.setAttribute("dep_detail", dep);
                 request.setAttribute("mode", "view");
                 request.getRequestDispatcher("department_view.jsp").forward(request, response);
-            } else if (service.equals("edit_del_Dep")) {
+            }
+
+            //edit, delete 
+            if (service.equals("edit_del_Dep")) {
                 if (request.getParameter("edit") != null) {
+                    // edit deparment 
                     int did = Integer.parseInt(request.getParameter("did"));
                     Department dep = dep_dao.getDep(did);
                     request.setAttribute("dep_detail", dep);
+                    request.setAttribute("list_dep", list_dep);
                     request.setAttribute("mode", "edit");
                     request.getRequestDispatcher("department_view.jsp").forward(request, response);
                 } else if (request.getParameter("delete") != null) {
+                    //delete department 
                     int did = Integer.parseInt(request.getParameter("did"));
-                } else {
-                    out.print("abc");
                 }
-            } else if (service.equals("save_cancel_Dep")) {
+            }
 
+            //save department
+            if (request.getParameter("save") != null) {
+                int did = Integer.parseInt(request.getParameter("did"));
+                String dname = request.getParameter("dname");
+                Department dep = new Department(did, dname, true);
+                if (service.equals("save_edit_Dep")) {
+                    dep_dao.update(dep);
+                } else if (service.equals("save_add_Dep")) {
+                    dep_dao.addDep(dep);
+                }
+                list_dep = dep_dao.getListDep();
+                request.setAttribute("list_dep", list_dep);
+                request.getRequestDispatcher("department_list.jsp").forward(request, response);
+            }
+
+            //cancel 
+            if (request.getParameter("cancel") != null) {
+                //cancel edit
+                int did = Integer.parseInt(request.getParameter("did"));
+                Department dep = dep_dao.getDep(did);
+                request.setAttribute("dep_detail", dep);
+                request.setAttribute("mode", "view");
+                request.getRequestDispatcher("department_view.jsp").forward(request, response);
+            }
+
+            //add new department 
+            if (service.equals("add_Dep")) {
+                int id_max = 1;
+                for (Department department : list_dep) {
+                    if (department.getDid() > id_max) {
+                        id_max = department.getDid();
+                    }
+                }
+                Department dep = new Department();
+                dep.setDid(id_max + 1);
+                request.setAttribute("dep_detail", dep);
+                request.setAttribute("list_dep", list_dep);
+                request.setAttribute("mode", "add");
+                request.getRequestDispatcher("department_view.jsp").forward(request, response);
             }
         }
     }

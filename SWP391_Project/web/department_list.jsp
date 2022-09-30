@@ -131,7 +131,7 @@
                             <div class="panel panel-primary filterable">
                                 <div class="mb-4 d-flex justify-content-between align-items-center">
                                     <h2>Department List</h2>
-                                    <button class="font-weight-bold">ADD NEW</button>
+                                    <a role="button" href="Department?service=add_Dep" class="font-weight-bold">ADD NEW</a>
                                 </div>
 
                                 <div class="panel-heading">
@@ -164,10 +164,10 @@
                                         <tr>
                                             <td>${o.getDid()}</td>
                                             <td>${o.getDname()}</td>
-                                            <td><a href="EmployeeList?did=${o.getDid()}"></a>${o.getCount_employee()}</td>
                                             <td>${o.isIs_active()}</td>
+                                            <td><a href="EmployeeList?did=${o.getDid()}"></a>${o.getCount_employee()}</td>
                                             <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
-                                            <td><a href="#" class="fas fa-edit fa-2x"></a></td>
+                                            <td><a href="Department?service=edit_del_Dep&edit=EDIT&did=${o.getDid()}" class="fas fa-edit fa-2x"></a></td>
                                             <td><a href="#" class="fas fa-trash fa-2x"></a></td>
                                         </tr>     
                                     </c:forEach>

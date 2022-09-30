@@ -53,7 +53,7 @@ public class DepartmentDAO extends DBContext {
         ArrayList<Department> list_dept = new ArrayList<Department>();
         String sql = "select d.Did as did, d.name as dname, count(e.Eid) as count_employee\n"
                 + "from [Human Resource Service].[dbo].Department d\n"
-                + "join [Human Resource Service].[dbo].Employee e\n"
+                + "left join [Human Resource Service].[dbo].Employee e\n"
                 + "on d.Did = e.Did\n"
                 + "group by d.Did, d.name";
         try {
@@ -93,7 +93,7 @@ public class DepartmentDAO extends DBContext {
                 + "\n"
                 + "SELECT [CertificateID]\n"
                 + "      \n"
-                + "  FROM [dbo].[Certificate] where [CName] = '"+name+"'\n"
+                + "  FROM [dbo].[Certificate] where [CName] = '" + name + "'\n"
                 + "\n"
                 + "GO";
         try {
@@ -122,6 +122,7 @@ public class DepartmentDAO extends DBContext {
         }
         return 0;
     }
+
     public String getDName(int did) {
         String sql = "select name from Department where Did = " + did;
         try {
@@ -135,4 +136,31 @@ public class DepartmentDAO extends DBContext {
         }
         return null;
     }
+
+    public void addDep(Department dep) {
+        String sql = "insert into [Human Resource Service].[dbo].Department (Did, name, is_active) \n"
+                + "values(?, ?, 1);";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, dep.getDid());
+            st.setString(2, dep.getDname());
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void update(Department dep) {
+        String sql = "update table [Human Resource Service].[dbo].Department "
+                + "set Did=?, name=?, is_active=? where Did=?;";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, dep.getDid());
+            st.setString(2, dep.getDname());
+            st.setBoolean(3, dep.isIs_active());
+            st.setInt(4, dep.getDid());
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }}
 }
