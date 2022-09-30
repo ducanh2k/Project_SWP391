@@ -70,6 +70,7 @@ public class Profile extends HttpServlet {
         HttpSession session = request.getSession();
         EmployeeDAO ed = new EmployeeDAO();
         Employee emp = (Employee) session.getAttribute("employee");
+//        out.print(emp.toString());
         List<Employee> list = new LinkedList<>();
         DepartmentDAO dd = new DepartmentDAO();
         list.add(emp);
@@ -77,7 +78,6 @@ public class Profile extends HttpServlet {
         request.setAttribute("certi", dd.getCName(emp.getCertificateID()));
         request.setAttribute("depart", dd.getDName(emp.getDid()));
         request.setAttribute("mentor", ed.getEmployee(emp.getMentor()).getName());
-//        out.print(dd.getCName(emp.getCertificateID()));
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 

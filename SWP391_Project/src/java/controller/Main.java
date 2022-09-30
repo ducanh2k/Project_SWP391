@@ -63,6 +63,8 @@ public class Main extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         Employee emp = new EmployeeDAO().getEmployee(account.getEid());
+//        out.print(account.toString());
+
         session.setAttribute("employee", emp);
         request.getRequestDispatcher("main.jsp").forward(request, response);
     }

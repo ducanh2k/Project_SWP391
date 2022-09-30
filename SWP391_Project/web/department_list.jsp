@@ -131,7 +131,7 @@
                             <div class="panel panel-primary filterable">
                                 <div class="mb-4 d-flex justify-content-between align-items-center">
                                     <h2>Department List</h2>
-                                    <button class="font-weight-bold">ADD NEW</button>
+                                    <button class="font-weight-bold" >ADD NEW</button>
                                 </div>
 
                                 <div class="panel-heading">
