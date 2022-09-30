@@ -24,7 +24,7 @@ public class DepartmentDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Department d = new Department(rs.getInt("Did"),
-                        rs.getString("name"), true);
+                        rs.getString("name"), rs.getBoolean("is_active"));
                 d.setCount_employee(0);
                 return d;
             }
@@ -62,7 +62,7 @@ public class DepartmentDAO extends DBContext {
             while (rs.next()) {
                 System.out.println(rs.getInt("did"));
                 Department d = new Department(rs.getInt("did"),
-                        rs.getString("dname"), true);
+                        rs.getString("dname"), rs.getBoolean("is_active"));
                 d.setCount_employee(rs.getInt("count_employee"));
                 list_dept.add(d);
             }
