@@ -50,11 +50,11 @@ public class Register extends HttpServlet {
 //                    out.println("alert('Check your email to verify');");
 //                    out.println("window.location.href = \"login.jsp\";");
 //                    out.println("</script>");
-                    request.setAttribute("error", str + "! Check your email to verify");
+                    request.setAttribute("success", str + "! Check your email to verify");
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
                 } else if (str.equals("Username already exist")) {
-                    request.setAttribute("error", str);
+                    request.setAttribute("userError", str);
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
                 } else {

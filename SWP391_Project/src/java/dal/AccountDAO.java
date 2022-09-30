@@ -18,13 +18,17 @@ import model.SendEmail;
 public class AccountDAO extends DBContext {
 
     public Account getAdmin(String user, String pass) throws SQLException {
-        String sql = "select * from [Human Resource Service].[dbo].[Account] where username=? and password=?";
+        String sql = "select * from [Human Resource Service].[dbo].[Account] where username=? and password=? and isActive=1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user);
             st.setString(2, pass);
             ResultSet rs = st.executeQuery();
-            while (rs.next()) {
+
+//               String checkUser = rs.getString("username");
+//                if(user.equals(checkUser)){
+//                    
+//                }else
                 return new Account(
                         rs.getInt("id"),
                         rs.getInt("Eid"),
@@ -33,7 +37,6 @@ public class AccountDAO extends DBContext {
                         rs.getInt("roleid"),
                         rs.getString("email")
                 );
-            }
         }catch(SQLException e){
             System.out.println(e);
         }
