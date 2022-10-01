@@ -28,11 +28,11 @@
                     </div>
                     <!-- Page content-->
                     <div class="col-md-10">
-                        <form class="form-control">
+                        <form class="form-control" action="DeactiveEmployee" method="POST" onSubmit="return confirm('Do you want to deactive this employee?')">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="label-control">ID</label>
-                                    <input class="form-control" value="${e.getEid()}" type="text" readonly>
+                                    <input name="eid" class="form-control" value="${e.getEid()}" type="text" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Name</label>
@@ -110,11 +110,18 @@
                                 <label class="label-control">Position</label>
                                 <input class="form-control" value="${e.getPosition()}" type="text" readonly>
                             </div>
-                    </form>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-3 align-self-center ">
+                                <label class="label-control"></label>
+                                <button class="btn btn-dark form-control align-middle" type="submit">Deactive Employee</button>
+                            </div>
+                        </div>
+                    </form> 
+
                 </div>
             </div>
         </div>
-    </div>
-    <jsp:include page="footer.jsp"></jsp:include>
-</body>
+        <jsp:include page="footer.jsp"></jsp:include>
+    </body>
 </html>

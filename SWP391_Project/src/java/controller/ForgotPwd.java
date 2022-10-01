@@ -21,7 +21,7 @@ import jakarta.servlet.http.*;
  *
  * @author Admin
  */
-public class ForgotPwd1 extends HttpServlet {
+public class ForgotPwd extends HttpServlet {
 
     /**
      *

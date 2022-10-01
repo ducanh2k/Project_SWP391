@@ -18,7 +18,7 @@
     </servlet>
     <servlet>
         <servlet-name>ForgotPwd1</servlet-name>
-        <servlet-class>controller.ForgotPwd1</servlet-class>
+        <servlet-class>controller.ForgotPwd</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewPwd</servlet-name>
@@ -43,6 +43,14 @@
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>controller.Register</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeactiveEmployee</servlet-name>
+        <servlet-class>controller.DeactiveEmployee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MiddleServlet</servlet-name>
+        <servlet-class>controller.MiddleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeactiveEmployee</servlet-name>
+        <url-pattern>/DeactiveEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MiddleServlet</servlet-name>
+        <url-pattern>/MiddleServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -119,7 +119,7 @@ public class EmployeeDAO extends DBContext {
 
     public ArrayList<Employee> getAllEmployee() {
         ArrayList<Employee> list = new ArrayList<>();
-        String sql = "select * from Employee";
+        String sql = "select * from Employee where isActive=1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -132,7 +132,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
                         rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive")));
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position")));
             }
             return list;
         } catch (SQLException e) {
@@ -166,11 +166,82 @@ public class EmployeeDAO extends DBContext {
         return null;
     }
 
+    public void insertEmp(Employee e) {
+        String sql = "INSERT INTO [dbo].[Employee]\n"
+                + "           ([Did]\n"
+                + "           ,[name]\n"
+                + "           ,[mentor]\n"
+                + "           ,[CertificateID]\n"
+                + "           ,[manager]\n"
+                + "           ,[workingTime]\n"
+                + "           ,[approver]\n"
+                + "           ,[workingPlace]\n"
+                + "           ,[email]\n"
+                + "           ,[emergencyContact]\n"
+                + "           ,[phone]\n"
+                + "           ,[picture]\n"
+                + "           ,[certificateLink]\n"
+                + "           ,[researchArea]\n"
+                + "           ,[nationality]\n"
+                + "           ,[idNumber]\n"
+                + "           ,[passport]\n"
+                + "           ,[gender]\n"
+                + "           ,[birthplace]\n"
+                + "           ,[visaNumber]\n"
+                + "           ,[workLicenseNumber]\n"
+                + "           ,[visaExpirationDate]\n"
+                + "           ,[workLicenseExpirationDate]\n"
+                + "           ,[position]\n"
+                + "           ,[isActive])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, e.getDid());
+            st.setString(2, e.getName());
+            st.setInt(3, e.getMentor());
+            st.setInt(4, e.getCertificateID());
+            st.setString(5, e.getManager());
+            st.setString(6, e.getWorkingTime());
+            st.setString(7, e.getApprover());
+            st.setString(8, e.getWorkingPlace());
+            st.setString(9, e.getEmail());
+            st.setInt(10, e.getEmergencyContact());
+            st.setInt(11, e.getPhone());
+            st.setString(12, "");
+            st.setString(13, e.getCertificateLevel());
+            st.setString(14, e.getResearchArea());
+            st.setString(15, e.getNationality());
+            st.setInt(16, e.getIdNumber());
+            st.setInt(17, e.getPassport());
+            if (e.isGender() == true) {
+                st.setInt(18, 1);
+            } else {
+                st.setInt(18, 0);
+            }
+            st.setString(19, e.getBirthPlace());
+            st.setInt(20, e.getVisaNumber());
+            st.setInt(21, e.getWorkLicenseNumber());
+            st.setString(22, e.getVisaExpirationDate());
+            st.setString(23, e.getWorkLicenseExpirationDate());
+            st.setString(24, e.getPosition());
+            st.setInt(25, 0);
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
     public void deactiveEmployee(String eid) throws SQLException {
-        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=2 "
-                + "UPDATE Account SET Account.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=2";
-        PreparedStatement st = connection.prepareStatement(sql);
-        st.setString(1, eid);
-        ResultSet rs = st.executeQuery();
+        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=? "
+                + "UPDATE Account SET Account.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, eid);
+            st.setString(2, eid);
+            st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 }

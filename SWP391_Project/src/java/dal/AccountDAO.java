@@ -29,14 +29,16 @@ public class AccountDAO extends DBContext {
 //                if(user.equals(checkUser)){
 //                    
 //                }else
-            return new Account(
-                    rs.getInt("id"),
-                    rs.getInt("Eid"),
-                    rs.getString("username"),
-                    rs.getString("password"),
-                    rs.getInt("roleid"),
-                    rs.getString("email")
-            );
+            while (rs.next()) {
+                return new Account(
+                        rs.getInt("id"),
+                        rs.getInt("Eid"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getInt("roleid"),
+                        rs.getString("email")
+                );
+            }
         } catch (SQLException e) {
             System.out.println(e);
         }

@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Department List</title>
+        <title>Employee List</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -130,12 +130,12 @@
                             <div class="col-md-12">
                                 <div class="panel panel-primary filterable">
                                     <div class="mb-4 d-flex justify-content-between align-items-center">
-                                        <h2>Department List</h2>
+                                        <h2>Employee List</h2>
                                         <button class="font-weight-bold">ADD NEW</button>
                                     </div>
 
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Department</h3>
+                                        <h3 class="panel-title">Employee</h3>
                                         <div class="pull-right">
                                             <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                                         </div>
