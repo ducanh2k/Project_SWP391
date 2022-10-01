@@ -12,7 +12,7 @@
     ArrayList<Department> list_dep = new ArrayList<Department>();
     Department dep_detail = (Department) request.getAttribute("dep_detail");
     String mode = (String) request.getAttribute("mode");
-    if (mode.equals("view")) {
+    if (!mode.equals("view")) {
         list_dep = (ArrayList<Department>) request.getAttribute("list_dep");
     }
 %>
@@ -46,13 +46,14 @@
                                             </div>
                                             <div class="u-form-email u-form-group u-label-left u-form-group-2">
                                                 <label for="email-e0f0" class="u-label u-spacing-12 u-label-2">Department name : </label>
-                                                <input <%if (mode == "add") {%> value="" <%} else if (mode == "view") {%> disabled value="${dep_detail.getDname()}"<%} else {%> value="${dep_detail.getDname()}" <%}%>
-                                                                                type="text" placeholder="Department name" id="email-e0f0" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""/>
+                                                <input <%if (mode.equals("add")) {%> value="" <%} else if (mode.equals("view")) {%> disabled value="${dep_detail.getDname()}"<%} else if(mode.equals("edit")) {%> value="${dep_detail.getDname()}" <%}%>
+                                                                                type="text" placeholder="Department name" id="name-e0f0" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""
+                                                                                <%if(mode.equals("add") || mode.equals("edit")){%> onfocusout="myFunction()" <%}%>/>
                                             </div>
                                             <div class="u-form-group u-form-select u-label-left u-form-group-3">
                                                 <label for="select-73f7" class="u-label u-spacing-12 u-label-3">Active status : </label>
                                                 <div class="u-form-select-wrapper" style="width: 50%">
-                                                    <select <%if (mode == "view" || mode == "add") {%> disabled <%}%> id="select-73f7" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-7 u-white u-input-3">
+                                                    <select <%if (mode == "view" || mode == "add") {%> disabled <%}%> id="select-73f7" name="is_active" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-7 u-white u-input-3">
                                                         <%if (mode == "add") {%>
                                                         <option value="Active" selected >Active</option>
                                                         <option value="Deactive" >Deactive</option>
@@ -80,6 +81,8 @@
                                                     <%} else if (mode == "add") {%>
                                                     <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="save" value="SAVE"/>     
                                                     <input type="hidden" name="service" value="save_add_Dep"/>
+                                                    <input type="hidden" name="did" value="${dep_detail.getDid()}"/>
+                                                    <input type="hidden" name="is_active" value="Active"/>
                                                     <%}%>
                                                 </div>  
                                             </div>
@@ -94,6 +97,12 @@
         </div>
     </section>
     <jsp:include page="footer.jsp"></jsp:include>
+    <script>
+function myFunction() {
+  var x = document.getElementById("email-e0f0");
+  for
+}
+</script>
 </body>
 
 </html>

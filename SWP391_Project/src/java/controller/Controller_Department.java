@@ -46,7 +46,7 @@ public class Controller_Department extends HttpServlet {
             }
 
             //department list
-            if (service.equals("list_dep")) {
+            if (service.equals("list_dep")) {                
                 request.setAttribute("list_dep", list_dep);
                 request.getRequestDispatcher("department_list.jsp").forward(request, response);
             }
@@ -80,15 +80,14 @@ public class Controller_Department extends HttpServlet {
             if (request.getParameter("save") != null) {
                 int did = Integer.parseInt(request.getParameter("did"));
                 String dname = request.getParameter("dname");
-                Department dep = new Department(did, dname, true);
+                boolean is_active = request.getParameter("is_active").equals("Active") ? true : false;
+                Department dep = new Department(did, dname, is_active);
                 if (service.equals("save_edit_Dep")) {
                     dep_dao.update(dep);
                 } else if (service.equals("save_add_Dep")) {
                     dep_dao.addDep(dep);
                 }
-                list_dep = dep_dao.getListDep();
-                request.setAttribute("list_dep", list_dep);
-                request.getRequestDispatcher("department_list.jsp").forward(request, response);
+                response.sendRedirect("Department");
             }
 
             //cancel 

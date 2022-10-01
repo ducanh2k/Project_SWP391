@@ -51,11 +51,10 @@ public class DepartmentDAO extends DBContext {
 
     public ArrayList<Department> getListDep() {
         ArrayList<Department> list_dept = new ArrayList<Department>();
-        String sql = "select d.Did as did, d.name as dname, count(e.Eid) as count_employee\n"
+        String sql = "select d.Did as did, d.name as dname, count(e.Eid) as count_employee, d.is_active as is_active\n"
                 + "from [Human Resource Service].[dbo].Department d\n"
                 + "left join [Human Resource Service].[dbo].Employee e\n"
-                + "on d.Did = e.Did\n"
-                + "group by d.Did, d.name";
+                + "on d.Did = e.Did group by d.Did, d.name, d.is_active";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -151,7 +150,7 @@ public class DepartmentDAO extends DBContext {
     }
 
     public void update(Department dep) {
-        String sql = "update table [Human Resource Service].[dbo].Department "
+        String sql = "update [Human Resource Service].[dbo].Department "
                 + "set Did=?, name=?, is_active=? where Did=?;";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -162,5 +161,6 @@ public class DepartmentDAO extends DBContext {
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);
-        }}
+        }
+    }
 }
