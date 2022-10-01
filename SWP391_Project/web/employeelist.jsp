@@ -1,5 +1,5 @@
 <%-- 
-    Document   : department_list
+    Document   : employee_list
     Created on : Sep 15, 2022, 10:24:21 PM
     Author     : User
 --%>
@@ -131,7 +131,7 @@
                                 <div class="panel panel-primary filterable">
                                     <div class="mb-4 d-flex justify-content-between align-items-center">
                                         <h2>Employee List</h2>
-                                        <button class="font-weight-bold">ADD NEW</button>
+                                        <button class="font-weight-bold" onclick="window.location.href = 'CreateEmp.jsp';">ADD NEW</button>
                                     </div>
 
                                     <div class="panel-heading">
@@ -288,5 +288,4 @@
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
-
 

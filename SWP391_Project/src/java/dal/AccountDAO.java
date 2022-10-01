@@ -24,11 +24,6 @@ public class AccountDAO extends DBContext {
             st.setString(1, user);
             st.setString(2, pass);
             ResultSet rs = st.executeQuery();
-
-//               String checkUser = rs.getString("username");
-//                if(user.equals(checkUser)){
-//                    
-//                }else
             while (rs.next()) {
                 return new Account(
                         rs.getInt("id"),
