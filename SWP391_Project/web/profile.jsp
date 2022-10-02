@@ -127,8 +127,8 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Certificate Level</label>
-                                                <input type="text" class="form-control" value="${o.getCertificateLevel()}" name="certificateLevel">
+                                                <label>Certificate Link</label>
+                                                <input type="text" class="form-control" value="${o.getCertificateLevel()}" name="certificateLink">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

@@ -315,6 +315,17 @@ public class EmployeeDAO extends DBContext {
             System.out.println(e);
         }
     }
-
+public void deactiveEmployee(String eid) throws SQLException {
+        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=? "
+                + "UPDATE Account SET Account.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, eid);
+            st.setString(2, eid);
+            st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 }
 

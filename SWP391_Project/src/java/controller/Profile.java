@@ -110,7 +110,7 @@ public class Profile extends HttpServlet {
         int eContact = Integer.parseInt(request.getParameter("emergencyContact"));
         int phone = Integer.parseInt(request.getParameter("phone"));
         String picture = request.getParameter("img");
-        String cLevel = request.getParameter("certificateLevel");
+        String cLevel = request.getParameter("certificateLink");
         String rArea = request.getParameter("researchArea");
         String nation = request.getParameter("nationality");
         int idNumber = Integer.parseInt(request.getParameter("idNumber"));
