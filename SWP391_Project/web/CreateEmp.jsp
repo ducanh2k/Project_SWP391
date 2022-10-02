@@ -33,8 +33,9 @@
             <div class="u-align-left u-clearfix u-sheet u-sheet-1">
                 <h1 class="u-text u-text-default u-text-1">Create new Employee</h1>
                 <div class="u-form u-form-1">
-                    <form action="mid" method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                    <form action="MiddleServlet" method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
                         <div class="u-form-group u-form-name u-form-partition-factor-2">
+                            <label for="text-b9da" class="u-label">Name</label>
                             <input type="text" placeholder="Enter Employee Name" id="name-2be9" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-2">
@@ -171,8 +172,8 @@
             </div>
         </section>
         <script>
-            function Submit(){
-       document.forms["form"].submit();
-    }
+            function Submit() {
+                document.forms["form"].submit();
+            }
         </script>
     </body></html>

@@ -56,7 +56,7 @@
                 object-fit: cover;
             }
         </style>
-        
+
     </head>
     <body class="img js-fullheight" style="background-image: url(images/bg.jpg); background-repeat: no-repeat; object-fit: cover">
         <section class="py-5 my-5">
@@ -101,9 +101,9 @@
                     %>
 
                     <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="work-tab">
-                            <h3 class="mb-4">Work Information Settings</h3>
-                            <form action="profile" method="post" id="form1">
+                        <form action="profile" method="post" id="form1">
+                            <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="work-tab">
+                                <h3 class="mb-4">Work Information Settings</h3>
                                 <div class="row">
                                     <c:forEach items="${list}" var="o">
                                         <div class="col-md-6">
@@ -182,94 +182,93 @@
                                             </div>
                                         </div>
                                     </c:forEach>          
-
                                 </div>
                                 <div>
                                     <input type="submit" class="btn btn-primary" value="Update" hidden>
                                     <button  class="btn btn-light" onclick="window.location.href = 'main';">Cancel</button>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="personal" role="tabpanel" aria-labelledby="personal-tab">
-                            <h3 class="mb-4">Personal Information Settings</h3>
-                            <c:forEach items="${list}" var="o">
-                                <div class="row">
-                                    <input type="text" class="form-control" hidden value="${o.getPicture()}" name="img">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>ID</label>
-                                            <input type="number" class="form-control" value="${o.getEid()}" name="id" readonly>
+                            </div>
+                            <div class="tab-pane fade" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                                <h3 class="mb-4">Personal Information Settings</h3>
+                                <c:forEach items="${list}" var="o">
+                                    <div class="row">
+                                        <input type="text" class="form-control" hidden value="${o.getPicture()}" name="img">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>ID</label>
+                                                <input type="number" class="form-control" value="${o.getEid()}" name="id" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Department</label>
+                                                <input type="text" class="form-control" value="<%= depart%>" name="department">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Full Name</label>
+                                                <input type="text" class="form-control" value="${o.getName()}" name="fullname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Mentor</label>
+                                                <input type="text" class="form-control" value="<%= mentor%>" name="mentor">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Certificate</label>
+                                                <input type="text" class="form-control" value="<%= certi%>" name="certificate">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Working Place</label>
+                                                <input type="text" class="form-control" value="${o.getWorkingPlace()}" name="workingPlace">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" class="form-control" value="${o.getEmail()}" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Emergency Contact</label>
+                                                <input type="number" class="form-control" value="${o.getEmergencyContact()}" name="emergencyContact">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="number" class="form-control" value="${o.getPhone()}" name="phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nationality</label>
+                                                <input type="text" class="form-control" value="${o.getNationality()}" name="nationality">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <input type="text" class="form-control" value="${o.isGender()}" name="gender">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Birthplace</label>
+                                                <input type="text" class="form-control" value="${o.getBirthPlace()}" name="birthplace">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Department</label>
-                                            <input type="text" class="form-control" value="<%= depart%>" name="department">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Full Name</label>
-                                            <input type="text" class="form-control" value="${o.getName()}" name="fullname">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Mentor</label>
-                                            <input type="text" class="form-control" value="<%= mentor%>" name="mentor">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Certificate</label>
-                                            <input type="text" class="form-control" value="<%= certi%>" name="certificate">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Working Place</label>
-                                            <input type="text" class="form-control" value="${o.getWorkingPlace()}" name="workingPlace">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="email" class="form-control" value="${o.getEmail()}" name="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Emergency Contact</label>
-                                            <input type="number" class="form-control" value="${o.getEmergencyContact()}" name="emergencyContact">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Phone</label>
-                                            <input type="number" class="form-control" value="${o.getPhone()}" name="phone">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nationality</label>
-                                            <input type="text" class="form-control" value="${o.getNationality()}" name="nationality">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Gender</label>
-                                            <input type="text" class="form-control" value="${o.isGender()}" name="gender">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Birthplace</label>
-                                            <input type="text" class="form-control" value="${o.getBirthPlace()}" name="birthplace">
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </div>
+                                </c:forEach>
+                            </div>
+                        </form>
                         <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                             <h3 class="mb-4">Password Settings</h3>
                             <p style="color:red">${error}</p>
@@ -365,7 +364,8 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary" form="form1" name="AppCheck">Update</button>
+                                <input type="submit" class="btn btn-primary" value="Update">
+                                <!--<button type="submit" class="btn btn-primary" form="form1" name="AppCheck">Update</button>-->
                                 <button class="btn btn-light" onclick="window.location.href = 'list'">Cancel</button>
                             </div>
                         </div>
