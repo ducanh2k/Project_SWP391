@@ -131,7 +131,8 @@
                             <div class="col-md-12">
                                 <div class="panel panel-primary filterable">
                                     <div class="mb-4 d-flex justify-content-between align-items-center">
-                                        <h2>Employee List</h2>
+
+                                        <h2>Department List</h2>
                                         <button class="font-weight-bold" onclick="window.location.href = 'CreateEmp.jsp';">ADD NEW</button>
                                     </div>
 

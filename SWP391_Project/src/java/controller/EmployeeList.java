@@ -51,9 +51,16 @@ public class EmployeeList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+
         EmployeeDAO edao = new EmployeeDAO();
-        DepartmentDAO dd= new DepartmentDAO();
-        ArrayList<Employee> list = edao.getAllEmployee();
+        DepartmentDAO dd = new DepartmentDAO();
+        ArrayList<Employee> list = new ArrayList<Employee>();
+        if (request.getParameter("did") != null) {
+            int did = Integer.parseInt(request.getParameter("did"));
+            list = edao.getEmployeesByDep(did);
+        } else {
+            list = edao.getAllEmployee();
+        }
         request.setAttribute("elist", list);
         request.getRequestDispatcher("employeelist.jsp").forward(request, response);
     }

@@ -54,12 +54,12 @@ public class EmployeeDAO extends DBContext {
         }
         return 0;
     }
-
     public void Update(Employee e) throws SQLException {
         int gender = 0;
         if (e.isGender() == true) {
             gender = 1;
         }
+
         String sql = "UPDATE [dbo].[Employee]\n"
                 + "   SET [Did] = " + e.getDid()
                 + "      ,[name] = '" + e.getName() + "'"
@@ -154,15 +154,17 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive")));
+
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive")));
             }
             return list;
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
-    }
+
+        }
 
     public void insertEmp(Employee e) {
         String sql = "INSERT INTO [dbo].[Employee]\n"
@@ -227,19 +229,6 @@ public class EmployeeDAO extends DBContext {
             ResultSet rs = st.executeQuery();
         } catch (SQLException ex) {
             System.out.println(ex);
-        }
-    }
-
-    public void deactiveEmployee(String eid) throws SQLException {
-        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=? "
-                + "UPDATE Account SET Account.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, eid);
-            st.setString(2, eid);
-            st.executeQuery();
-        } catch (SQLException e) {
-            System.out.println(e);
         }
     }
 
@@ -326,4 +315,6 @@ public class EmployeeDAO extends DBContext {
             System.out.println(e);
         }
     }
+
 }
+
