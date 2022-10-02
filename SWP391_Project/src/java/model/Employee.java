@@ -15,6 +15,32 @@ public class Employee {
     private String name;
     private int mentor;
 
+    public Employee(int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position) {
+        this.Did = Did;
+        this.name = name;
+        this.mentor = mentor;
+        this.CertificateID = CertificateID;
+        this.manager = manager;
+        this.workingTime = workingTime;
+        this.approver = approver;
+        this.workingPlace = workingPlace;
+        this.email = email;
+        this.emergencyContact = emergencyContact;
+        this.phone = phone;
+        this.certificateLevel = certificateLevel;
+        this.researchArea = researchArea;
+        this.nationality = nationality;
+        this.idNumber = idNumber;
+        this.passport = passport;
+        this.gender = gender;
+        this.birthPlace = birthPlace;
+        this.visaNumber = visaNumber;
+        this.workLicenseNumber = workLicenseNumber;
+        this.visaExpirationDate = visaExpirationDate;
+        this.workLicenseExpirationDate = workLicenseExpirationDate;
+        this.position = position;
+    }
+
     public Employee(int Eid, int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String picture, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position) {
         this.Eid = Eid;
         this.Did = Did;
@@ -318,6 +344,11 @@ public class Employee {
 
     public boolean isIsActive() {
         return isActive;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" + "Eid=" + Eid + ", Did=" + Did + ", name=" + name + ", mentor=" + mentor + ", CertificateID=" + CertificateID + ", manager=" + manager + ", workingTime=" + workingTime + ", approver=" + approver + ", workingPlace=" + workingPlace + ", email=" + email + ", emergencyContact=" + emergencyContact + ", phone=" + phone + ", picture=" + picture + ", certificateLevel=" + certificateLevel + ", researchArea=" + researchArea + ", nationality=" + nationality + ", idNumber=" + idNumber + ", passport=" + passport + ", gender=" + gender + ", birthPlace=" + birthPlace + ", visaNumber=" + visaNumber + ", workLicenseNumber=" + workLicenseNumber + ", visaExpirationDate=" + visaExpirationDate + ", workLicenseExpirationDate=" + workLicenseExpirationDate + ", position=" + position + ", isActive=" + isActive + '}';
     }
 
     public void setIsActive(boolean isActive) {

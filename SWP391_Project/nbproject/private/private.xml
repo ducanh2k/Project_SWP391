@@ -5,9 +5,7 @@
         <group>
             <file>file:/D:/Git/Project_SWP391/SWP391_Project/src/java/controller/EmployeeList.java</file>
             <file>file:/D:/Git/Project_SWP391/SWP391_Project/web/CreateEmp.jsp</file>
-            <file>file:/D:/Git/Project_SWP391/SWP391_Project/web/employeelist.jsp</file>
-            <file>file:/D:/Git/Project_SWP391/SWP391_Project/src/java/controller/Profile.java</file>
-            <file>file:/D:/Git/Project_SWP391/SWP391_Project/web/department_view.jsp</file>
+            <file>file:/D:/Git/Project_SWP391/SWP391_Project/src/java/dal/DepartmentDAO.java</file>
             <file>file:/D:/Git/Project_SWP391/SWP391_Project/src/java/controller/MiddleServlet.java</file>
         </group>
     </open-files>
