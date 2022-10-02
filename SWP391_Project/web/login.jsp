@@ -139,7 +139,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
-                            <h3 class="mb-4 text-center">Have an account?</h3>
+                            <p style="color:red">${userError}</p>
                             <form action="login" class="signin-form" method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Username" required name="username">
@@ -164,10 +164,9 @@
                                     </div>
                                 </div>
                             </form>
-                            <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+                            <p class="w-100 text-center">&mdash; Not having account? &mdash;</p>
                             <div class="social d-flex text-center">
-                                <a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
-                                <a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
+                                <a href="register.jsp" class="px-2 py-2 ml-md-1 rounded"> Register</a>
                             </div>
                         </div>
                     </div>

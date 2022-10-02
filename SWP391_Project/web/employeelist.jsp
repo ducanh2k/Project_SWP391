@@ -1,5 +1,5 @@
 <%-- 
-    Document   : department_list
+    Document   : employee_list
     Created on : Sep 15, 2022, 10:24:21 PM
     Author     : User
 --%>
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Department List</title>
+        <title>Employee List</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -33,6 +33,7 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="js/main.js"></script>
         <style>
             .filterable {
                 margin-top: 15px;
@@ -130,12 +131,13 @@
                             <div class="col-md-12">
                                 <div class="panel panel-primary filterable">
                                     <div class="mb-4 d-flex justify-content-between align-items-center">
+
                                         <h2>Department List</h2>
                                         <button class="font-weight-bold" onclick="window.location.href = 'CreateEmp.jsp';">ADD NEW</button>
                                     </div>
 
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Department</h3>
+                                        <h3 class="panel-title">Employee</h3>
                                         <div class="pull-right">
                                             <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                                         </div>
@@ -165,8 +167,8 @@
                                                 <th>Manager</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
-                                                <th></th>
-                                                <th></th>
+                                                <th>View</th>
+                                                <th>Edit</th>
                                                 <th></th>
                                             </tr>
                                         </tfoot>
@@ -181,8 +183,8 @@
                                                 <td>${e.getEmail()}</td>
                                                 <td>${e.getPhone()}</td>
                                                 <td><a href="EmployeeDetail?eid=${e.getEid()}" class="fas fa-eye fa-2x"></a></td>
-                                                <td><a href="#" class="fas fa-edit fa-2x"></a></td>
-                                                <td><a href="#" class="fas fa-edit fa-2x"></a></td>
+                                                <td><a href="#" class="fas fa-edit fa-2x"></a></td><!--
+                                                <td><a href="#" class="fas fa-edit fa-2x"></a></td>-->
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -288,5 +290,4 @@
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
-
 

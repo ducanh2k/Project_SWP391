@@ -82,5 +82,4 @@ public class Account {
     public void setRoleid(int roleid) {
         this.roleid = roleid;
     }
-
 }

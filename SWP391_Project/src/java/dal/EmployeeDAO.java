@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -19,7 +19,7 @@ import model.Employee;
 public class EmployeeDAO extends DBContext {
 
     public Employee getEmployee(int Eid) {
-        String sql = "select * from Employee where Eid = "+Eid;
+        String sql = "select * from Employee where Eid = " + Eid;
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -31,8 +31,8 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive"));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive"));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -54,39 +54,12 @@ public class EmployeeDAO extends DBContext {
         }
         return 0;
     }
-    
     public void Update(Employee e) throws SQLException {
         int gender = 0;
-        if(e.isGender()==true){
+        if (e.isGender() == true) {
             gender = 1;
         }
-//        String sql = "UPDATE [dbo].[Employee]\n" +
-//"   SET [Did] = 8\n" +
-//"      ,[name] = 'Duc Anh'\n" +
-//"      ,[mentor] = 4\n" +
-//"      ,[CertificateID] = 5\n" +
-//"      ,[manager] = 'duc'\n" +
-//"      ,[workingTime] = '40h/week'\n" +
-//"      ,[approver] = 'ngan trinhh'\n" +
-//"      ,[workingPlace] = 'Hà Noi'\n" +
-//"      ,[email] = 'tdanhaltt18@gmail.com'\n" +
-//"      ,[emergencyContact] = 377778899\n" +
-//"      ,[phone] = 766000089\n" +
-//"      ,[picture] = 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=2000'\n" +
-//"      ,[certificateLink] = 'master'\n" +
-//"      ,[researchArea] = 'master'\n" +
-//"      ,[nationality] = 'Viet Nam'\n" +
-//"      ,[idNumber] = 1\n" +
-//"      ,[passport] = 5028441\n" +
-//"      ,[gender] = 0\n" +
-//"      ,[birthplace] = 'Hà Noi'\n" +
-//"      ,[visaNumber] = 18821309\n" +
-//"      ,[workLicenseNumber] = 95902\n" +
-//"      ,[visaExpirationDate] = '2030-02-02'\n" +
-//"      ,[workLicenseExpirationDate] = '2025-01-25'\n" +
-//"      ,[position] = 'Manager'\n" +
-//"      \n" +
-//" WHERE Eid = 1";
+
         String sql = "UPDATE [dbo].[Employee]\n"
                 + "   SET [Did] = " + e.getDid()
                 + "      ,[name] = '" + e.getName() + "'"
@@ -119,7 +92,7 @@ public class EmployeeDAO extends DBContext {
 
     public ArrayList<Employee> getAllEmployee() {
         ArrayList<Employee> list = new ArrayList<>();
-        String sql = "select * from Employee";
+        String sql = "select * from Employee where isActive=1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -131,8 +104,8 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive")));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position")));
             }
             return list;
         } catch (SQLException e) {
@@ -140,7 +113,7 @@ public class EmployeeDAO extends DBContext {
         }
         return null;
     }
-    
+
     public Employee getEmployeeDetail(String eid) throws SQLException {
 
         String sql = "  select * from [Employee] e, [Certificate] c,Department d\n"
@@ -157,7 +130,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
                         rs.getString("workLicenseExpirationDate"), rs.getString("position"));
             }
         } catch (SQLException e) {
@@ -181,6 +154,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
+
                         rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
                         rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive")));
             }
@@ -189,6 +163,7 @@ public class EmployeeDAO extends DBContext {
             System.out.println(e);
         }
         return null;
+
         }
 
     public void insertEmp(Employee e) {
@@ -256,7 +231,7 @@ public class EmployeeDAO extends DBContext {
             System.out.println(ex);
         }
     }
-    
+
     public void insertToTemp(Employee e) {
         String sql = "INSERT INTO [dbo].[Temp]"
                 + "     VALUES\n"
@@ -340,4 +315,6 @@ public class EmployeeDAO extends DBContext {
             System.out.println(e);
         }
     }
+
 }
+
