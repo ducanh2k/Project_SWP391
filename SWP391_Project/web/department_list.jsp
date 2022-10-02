@@ -142,20 +142,22 @@
                                 </div> 
                                 <table class="table" id="myTable">
                                     <thead>
-                                    <th>Department ID</th>
-                                    <th>Department Name</th>
-                                    <th>Active Status</th>
-                                    <th>Number of Employees</th>
-                                    <th>View</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                    </thead>
-                                    <tbody id="myTable">
                                         <tr class="filters">
                                             <th><input type="text" class="form-control" disabled>Department ID</th>
                                             <th><input type="text" class="form-control" disabled>Department Name</th>
                                             <th><input type="text" class="form-control" disabled>Active Status</th>
                                             <th><input type="text" class="form-control" disabled>Number of Employees</th>
+                                            <th>View</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+                                        <tr>
+                                            <th>Department ID</th>
+                                            <th>Department Name</th>
+                                            <th>Active Status</th>
+                                            <th>Number of Employees</th>
                                             <th>View</th>
                                             <th>Edit</th>
                                             <th>Delete</th>

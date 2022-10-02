@@ -144,19 +144,6 @@
                                     <table class="table" id="myTable">
 
                                         <thead>
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Name</th>
-                                                <th>Department Name</th>
-                                                <th>Certificate</th>
-                                                <th>Manager</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
                                             <tr class="filters">
                                                 <th><input type="text" class="form-control" disabled>Id</th>
                                                 <th><input type="text" class="form-control" disabled>Name</th>
@@ -165,6 +152,20 @@
                                                 <th><input type="text" class="form-control" disabled>Manager</th>
                                                 <th><input type="text" class="form-control" disabled>Email</th>
                                                 <th><input type="text" class="form-control" disabled>Phone</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Department Name</th>
+                                                <th>Certificate</th>
+                                                <th>Manager</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
