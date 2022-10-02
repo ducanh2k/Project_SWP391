@@ -36,6 +36,17 @@ public class EmployeeList extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        EmployeeDAO edao = new EmployeeDAO();
+        DepartmentDAO dd = new DepartmentDAO();
+        ArrayList<Employee> list = new ArrayList<Employee>();
+        if (request.getParameter("did") != null) {
+            int did = Integer.parseInt(request.getParameter("did"));
+            list = edao.getEmployeesByDep(did);
+        } else {
+            list = edao.getAllEmployee();
+        }
+        request.setAttribute("elist", list);
+        request.getRequestDispatcher("employeelist.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,18 +62,8 @@ public class EmployeeList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-
-        EmployeeDAO edao = new EmployeeDAO();
-        DepartmentDAO dd = new DepartmentDAO();
-        ArrayList<Employee> list = new ArrayList<Employee>();
-        if (request.getParameter("did") != null) {
-            int did = Integer.parseInt(request.getParameter("did"));
-            list = edao.getEmployeesByDep(did);
-        } else {
-            list = edao.getAllEmployee();
-        }
-        request.setAttribute("elist", list);
-        request.getRequestDispatcher("employeelist.jsp").forward(request, response);
+ processRequest(request, response);
+        
     }
 
     /**
@@ -76,7 +77,7 @@ public class EmployeeList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+ processRequest(request, response);
     }
 
     /**

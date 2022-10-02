@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -19,7 +19,7 @@ import model.Employee;
 public class EmployeeDAO extends DBContext {
 
     public Employee getEmployee(int Eid) {
-        String sql = "select * from Employee where Eid = "+Eid;
+        String sql = "select * from Employee where Eid = " + Eid;
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -31,8 +31,8 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive"));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive"));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -54,10 +54,10 @@ public class EmployeeDAO extends DBContext {
         }
         return 0;
     }
-    
+
     public void Update(Employee e) throws SQLException {
         int gender = 0;
-        if(e.isGender()==true){
+        if (e.isGender() == true) {
             gender = 1;
         }
 //        String sql = "UPDATE [dbo].[Employee]\n" +
@@ -131,8 +131,8 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive")));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive")));
             }
             return list;
         } catch (SQLException e) {
@@ -140,7 +140,7 @@ public class EmployeeDAO extends DBContext {
         }
         return null;
     }
-    
+
     public Employee getEmployeeDetail(String eid) throws SQLException {
 
         String sql = "  select * from [Employee] e, [Certificate] c,Department d\n"
@@ -157,7 +157,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
                         rs.getString("workLicenseExpirationDate"), rs.getString("position"));
             }
         } catch (SQLException e) {
@@ -181,15 +181,15 @@ public class EmployeeDAO extends DBContext {
                         rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
-                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"), 
-                        rs.getString("workLicenseExpirationDate"), rs.getString("position"),rs.getBoolean("isActive")));
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive")));
             }
             return list;
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
-        }
+    }
 
     public void insertEmp(Employee e) {
         String sql = "INSERT INTO [dbo].[Employee]\n"
@@ -256,7 +256,7 @@ public class EmployeeDAO extends DBContext {
             System.out.println(ex);
         }
     }
-    
+
     public void insertToTemp(Employee e) {
         String sql = "INSERT INTO [dbo].[Temp]"
                 + "     VALUES\n"
@@ -335,6 +335,70 @@ public class EmployeeDAO extends DBContext {
             } else {
                 st.setInt(5, 0);
             }
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(e);
+        }
+    }
+
+    public void deactiveEmployee(String eid) throws SQLException {
+        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=? "
+                + "UPDATE Account SET Account.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, eid);
+            st.setString(2, eid);
+            st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void UpdateEmployee(Employee e) {
+        String sql = "UPDATE [dbo].[Employee] \n"
+                + "   SET [Did] = ?\n"
+                + "      ,[name] = ?\n"
+                + "      ,[CertificateID] = ?\n"
+                + "      ,[manager] = ?\n"
+                + "      ,[workingTime] = ?\n"
+                + "      ,[approver] = ?\n"
+                + "      ,[workingPlace] = ?\n"
+                + "      ,[email] = ?\n"
+                + "      ,[emergencyContact] = ?\n"
+                + "      ,[researchArea] = ?\n"
+                + "      ,[phone] = ?\n"
+                + "      ,[nationality] = ?\n"
+                + "      ,[passport] = ?\n"
+                + "      ,[gender] = ?\n"
+                + "      ,[birthplace] = ?\n"
+                + "      ,[visaNumber] = ?\n"
+                + "      ,[workLicenseNumber] = ?\n"
+                + "      ,[visaExpirationDate] = ?\n"
+                + "      ,[position] = ?\n"
+                + "      \n"
+                + " WHERE Eid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, e.getDid());
+            st.setString(2, e.getName());
+            st.setInt(3, e.getCertificateID());
+            st.setString(4, e.getManager());
+            st.setString(5, e.getWorkingTime());
+            st.setString(6, e.getApprover());
+            st.setString(7, e.getWorkingPlace());
+            st.setString(8, e.getEmail());
+            st.setInt(9, e.getEmergencyContact());
+            st.setString(10, e.getResearchArea());
+            st.setInt(11, e.getPhone());
+            st.setString(12, e.getNationality());
+            st.setInt(13, e.getPassport());
+            st.setBoolean(14, e.isGender());
+            st.setString(15, e.getBirthPlace());
+            st.setInt(16, e.getVisaNumber());
+            st.setInt(17, e.getWorkLicenseNumber());
+            st.setString(18, e.getVisaExpirationDate());
+            st.setString(19, e.getPosition());
+            st.setInt(20, e.getEid());
             st.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(e);
