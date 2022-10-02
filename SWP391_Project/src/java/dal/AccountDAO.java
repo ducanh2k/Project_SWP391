@@ -46,6 +46,12 @@ public class AccountDAO extends DBContext {
         statement.execute(sql);
     }
 
+    public void changePass(String newPass, String username) throws SQLException {
+        String sql = "update Account set password ='" + newPass + "' where username ='" + username + "'";
+        Statement statement = connection.createStatement();
+        statement.execute(sql);
+    }
+
     public String register(Account acc) throws SQLException {
         String email = acc.getEmail();
         String username = acc.getUsername();

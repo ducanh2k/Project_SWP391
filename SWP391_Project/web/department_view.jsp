@@ -19,7 +19,7 @@
                         <title>Department Detail</title>
                         <link rel="stylesheet" href="css/nicepage.css" media="screen">
                             <link rel="stylesheet" href="css/Home.css" media="screen">
-
+                                <script src="js/main.js"></script>
                                 </head>
                                 <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
                                     <jsp:include page="sideMenu.jsp"></jsp:include>
