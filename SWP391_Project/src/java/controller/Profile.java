@@ -133,7 +133,6 @@ public class Profile extends HttpServlet {
         request.setAttribute("certificate", request.getParameter("certificate"));
         request.setAttribute("department", request.getParameter("department"));
         request.setAttribute("mentor", request.getParameter("mentor"));
-        //            request.getRequestDispatcher("profile").forward(request, response);
         response.sendRedirect("profile");
     }
 
