@@ -163,7 +163,6 @@ public class EmployeeDAO extends DBContext {
             System.out.println(e);
         }
         return null;
-
     }
 
     public void insertEmp(Employee e) {
@@ -325,6 +324,57 @@ public class EmployeeDAO extends DBContext {
             st.setString(2, eid);
             st.executeQuery();
         } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void UpdateEmployee(Employee e) {
+        String sql = "UPDATE [dbo].[Employee] \n"
+                + "   SET [Did] = ?\n"
+                + "      ,[name] = ?\n"
+                + "      ,[CertificateID] = ?\n"
+                + "      ,[manager] = ?\n"
+                + "      ,[workingTime] = ?\n"
+                + "      ,[approver] = ?\n"
+                + "      ,[workingPlace] = ?\n"
+                + "      ,[email] = ?\n"
+                + "      ,[emergencyContact] = ?\n"
+                + "      ,[researchArea] = ?\n"
+                + "      ,[phone] = ?\n"
+                + "      ,[nationality] = ?\n"
+                + "      ,[passport] = ?\n"
+                + "      ,[gender] = ?\n"
+                + "      ,[birthplace] = ?\n"
+                + "      ,[visaNumber] = ?\n"
+                + "      ,[workLicenseNumber] = ?\n"
+                + "      ,[visaExpirationDate] = ?\n"
+                + "      ,[position] = ?\n"
+                + "      \n"
+                + " WHERE Eid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, e.getDid());
+            st.setString(2, e.getName());
+            st.setInt(3, e.getCertificateID());
+            st.setString(4, e.getManager());
+            st.setString(5, e.getWorkingTime());
+            st.setString(6, e.getApprover());
+            st.setString(7, e.getWorkingPlace());
+            st.setString(8, e.getEmail());
+            st.setInt(9, e.getEmergencyContact());
+            st.setString(10, e.getResearchArea());
+            st.setInt(11, e.getPhone());
+            st.setString(12, e.getNationality());
+            st.setInt(13, e.getPassport());
+            st.setBoolean(14, e.isGender());
+            st.setString(15, e.getBirthPlace());
+            st.setInt(16, e.getVisaNumber());
+            st.setInt(17, e.getWorkLicenseNumber());
+            st.setString(18, e.getVisaExpirationDate());
+            st.setString(19, e.getPosition());
+            st.setInt(20, e.getEid());
+            st.executeUpdate();
+        } catch (SQLException ex) {
             System.out.println(e);
         }
     }
