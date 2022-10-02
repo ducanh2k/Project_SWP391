@@ -131,7 +131,7 @@
                             <div class="panel panel-primary filterable">
                                 <div class="mb-4 d-flex justify-content-between align-items-center">
                                     <h2>Department List</h2>
-                                    <button class="font-weight-bold" >ADD NEW</button>
+                                    <a role="button" href="Department?service=add_Dep" class="font-weight-bold">ADD NEW</a>
                                 </div>
 
                                 <div class="panel-heading">
@@ -142,6 +142,15 @@
                                 </div> 
                                 <table class="table" id="myTable">
                                     <thead>
+                                    <th>Department ID</th>
+                                    <th>Department Name</th>
+                                    <th>Active Status</th>
+                                    <th>Number of Employees</th>
+                                    <th>View</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    </thead>
+                                    <tbody id="myTable">
                                         <tr class="filters">
                                             <th><input type="text" class="form-control" disabled>Department ID</th>
                                             <th><input type="text" class="form-control" disabled>Department Name</th>
@@ -151,28 +160,15 @@
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Department ID</th>
-                                            <th>Department Name</th>
-                                            <th>Active Status</th>
-                                            <th>Number of Employees</th>
-                                            <th>View</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody id="myTable">
                                     <c:forEach items="${list_dep}" var="o">
                                         <tr>
                                             <td>${o.getDid()}</td>
                                             <td>${o.getDname()}</td>
                                             <td>${o.isIs_active()}</td>
-                                            <td>${o.getCount_employee()}</td>
+                                            <td><a href="EmployeeList?did=${o.getDid()}" >${o.getCount_employee()}</a></td>
                                             <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
-                                            <td><a href="#" class="fas fa-edit fa-2x"></a></td>
-                                            <td><a href="#" class="fas fa-trash fa-2x"></a></td>
+                                            <td><a href="Department?service=edit_del_Dep&edit=true&did=${o.getDid()}" class="fas fa-edit fa-2x"></a></td>
+                                            <td><a href="Department?service=edit_del_Dep&delete=true&did=${o.getDid()}" class="fas fa-trash fa-2x"></a></td>
                                         </tr>     
                                     </c:forEach>
                                 </tbody>
@@ -210,7 +206,6 @@
                                         $tbody.find('tr').show();
                                     }
                                 });
-
                                 $('.filterable .filters input').keyup(function (e) {
                                     /* Ignore tab key */
                                     var code = e.keyCode || e.which;
