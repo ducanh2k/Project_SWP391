@@ -182,8 +182,94 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>      
-       </body>
+        <script src="js/main.js"></script>        
+        <script>
+                            $(document).ready(function () {
+                                $("#myInput").on("keyup", function () {
+                                    var value = $(this).val().toLowerCase();
+                                    $("#myTable tr").filter(function () {
+                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                    });
+                                });
+                            });
+                            $(document).ready(function () {
+                                $('.filterable .btn-filter').click(function () {
+                                    var $panel = $(this).parents('.filterable'),
+                                            $filters = $panel.find('.filters input'),
+                                            $tbody = $panel.find('.table tbody');
+                                    if ($filters.prop('disabled') == true) {
+                                        $filters.prop('disabled', false);
+                                        $filters.first().focus();
+                                    } else {
+                                        $filters.val('').prop('disabled', true);
+                                        $tbody.find('.no-result').remove();
+                                        $tbody.find('tr').show();
+                                    }
+                                });
+                                $('.filterable .filters input').keyup(function (e) {
+                                    /* Ignore tab key */
+                                    var code = e.keyCode || e.which;
+                                    if (code == '9')
+                                        return;
+                                    /* Useful DOM data and selectors */
+                                    var $input = $(this),
+                                            inputContent = $input.val().toLowerCase(),
+                                            $panel = $input.parents('.filterable'),
+                                            column = $panel.find('.filters th').index($input.parents('th')),
+                                            $table = $panel.find('.table'),
+                                            $rows = $table.find('tbody tr');
+                                    /* Dirtiest filter function ever ;) */
+                                    var $filteredRows = $rows.filter(function () {
+                                        var value = $(this).find('td').eq(column).text().toLowerCase();
+                                        return value.indexOf(inputContent) === -1;
+                                    });
+                                    /* Clean previous no-result if exist */
+                                    $table.find('tbody .no-result').remove();
+                                    /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+                                    $rows.show();
+                                    $filteredRows.hide();
+                                    /* Prepend no-result row if all rows are filtered */
+                                    if ($filteredRows.length === $rows.length) {
+                                        $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">No result found</td></tr>'));
+                                    }
+                                });
+                            });
+                            function sortTable() {
+                                var table, rows, switching, i, x, y, shouldSwitch;
+                                table = document.getElementById("myTable");
+                                switching = true;
+                                /*Make a loop that will continue until
+                                 no switching has been done:*/
+                                while (switching) {
+                                    //start by saying: no switching is done:
+                                    switching = false;
+                                    rows = table.rows;
+                                    /*Loop through all table rows (except the
+                                     first, which contains table headers):*/
+                                    for (i = 1; i < (rows.length - 1); i++) {
+                                        //start by saying there should be no switching:
+                                        shouldSwitch = false;
+                                        /*Get the two elements you want to compare,
+                                         one from current row and one from the next:*/
+                                        x = rows[i].getElementsByTagName("TD")[1];
+                                        y = rows[i + 1].getElementsByTagName("TD")[1];
+                                        //check if the two rows should switch place:
+                                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                            //if so, mark as a switch and break the loop:
+                                            shouldSwitch = true;
+                                            break;
+                                        }
+                                    }
+                                    if (shouldSwitch) {
+                                        /*If a switch has been marked, make the switch
+                                         and mark that a switch has been done:*/
+                                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                                        switching = true;
+                                    }
+                                }
+                            }
+        </script>
+    </body>
     <jsp:include page="footer.jsp"></jsp:include>
 </html>
 
