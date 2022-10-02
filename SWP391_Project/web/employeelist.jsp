@@ -1,5 +1,5 @@
 <%-- 
-    Document   : department_list
+    Document   : employee_list
     Created on : Sep 15, 2022, 10:24:21 PM
     Author     : User
 --%>
@@ -33,6 +33,7 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="js/main.js"></script>
         <style>
             .filterable {
                 margin-top: 15px;
