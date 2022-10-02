@@ -21,7 +21,7 @@ public class SendEmail {
 
     public String email;
     public String username;
-    
+
     public SendEmail(String email, String username) {
         super();
         this.email = email;
@@ -40,24 +40,22 @@ public class SendEmail {
         Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("philonghiryu@gmail.com", "ojtz vaxs ewnv wyfo");// Put your email																									// id and
+                return new PasswordAuthentication("philonghiryu@gmail.com", "gijm efvt cutv ojsh");// Put your email																									// id and
                 // password here
             }
         });
         try {
-				MimeMessage message = new MimeMessage(session);
-				message.setFrom(new InternetAddress(email));// change accordingly
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-				message.setSubject("Verification link: ");
-				message.setText("Click here to verify your account: " + "http://localhost:8080/SWP391_Project/Activation?key1="+email+"&key2="+username);
-				// send message
-				Transport.send(message);
-				System.out.println("message sent successfully");
-			}
-
-			catch (MessagingException e) {
-				throw new RuntimeException(e);
-			}
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(email));// change accordingly
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Verification link: ");
+            message.setText("Click here to verify your account: " + "http://localhost:8080/SWP391_Project/Activation?key1=" + email + "&key2=" + username);
+            // send message
+            Transport.send(message);
+            System.out.println("message sent successfully");
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

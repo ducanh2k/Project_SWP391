@@ -21,7 +21,7 @@ import jakarta.servlet.http.*;
  *
  * @author Admin
  */
-public class ForgotPwd1 extends HttpServlet {
+public class ForgotPwd extends HttpServlet {
 
     /**
      *
@@ -55,7 +55,7 @@ public class ForgotPwd1 extends HttpServlet {
 			Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("philonghiryu@gmail.com", "ojtz vaxs ewnv wyfo");// Put your email																									// id and
+					return new PasswordAuthentication("philonghiryu@gmail.com", "gijm efvt cutv ojsh");// Put your email																									// id and
 																									// password here
 				}
 			});

@@ -18,7 +18,7 @@ import model.SendEmail;
 public class AccountDAO extends DBContext {
 
     public Account getAdmin(String user, String pass) throws SQLException {
-        String sql = "select * from [Human Resource Service].[dbo].[Account] where username=? and password=?";
+        String sql = "select * from [Human Resource Service].[dbo].[Account] where username=? and password=? and isActive=1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user);
@@ -34,21 +34,28 @@ public class AccountDAO extends DBContext {
                         rs.getString("email")
                 );
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
     }
-    public void updatePass(String pass,String email) throws SQLException{
-        String sql = "update Account set password ='"+pass+"' where email ='"+email+"'";
+
+    public void updatePass(String pass, String email) throws SQLException {
+        String sql = "update Account set password ='" + pass + "' where email ='" + email + "'";
         Statement statement = connection.createStatement();
         statement.execute(sql);
     }
-    
-     public String register(Account acc) throws SQLException{
+
+    public void changePass(String newPass, String username) throws SQLException {
+        String sql = "update Account set password ='" + newPass + "' where username ='" + username + "'";
+        Statement statement = connection.createStatement();
+        statement.execute(sql);
+    }
+
+    public String register(Account acc) throws SQLException {
         String email = acc.getEmail();
         String username = acc.getUsername();
-        String password = acc. getPassword();
+        String password = acc.getPassword();
         PreparedStatement st;
 //        String hash;
 //        Random rd = new Random();
@@ -57,30 +64,35 @@ public class AccountDAO extends DBContext {
         try {
             st = connection.prepareStatement("SELECT * FROM Account where username=?");
             st.setString(1, username);
+//            st.setString(2, email);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 String checkUser = rs.getString("username");
-                if(username.equals(checkUser)){
+                String checkMail = rs.getString("email");
+                if (username.equals(checkUser)) {
                     return "Username already exist";
-                }
-            }else{
-                st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
-                st.setString(1, username);
-                st.setString(2, password);
-                st.setInt(3, 1);
-                st.setString(4, email);
-                
-                int i = st.executeUpdate();
-                
-                if(i!=0){
-                    SendEmail se = new SendEmail(email, username);
-                    se.sendMail();
-                    return "Success";
+//                } else if(email.equals(checkMail)){
+//                    return "Email already exist";
+               
+                } else {
+                    st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
+                    st.setString(1, username);
+                    st.setString(2, password);
+                    st.setInt(3, 1);
+                    st.setString(4, email);
+
+                    int i = st.executeUpdate();
+
+                    if (i != 0) {
+                        SendEmail se = new SendEmail(email, username);
+                        se.sendMail();
+                        return "Success";
+                    }
                 }
             }
         } catch (Exception e) {
         }
-        return "error";   
+        return "error";
     }
-     
+
 }

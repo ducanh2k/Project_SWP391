@@ -144,31 +144,34 @@
             }
         </style>
     </head>
-    <body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
+    <body class="img js-fullheight" style="background-image: url(images/bg.jpg); background-repeat: no-repeat; background-size: cover">
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
                         <h2 class="heading-section">Register</h2>
 
-                        <p style="color:red">${error}</p>
+                        <p style="color:green">${success}</p>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
 
-                            <form action="register" class="signin-form" method="post">
+                            <form action="register" class="signin-form" method="post"">
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Email" required name="email">
+                                    <p style="color:red">${emailError}</p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Username" required name="username">
+                                    <input id="username" type="text" class="form-control" placeholder="Username" required name="username">
+                                    <p style="color:red">${userError}</p>
+                                    <p style="color:white">${example}</p>
                                 </div>
                                 <div class="form-group">
-                                    <input id="password-field" type="password" class="form-control" placeholder="Password" required name="password">
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <input id="password" type="password" class="form-control" placeholder="Password" required name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" title="Must contain at least one number and one uppercase and lowercase letter, the length is 8-16 characters">
+                                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
                                     <!--<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>-->
@@ -176,10 +179,17 @@
                                 </div>
 
                             </form>
+                            <div id="message">
+                                <h3>Password must contain:</h3>
+                                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                                <p id="number" class="invalid">A <b>number</b></p>
+                                <p id="length" class="invalid"> <b>8-16 characters</b></p>
+                            </div>
                             <p style='color:red'>${requestScope.message}</p>
                             <p class="w-100 text-center">&mdash; Already have an account &mdash;</p>
                             <div class="social d-flex text-center">
-                                <a href="login" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Login</a>
+                                <a href="login.jsp" class="px-2 py-2 mr-md-1 rounded"> Login</a>
                             </div>
                         </div>
                     </div>
@@ -191,8 +201,58 @@
         <script src="js/popper.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            var myInput = document.getElementById("password");
+            var letter = document.getElementById("letter");
+            var capital = document.getElementById("capital");
+            var number = document.getElementById("number");
+            var length = document.getElementById("length");
 
+            myInput.onfocus = function () {
+                document.getElementById("message").style.display = "block";
+            }
+
+            myInput.onblur = function () {
+                document.getElementById("message").style.display = "none";
+            }
+
+            myInput.onkeyup = function () {
+                // Validate lowercase letters
+                var lowerCaseLetters = /[a-z]/g;
+                if (myInput.value.match(lowerCaseLetters)) {
+                    letter.classList.remove("invalid");
+                    letter.classList.add("valid");
+                } else {
+                    letter.classList.remove("valid");
+                    letter.classList.add("invalid");
+                }
+
+                var upperCaseLetters = /[A-Z]/g;
+                if (myInput.value.match(upperCaseLetters)) {
+                    capital.classList.remove("invalid");
+                    capital.classList.add("valid");
+                } else {
+                    capital.classList.remove("valid");
+                    capital.classList.add("invalid");
+                }
+
+                var numbers = /[0-9]/g;
+                if (myInput.value.match(numbers)) {
+                    number.classList.remove("invalid");
+                    number.classList.add("valid");
+                } else {
+                    number.classList.remove("valid");
+                    number.classList.add("invalid");
+                }
+
+                if (myInput.value.length >= 8 && myInput.value.length <= 16) {
+                    length.classList.remove("invalid");
+                    length.classList.add("valid");
+                } else {
+                    length.classList.remove("valid");
+                    length.classList.add("invalid");
+                }
+            }
+        </script>
     </body>
-</html>
-=======
 </html>
