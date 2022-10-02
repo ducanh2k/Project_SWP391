@@ -73,6 +73,12 @@ public class Controller_Department extends HttpServlet {
                 } else if (request.getParameter("delete") != null) {
                     //delete department 
                     int did = Integer.parseInt(request.getParameter("did"));
+                    if(dep_dao.deleteDep(did)<=0){
+                        Department dep = dep_dao.getDep(did);
+                        dep.setIs_active(false);
+                        dep_dao.update(dep);
+                    }
+                    response.sendRedirect("Department");
                 }
             }
 

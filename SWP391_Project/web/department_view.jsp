@@ -46,9 +46,9 @@
                                             </div>
                                             <div class="u-form-email u-form-group u-label-left u-form-group-2">
                                                 <label for="email-e0f0" class="u-label u-spacing-12 u-label-2">Department name : </label>
-                                                <input <%if (mode.equals("add")) {%> value="" <%} else if (mode.equals("view")) {%> disabled value="${dep_detail.getDname()}"<%} else if(mode.equals("edit")) {%> value="${dep_detail.getDname()}" <%}%>
-                                                                                type="text" placeholder="Department name" id="name-e0f0" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""
-                                                                                <%if(mode.equals("add") || mode.equals("edit")){%> onfocusout="myFunction()" <%}%>/>
+                                                <input <%if (mode.equals("add")) {%> value="" <%} else if (mode.equals("view")) {%> disabled value="${dep_detail.getDname()}"<%} else if (mode.equals("edit")) {%> value="${dep_detail.getDname()}" <%}%>
+                                                                                     type="text" placeholder="Department name" id="name-e0f0" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""
+                                                                                     <%if (mode.equals("add") || mode.equals("edit")) {%> onfocusout="myFunction()" <%}%>/>
                                             </div>
                                             <div class="u-form-group u-form-select u-label-left u-form-group-3">
                                                 <label for="select-73f7" class="u-label u-spacing-12 u-label-3">Active status : </label>
@@ -98,11 +98,16 @@
     </section>
     <jsp:include page="footer.jsp"></jsp:include>
     <script>
-function myFunction() {
-  var x = document.getElementById("email-e0f0");
-  for
-}
-</script>
+        function myFunction() {
+            var dname = document.getElementById('name-e0f0').value;
+            if (dname.length === 0)
+            {
+                window.alert("Department name is required.\n");
+            }
+
+        }
+        }
+    </script>
 </body>
 
 </html>

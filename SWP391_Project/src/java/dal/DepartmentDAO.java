@@ -163,4 +163,18 @@ public class DepartmentDAO extends DBContext {
             System.out.println(e);
         }
     }
+
+    public int deleteDep(int did) {
+        String sql = "delete from [Human Resource Service].[dbo].Department where Did = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, did);
+            int result = st.executeUpdate();
+            connection.commit();
+            return result;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
+    }
 }
