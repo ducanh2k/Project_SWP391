@@ -106,7 +106,7 @@ public class MiddleServlet extends HttpServlet {
         String workTime = request.getParameter("workTime");
         String cerLink = request.getParameter("cerLink");
         String birth = request.getParameter("birthPlace");
-        Employee e = new Employee(did, name, mid, cerID, manager, workTime, approver, workPlace, email, eContact, phone, cerLevel, research, nation, idNumber, passport, gender_raw, birth, visa, work, visaDate, workDate, position);
+        Employee e = new Employee(did, name, mid, cerID, manager, workTime, approver, workPlace, email, eContact, phone, cerLink, research, nation, idNumber, passport, gender_raw, birth, visa, work, visaDate, workDate, position);
         ed.insertEmp(e);
         response.sendRedirect("EmployeeList");
     }

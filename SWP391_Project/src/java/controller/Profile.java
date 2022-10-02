@@ -125,7 +125,6 @@ public class Profile extends HttpServlet {
         Employee employee = new Employee(eid, did, name, mentor, cerID, manager, work, approver, place, email, eContact, phone, picture, cLevel, rArea, nation, idNumber, passport, gender, bPlace, vNumber, wNumber, vDate, wDate, position);
         try {
             ed.Update(employee);
-            
         } catch (SQLException ex) {
             System.out.println("update fail");
         }
