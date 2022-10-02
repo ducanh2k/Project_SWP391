@@ -28,7 +28,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getInt("mentor"), rs.getInt("CertificateID"), rs.getString("manager"),
                         rs.getString("workingTime"), rs.getString("approver"), rs.getString("workingPlace"),
                         rs.getString("email"), rs.getInt("emergencyContact"), rs.getInt("phone"),
-                        rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
+                        rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
                         rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
@@ -73,7 +73,7 @@ public class EmployeeDAO extends DBContext {
                 + "      ,[emergencyContact] = " + e.getEmergencyContact()
                 + "      ,[phone] = " + e.getPhone()
                 + "      ,[picture] = '" + e.getPicture() + "'"
-                + "      ,[certificateLevel] = '" + e.getResearchArea() + "'"
+                + "      ,[certificateLink] = '" + e.getResearchArea() + "'"
                 + "      ,[researchArea] = '" + e.getResearchArea() + "'"
                 + "      ,[nationality] = '" + e.getNationality() + "'"
                 + "      ,[idNumber] = " + e.getIdNumber()
@@ -101,7 +101,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getInt("mentor"), rs.getInt("CertificateID"), rs.getString("manager"),
                         rs.getString("workingTime"), rs.getString("approver"), rs.getString("workingPlace"),
                         rs.getString("email"), rs.getInt("emergencyContact"), rs.getInt("phone"),
-                        rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
+                        rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
                         rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
@@ -127,7 +127,7 @@ public class EmployeeDAO extends DBContext {
                         rs.getInt("mentor"), rs.getInt("CertificateID"), rs.getString("manager"),
                         rs.getString("workingTime"), rs.getString("approver"), rs.getString("workingPlace"),
                         rs.getString("email"), rs.getInt("emergencyContact"), rs.getInt("phone"),
-                        rs.getString("picture"), rs.getString("certificateLevel"), rs.getString("researchArea"),
+                        rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
                         rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
                         rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
                         rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
