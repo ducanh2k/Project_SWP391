@@ -139,6 +139,31 @@ public class EmployeeDAO extends DBContext {
         return null;
     }
 
+    public ArrayList<Employee> getEmployeesByDep(int did) {
+        ArrayList<Employee> list = new ArrayList<>();
+        String sql = "select * from Employee where Did = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, did);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                list.add(new Employee(rs.getInt("Eid"), rs.getInt("Did"), rs.getString("name"),
+                        rs.getInt("mentor"), rs.getInt("CertificateID"), rs.getString("manager"),
+                        rs.getString("workingTime"), rs.getString("approver"), rs.getString("workingPlace"),
+                        rs.getString("email"), rs.getInt("emergencyContact"), rs.getInt("phone"),
+                        rs.getString("picture"), rs.getString("certificateLink"), rs.getString("researchArea"),
+                        rs.getString("nationality"), rs.getInt("idNumber"), rs.getInt("passport"),
+                        rs.getBoolean("gender"), rs.getString("birthplace"), rs.getInt("visaNumber"),
+                        rs.getInt("workLicenseNumber"), rs.getString("visaExpirationDate"),
+                        rs.getString("workLicenseExpirationDate"), rs.getString("position"), rs.getBoolean("isActive")));
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public void insertEmp(Employee e) {
         String sql = "INSERT INTO [dbo].[Employee]\n"
                 + "           ([Did]\n"
@@ -217,6 +242,7 @@ public class EmployeeDAO extends DBContext {
             System.out.println(e);
         }
     }
+
     public void insertToTemp(Employee e) {
         String sql = "INSERT INTO [dbo].[Temp]"
                 + "     VALUES\n"
