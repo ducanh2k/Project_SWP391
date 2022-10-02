@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
-import org.apache.commons.codec.digest.DigestUtils;
+//import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -54,8 +54,12 @@ public class Register extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
                 } else if (str.equals("Username already exist")) {
-                    request.setAttribute("userError", "Username '" + username +"' already exist");
+                    request.setAttribute("userError", "Username '" + username + "' already exist");
                     request.setAttribute("example", "You can try: " + username + "1, " + username + "12, " + username + "123");
+                    RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                    rd.include(request, response);
+                } else if (str.equals("Email already exist")) {
+                    request.setAttribute("emailError", "Email '" + email + "' already exist");
                     RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                     rd.include(request, response);
                 } else {

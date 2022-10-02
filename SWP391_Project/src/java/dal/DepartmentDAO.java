@@ -24,7 +24,7 @@ public class DepartmentDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Department d = new Department(rs.getInt("Did"),
-                        rs.getString("name"), true);
+                        rs.getString("name"), rs.getBoolean("is_active"));
                 d.setCount_employee(0);
                 return d;
             }
@@ -51,18 +51,17 @@ public class DepartmentDAO extends DBContext {
 
     public ArrayList<Department> getListDep() {
         ArrayList<Department> list_dept = new ArrayList<Department>();
-        String sql = "select d.Did as did, d.name as dname, count(e.Eid) as count_employee\n"
+        String sql = "select d.Did as did, d.name as dname, count(e.Eid) as count_employee, d.is_active as is_active\n"
                 + "from [Human Resource Service].[dbo].Department d\n"
-                + "join [Human Resource Service].[dbo].Employee e\n"
-                + "on d.Did = e.Did\n"
-                + "group by d.Did, d.name";
+                + "left join [Human Resource Service].[dbo].Employee e\n"
+                + "on d.Did = e.Did group by d.Did, d.name, d.is_active";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 System.out.println(rs.getInt("did"));
                 Department d = new Department(rs.getInt("did"),
-                        rs.getString("dname"), true);
+                        rs.getString("dname"), rs.getBoolean("is_active"));
                 d.setCount_employee(rs.getInt("count_employee"));
                 list_dept.add(d);
             }
@@ -93,7 +92,7 @@ public class DepartmentDAO extends DBContext {
                 + "\n"
                 + "SELECT [CertificateID]\n"
                 + "      \n"
-                + "  FROM [dbo].[Certificate] where [CName] = '"+name+"'\n"
+                + "  FROM [dbo].[Certificate] where [CName] = '" + name + "'\n"
                 + "\n"
                 + "GO";
         try {
@@ -122,6 +121,7 @@ public class DepartmentDAO extends DBContext {
         }
         return 0;
     }
+
     public String getDName(int did) {
         String sql = "select name from Department where Did = " + did;
         try {
@@ -134,5 +134,47 @@ public class DepartmentDAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+
+    public void addDep(Department dep) {
+        String sql = "insert into [Human Resource Service].[dbo].Department (Did, name, is_active) \n"
+                + "values(?, ?, 1);";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, dep.getDid());
+            st.setString(2, dep.getDname());
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void update(Department dep) {
+        String sql = "update [Human Resource Service].[dbo].Department "
+                + "set Did=?, name=?, is_active=? where Did=?;";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, dep.getDid());
+            st.setString(2, dep.getDname());
+            st.setBoolean(3, dep.isIs_active());
+            st.setInt(4, dep.getDid());
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public int deleteDep(int did) {
+        String sql = "delete from [Human Resource Service].[dbo].Department where Did = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, did);
+            int result = st.executeUpdate();
+            connection.commit();
+            return result;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
     }
 }

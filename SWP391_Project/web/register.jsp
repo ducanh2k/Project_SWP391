@@ -1,4 +1,4 @@
-w<%-- 
+<%-- 
     Document   : register
     Created on : Sep 18, 2022, 2:59:43 AM
     Author     : Admin
@@ -162,6 +162,7 @@ w<%--
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Email" required name="email">
+                                    <p style="color:red">${emailError}</p>
                                 </div>
                                 <div class="form-group">
                                     <input id="username" type="text" class="form-control" placeholder="Username" required name="username">

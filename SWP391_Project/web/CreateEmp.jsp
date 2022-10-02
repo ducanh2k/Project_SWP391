@@ -24,10 +24,6 @@
         <meta name="theme-color" content="#478ac9">
         <meta property="og:title" content="Page 3">
         <meta property="og:type" content="website">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     </head>
     <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-f9a6"><div class="u-clearfix u-sheet u-sheet-1"></div></header>
         <section class="u-align-center u-clearfix u-section-1" id="sec-992b">

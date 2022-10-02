@@ -64,25 +64,30 @@ public class AccountDAO extends DBContext {
         try {
             st = connection.prepareStatement("SELECT * FROM Account where username=?");
             st.setString(1, username);
+//            st.setString(2, email);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 String checkUser = rs.getString("username");
+                String checkMail = rs.getString("email");
                 if (username.equals(checkUser)) {
                     return "Username already exist";
-                }
-            } else {
-                st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
-                st.setString(1, username);
-                st.setString(2, password);
-                st.setInt(3, 1);
-                st.setString(4, email);
+//                } else if(email.equals(checkMail)){
+//                    return "Email already exist";
+               
+                } else {
+                    st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
+                    st.setString(1, username);
+                    st.setString(2, password);
+                    st.setInt(3, 1);
+                    st.setString(4, email);
 
-                int i = st.executeUpdate();
+                    int i = st.executeUpdate();
 
-                if (i != 0) {
-                    SendEmail se = new SendEmail(email, username);
-                    se.sendMail();
-                    return "Success";
+                    if (i != 0) {
+                        SendEmail se = new SendEmail(email, username);
+                        se.sendMail();
+                        return "Success";
+                    }
                 }
             }
         } catch (Exception e) {
