@@ -86,27 +86,6 @@ public class DepartmentDAO extends DBContext {
         return null;
     }
 
-    public int getCID(String name) throws SQLException {
-        String sql = "USE [Human Resource Service]\n"
-                + "GO\n"
-                + "\n"
-                + "SELECT [CertificateID]\n"
-                + "      \n"
-                + "  FROM [dbo].[Certificate] where [CName] = '" + name + "'\n"
-                + "\n"
-                + "GO";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                return rs.getInt("CertificateID");
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return 0;
-    }
-
     public int getCerID(String name) {
         String sql = "select CertificateID from [Human Resource Service].[dbo].Certificate where CName=?";
         try {
