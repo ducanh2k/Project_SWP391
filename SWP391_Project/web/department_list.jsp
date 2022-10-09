@@ -4,6 +4,8 @@
     Author     : User
 --%>
 
+<%@page import="model.Account"%>
+<%@page import="dal.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -152,28 +154,38 @@
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="myTable">
-                                        <tr>
-                                            <th>Department ID</th>
-                                            <th>Department Name</th>
-                                            <th>Active Status</th>
-                                            <th>Number of Employees</th>
-                                            <th>View</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
+
+
+                                    <th>Department ID</th>
+                                    <th>Department Name</th>
+                                    <th>Active Status</th>
+                                    <th>Number of Employees</th>
+                                    <th>View</th>
+                                    <%
+                                        HttpSession session1 = request.getSession();
+                                        Account a = (Account) session1.getAttribute("account");
+                                        AccountDAO ad = new AccountDAO();
+                                        String role = ad.getRole(a);
+                                    %>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                     <c:forEach items="${list_dep}" var="o">
-                                        <tr>
-                                            <td>${o.getDid()}</td>
-                                            <td>${o.getDname()}</td>
-                                            <td>${o.isIs_active()}</td>
-                                            <td><a href="EmployeeList?did=${o.getDid()}" >${o.getCount_employee()}</a></td>
-                                            <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
-                                            <td><a href="Department?service=edit_del_Dep&edit=true&did=${o.getDid()}" class="fas fa-edit fa-2x"></a></td>
-                                            <td><a href="Department?service=edit_del_Dep&delete=true&did=${o.getDid()}" class="fas fa-trash fa-2x"></a></td>
-                                        </tr>     
-                                    </c:forEach>
-                                </tbody>
+                                    <tr>
+                                        <td>${o.getDid()}</td>
+                                        <td>${o.getDname()}</td>
+                                        <td>${o.isIs_active()}</td>
+                                        <td><a href="EmployeeList?did=${o.getDid()}" >${o.getCount_employee()}</a></td>
+                                        <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
+                                            <%                                                
+                                               if (role.equalsIgnoreCase("admin")) {
+                                            %>
+                                        <td><a href="Department?service=edit_del_Dep&edit=true&did=${o.getDid()}" class="fas fa-edit fa-2x"></a></td>
+                                        <td><a href="Department?service=edit_del_Dep&delete=true&did=${o.getDid()}" class="fas fa-trash fa-2x"></a></td>
+                                            <%
+                                                }
+                                            %>
+                                    </tr>     
+                                </c:forEach>
                             </table>
                         </div>
                     </div>

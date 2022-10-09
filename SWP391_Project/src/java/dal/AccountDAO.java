@@ -16,7 +16,7 @@ import model.SendEmail;
  * @author Dell
  */
 public class AccountDAO extends DBContext {
-
+    
     public Account getAdmin(String user, String pass) throws SQLException {
         String sql = "select * from [Human Resource Service].[dbo].[Account] where username=? and password=? and isActive=1";
         try {
@@ -39,19 +39,34 @@ public class AccountDAO extends DBContext {
         }
         return null;
     }
+    
+    public String getRole(Account a) {
+        String sql = "select rolename from [Human Resource Service].[dbo].[Role] where roleid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, a.getRoleid());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getString("rolename");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
 
     public void updatePass(String pass, String email) throws SQLException {
         String sql = "update Account set password ='" + pass + "' where email ='" + email + "'";
         Statement statement = connection.createStatement();
         statement.execute(sql);
     }
-
+    
     public void changePass(String newPass, String username) throws SQLException {
         String sql = "update Account set password ='" + newPass + "' where username ='" + username + "'";
         Statement statement = connection.createStatement();
         statement.execute(sql);
     }
-
+    
     public String register(Account acc) throws SQLException {
         String email = acc.getEmail();
         String username = acc.getUsername();
@@ -73,16 +88,16 @@ public class AccountDAO extends DBContext {
                     return "Username already exist";
 //                } else if(email.equals(checkMail)){
 //                    return "Email already exist";
-               
+                    
                 } else {
                     st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
                     st.setString(1, username);
                     st.setString(2, password);
                     st.setInt(3, 1);
                     st.setString(4, email);
-
+                    
                     int i = st.executeUpdate();
-
+                    
                     if (i != 0) {
                         SendEmail se = new SendEmail(email, username);
                         se.sendMail();
@@ -94,5 +109,5 @@ public class AccountDAO extends DBContext {
         }
         return "error";
     }
-
+    
 }

@@ -4,6 +4,8 @@
     Author     : User
 --%>
 
+<%@page import="model.Account"%>
+<%@page import="dal.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -157,7 +159,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Name</th>
@@ -178,8 +180,17 @@
                                                 <td>${e.getManager()}</td>
                                                 <td>${e.getEmail()}</td>
                                                 <td>${e.getPhone()}</td>
+                                                <%
+                                                    HttpSession session1 = request.getSession();
+                                                    Account a = (Account) session1.getAttribute("account");
+                                                    AccountDAO ad = new AccountDAO();
+                                                    if (ad.getRole(a).equalsIgnoreCase("admin")) {
+                                                %>
                                                 <td><a href="EmployeeDetail?service=view&eid=${e.getEid()}" class="fas fa-eye fa-2x"></a></td>
                                                 <td><a href="EmployeeDetail?service=edit&eid=${e.getEid()}" class="fas fa-edit fa-2x"></a></td>
+                                                    <%
+                                                        }
+                                                    %>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

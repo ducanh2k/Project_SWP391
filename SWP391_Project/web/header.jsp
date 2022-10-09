@@ -4,8 +4,14 @@
     Author     : Admin
 --%>
 
+<%@page import="dal.AccountDAO"%>
+<%@page import="model.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    HttpSession session1 = request.getSession(true);
+    Account a =(Account)session1.getAttribute("account");
+    AccountDAO ad = new AccountDAO();
+%>
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
@@ -16,9 +22,9 @@
                 <li><a id="this" class="nav-link scrollto" href="index.html">Home</a></li>
                 <li><a id="this" class="nav-link scrollto" href="EmployeeList">Employee</a></li>
                 <li><a id="this" class="nav-link scrollto " href="Department">Department</a></li>
-                <li><a id="this" class="nav-link scrollto" href="#">Project</a></li>
+                <li><a id="this" class="nav-link scrollto" href="#">Contract</a></li>
                 <li><a id="this" class="nav-link scrollto" href="#">Certification</a></li>
-                <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='profile'">Your Profile</button></li>
+                <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='profile'"><%= ad.getRole(a) %></button></li>
                 <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href='login.jsp'">Logout</button></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
