@@ -166,9 +166,14 @@
                                         Account a = (Account) session1.getAttribute("account");
                                         AccountDAO ad = new AccountDAO();
                                         String role = ad.getRole(a);
+                                        if(!role.equalsIgnoreCase("admin")){
                                     %>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <p><%= role %></p>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <%
+                                    }
+                                %>
                                     <c:forEach items="${list_dep}" var="o">
                                     <tr>
                                         <td>${o.getDid()}</td>
@@ -176,14 +181,8 @@
                                         <td>${o.isIs_active()}</td>
                                         <td><a href="EmployeeList?did=${o.getDid()}" >${o.getCount_employee()}</a></td>
                                         <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
-                                            <%                                                
-                                               if (role.equalsIgnoreCase("admin")) {
-                                            %>
                                         <td><a href="Department?service=edit_del_Dep&edit=true&did=${o.getDid()}" class="fas fa-edit fa-2x"></a></td>
                                         <td><a href="Department?service=edit_del_Dep&delete=true&did=${o.getDid()}" class="fas fa-trash fa-2x"></a></td>
-                                            <%
-                                                }
-                                            %>
                                     </tr>     
                                 </c:forEach>
                             </table>

@@ -91,7 +91,7 @@ public class EmployeeDAO extends DBContext {
         statement.execute(sql);
     }
 
-    public ArrayList<Employee> getAllEmployee() {
+       public ArrayList<Employee> getAllEmployee() {
         ArrayList<Employee> list = new ArrayList<>();
         String sql = "select * from Employee where isActive=1";
         try {
