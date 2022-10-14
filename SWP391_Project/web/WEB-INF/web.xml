@@ -61,8 +61,13 @@
         <servlet-class>controller.ContractServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>EditContract</servlet-name>
         <servlet-class>controller.EditContract</servlet-class>
+=======
+        <servlet-name>AttendantServlet</servlet-name>
+        <servlet-class>controller.AttendantServlet</servlet-class>
+>>>>>>> d88699822724dd10e6b2318b46347999b86f7e0f
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -125,8 +130,13 @@
         <url-pattern>/contract</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>EditContract</servlet-name>
         <url-pattern>/EditContract</url-pattern>
+=======
+        <servlet-name>AttendantServlet</servlet-name>
+        <url-pattern>/attendant</url-pattern>
+>>>>>>> d88699822724dd10e6b2318b46347999b86f7e0f
     </servlet-mapping>
     <session-config>
         <session-timeout>
