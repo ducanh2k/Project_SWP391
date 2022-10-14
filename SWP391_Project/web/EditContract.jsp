@@ -1,3 +1,10 @@
+<%-- 
+    Document   : EditContract
+    Created on : Oct 14, 2022, 1:44:03 PM
+    Author     : Admin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +17,7 @@
         <meta name="keywords" content="Colorlib Templates">
 
         <!-- Title Page-->
-        <title>Create Contract</title>
+        <title>Edit Contract</title>
 
         <!-- Icons font CSS-->
         <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -27,12 +34,12 @@
     </head>
 
     <body>
-        <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+        <div class="page-wrapper bg-blue p-t-180 p-b-100 font-robo">
             <div class="wrapper wrapper--w960">
                 <div class="card card-2">
 <!--                    <div class="card-heading"></div>-->
                     <div class="card-body">
-                        <h2 class="title">Create Contract</h2>
+                        <h2 class="title">Edit Contract</h2>
                         <form action="contract" method="POST">
                             <div class="input-group">
                                 <input class="input--style-2" type="text" placeholder="Contract Name" name="cName">
@@ -86,7 +93,8 @@
                                 </div>
                             </div>
                             <div class="p-t-30">
-                                <button class="btn btn--radius btn--green" type="submit">Create</button>
+                                <button class="btn btn--radius btn--green" type="submit">Save</button>
+                                <button class="btn btn--radius btn--red" type="submit">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -107,4 +115,3 @@
     </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
-<!-- end document-->
