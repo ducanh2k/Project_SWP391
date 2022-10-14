@@ -134,7 +134,7 @@
                                 <div class="panel panel-primary filterable">
                                     <div class="mb-4 d-flex justify-content-between align-items-center">
                                         <h2>Employee List</h2>
-                                        <button class="font-weight-bold" onclick="window.location.href = 'CreateEmp.jsp';">ADD NEW</button>
+                                        <button class="font-weight-bold" onclick="window.location.href = 'CreateEmp.jsp'">ADD NEW</button>
                                     </div>
 
                                     <div class="panel-heading">
@@ -184,13 +184,9 @@
                                                     HttpSession session1 = request.getSession();
                                                     Account a = (Account) session1.getAttribute("account");
                                                     AccountDAO ad = new AccountDAO();
-                                                    if (ad.getRole(a).equalsIgnoreCase("admin")) {
                                                 %>
                                                 <td><a href="EmployeeDetail?service=view&eid=${e.getEid()}" class="fas fa-eye fa-2x"></a></td>
                                                 <td><a href="EmployeeDetail?service=edit&eid=${e.getEid()}" class="fas fa-edit fa-2x"></a></td>
-                                                    <%
-                                                        }
-                                                    %>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
