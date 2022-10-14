@@ -9,6 +9,7 @@ package model;
  * @author Dell
  */
 public class Contract {
+    private int Cid;
     private int Eid;
     private int Did;
     private String name;
@@ -17,6 +18,7 @@ public class Contract {
     private String Status;
     private String workingTime;
     private double Salary;
+    private String Ename;
 
     public Contract(int Eid, int Did, String name, String StartingDate, String EndDate, String Status, String workingTime, double Salary) {
         this.Eid = Eid;
@@ -29,11 +31,27 @@ public class Contract {
         this.Salary = Salary;
     }
 
+    public String getEname() {
+        return Ename;
+    }
+
+    public void setEname(String Ename) {
+        this.Ename = Ename;
+    }
+
     public Contract() {
     }
 
     public int getEid() {
         return Eid;
+    }
+
+    public int getCid() {
+        return Cid;
+    }
+
+    public void setCid(int Cid) {
+        this.Cid = Cid;
     }
 
     public void setEid(int Eid) {
