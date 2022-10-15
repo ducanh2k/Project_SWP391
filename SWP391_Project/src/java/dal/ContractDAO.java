@@ -49,12 +49,12 @@ public class ContractDAO extends DBContext{
             System.out.println(e);
         }
     }
-    public void deleteContract(Contract con) {
+    public void deleteContract(String eid) throws SQLException {
         String sql = "update Contract set Status = 'Expired' where Eid=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, con.getEid());
-            ResultSet rs = st.executeQuery();
+            st.setString(1, eid);
+            st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);
         }
