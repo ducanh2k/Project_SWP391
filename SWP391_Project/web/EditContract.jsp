@@ -40,7 +40,7 @@
 <!--                    <div class="card-heading"></div>-->
                     <div class="card-body">
                         <h2 class="title">Edit Contract</h2>
-                        <form action="contract" method="POST">
+                        <form action="EditContract" method="POST">
                             <div class="input-group">
                                 <input class="input--style-2" type="text" placeholder="Contract Name" name="cName">
                             </div>
@@ -82,9 +82,14 @@
                             </div>
                             <div class="row row-space">
                                 <div class="col-2">
-                                    <div class="input-group">
-                                        <input class="input--style-2" type="text" placeholder="Status" name="status">
-                                    </div>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="status">
+                                        <option disabled="disabled" selected="selected">Status</option>
+                                        <option>Opened</option>
+                                        <option>Expired</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="input-group">
@@ -94,7 +99,7 @@
                             </div>
                             <div class="p-t-30">
                                 <button class="btn btn--radius btn--green" type="submit">Save</button>
-                                <button class="btn btn--radius btn--red" type="submit">Cancel</button>
+                                <a href="EditContract.jsp" class="btn btn--radius btn--red" style="text-decoration: none">Cancel</a>
                             </div>
                         </form>
                     </div>

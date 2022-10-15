@@ -184,9 +184,13 @@
                                                     HttpSession session1 = request.getSession();
                                                     Account a = (Account) session1.getAttribute("account");
                                                     AccountDAO ad = new AccountDAO();
+                                                    if (ad.getRoleName(a).equalsIgnoreCase("admin")) {
                                                 %>
                                                 <td><a href="EmployeeDetail?service=view&eid=${e.getEid()}" class="fas fa-eye fa-2x"></a></td>
                                                 <td><a href="EmployeeDetail?service=edit&eid=${e.getEid()}" class="fas fa-edit fa-2x"></a></td>
+                                                    <%
+                                                        }
+                                                    %>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

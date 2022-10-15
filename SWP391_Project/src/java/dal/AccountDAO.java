@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import model.Account;
+import model.Role;
 import model.SendEmail;
 
 /**
@@ -40,14 +41,28 @@ public class AccountDAO extends DBContext {
         return null;
     }
     
-    public String getRole(Account a) {
+    public String getRoleName(Account a) {
         String sql = "select rolename from [Human Resource Service].[dbo].[Role] where roleid = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, a.getRoleid());
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                return rs.getString("rolename");
+                return rs.getString("rolename").trim();
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+    public Role getRole(Account a) {
+        String sql = "select * from [Human Resource Service].[dbo].[Role] where roleid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, a.getRoleid());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return new Role(rs.getInt("roleid"),rs.getString("rolename").trim());
             }
         } catch (SQLException ex) {
             System.out.println(ex);

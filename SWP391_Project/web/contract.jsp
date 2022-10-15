@@ -76,8 +76,18 @@
                             <div class="row row-space">
                                 <div class="col-2">
                                     <div class="input-group">
-                                        <input class="input--style-2" type="text" placeholder="Status" name="status">
+                                        <input readonly class="input--style-2" type="text" placeholder="Status" name="status" value="Open">
                                     </div>
+                                    <div class="col-2">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="status">
+                                        <option disabled="disabled" selected="selected">Status</option>
+                                        <option>Opened</option>
+                                        <option>Expired</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                                </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="input-group">

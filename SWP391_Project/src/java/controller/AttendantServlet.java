@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.AccountDAO;
 import dal.DepartmentDAO;
 import dal.EmployeeDAO;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,9 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Account;
 import model.Attendant;
 import model.Department;
 import model.Employee;
+import model.Role;
 
 /**
  *
@@ -113,8 +117,22 @@ public class AttendantServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
+            AccountDAO ad = new AccountDAO();
             List<Attendant> list = readFromFile("D:\\Git\\Project_SWP391\\SWP391_Project\\data.txt");
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("account");
             request.setAttribute("listAttend", list);
+            if (ad.getRoleName(a).equalsIgnoreCase("admin")) {
+                request.setAttribute("listAttend", list);
+            } else {
+                List<Attendant> listEmp = new ArrayList<>();
+                for (Attendant attendant : list) {
+                    if (attendant.getEmployee().getEid() == a.getEid()) {
+                        listEmp.add(attendant);
+                    }
+                }
+                request.setAttribute("listAttend", listEmp);
+            }
             request.getRequestDispatcher("attendant.jsp").forward(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(AttendantServlet.class.getName()).log(Level.SEVERE, null, ex);
