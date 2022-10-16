@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Contract;
 
 /**
@@ -37,12 +38,13 @@ public class Controller_Contract extends HttpServlet {
         
         try ( PrintWriter out = response.getWriter()) {
              String service = "list_contract";
-
+             HttpSession session = (HttpSession) request.getSession();
+             
             if (request.getParameter("service") != null) {
                 service = request.getParameter("service");
             }
             
-            if (service.equals("list_contract")) {                
+            if (service.equals("list_contract")) {     
                 request.setAttribute("list_contract", list_contract);
                 request.getRequestDispatcher("contract_list.jsp").forward(request, response);
             }

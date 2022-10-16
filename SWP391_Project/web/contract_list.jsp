@@ -169,12 +169,9 @@
                                     <th>View</th>
                                     <%
                                         HttpSession session1 = request.getSession();
-                                        Account a = (Account) session1.getAttribute("account");
-                                        AccountDAO ad = new AccountDAO();
-                                        String role = ad.getRole(a);
-                                        if (!role.equalsIgnoreCase("admin")) {
+                                        String role = (String) session1.getAttribute("role");
+                                        if (role.trim().equalsIgnoreCase("admin")) {
                                     %>
-                                <p><%= role%></p>
                                 <th>Edit</th>
                                 <th>Delete</th>
                                     <%
@@ -191,8 +188,10 @@
                                         <td>${c.getSalary()}</td>
                                         <td><a href="EmployeeDetail?service=view&eid=${c.getEid()}" >${c.getEname()}</a></td>
                                         <td><a href="Controller_Contract?service=view&cid=${c.getCid()}" class="fas fa-eye fa-2x"></a></td>
+                                            <%if (role.trim().equalsIgnoreCase("admin")) {%>
                                         <td><a href="Department?service=edit_del_Dep&edit=true&did=${c.getCid()}" class="fas fa-edit fa-2x"></a></td>
                                         <td><a href="Department?service=edit_del_Dep&delete=true&did=${c.getCid()}" class="fas fa-trash fa-2x"></a></td>
+                                            <%}%>
                                     </tr>     
                                 </c:forEach>
                             </table>

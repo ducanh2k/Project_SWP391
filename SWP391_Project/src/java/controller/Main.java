@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.AccountDAO;
 import dal.EmployeeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,10 +63,13 @@ public class Main extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
+        AccountDAO adao = new AccountDAO();
+        String role = adao.getRole(account);
         Employee emp = new EmployeeDAO().getEmployee(account.getEid());
 //        out.print(account.toString());
         out.print(account.getRoleid());
         session.setAttribute("employee", emp);
+        session.setAttribute("role", role);
         request.getRequestDispatcher("main.jsp").forward(request, response);
     }
 
