@@ -15,7 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Account;
 import model.Employee;
-import model.Role;
 
 /**
  *
@@ -65,7 +64,7 @@ public class Main extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         AccountDAO adao = new AccountDAO();
-        Role role = adao.getRole(account);
+        String role = adao.getRole(account).getRolename();
         Employee emp = new EmployeeDAO().getEmployee(account.getEid());
 //        out.print(account.toString());
         out.print(account.getRoleid());

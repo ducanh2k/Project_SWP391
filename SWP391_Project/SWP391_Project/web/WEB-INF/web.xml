@@ -68,6 +68,10 @@
         <servlet-name>AttendantServlet</servlet-name>
         <servlet-class>controller.AttendantServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Controller_Contract</servlet-name>
+        <servlet-class>controller.Controller_Contract</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>AttendantServlet</servlet-name>
         <url-pattern>/attendant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controller_Contract</servlet-name>
+        <url-pattern>/Controller_Contract</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

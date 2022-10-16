@@ -22,7 +22,7 @@
                 <li><a id="this" class="nav-link scrollto" href="attendant">Attendant</a></li>
                 <li><a id="this" class="nav-link scrollto" href="EmployeeList">Employee</a></li>
                 <li><a id="this" class="nav-link scrollto " href="Department">Department</a></li>
-                <li><a id="this" class="nav-link scrollto" href="#">Contract</a></li>
+                <li><a id="this" class="nav-link scrollto" href="Controller_Contract">Contract</a></li>
                 <li><a id="this" class="nav-link scrollto" href="#">Certification</a></li>
                 <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='profile'"><%= ad.getRoleName(a) %></button></li>
                 <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href='login.jsp'">Logout</button></li>

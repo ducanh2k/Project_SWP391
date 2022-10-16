@@ -19,6 +19,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.net.URLDecoder;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +121,11 @@ public class AttendantServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             AccountDAO ad = new AccountDAO();
-            List<Attendant> list = readFromFile("D:\\Git\\Project_SWP391\\SWP391_Project\\data.txt");
+            String path = this.getClass().getClassLoader().getResource("").getPath();
+            String fullPath = URLDecoder.decode(path, "UTF-8");
+            String pathArr[] = fullPath.split("/build/web/WEB-INF/classes/");
+            List<Attendant> list = readFromFile(pathArr[0] + "/src/java/data/EmployeeAttendant.txt");
+            
             HttpSession session = request.getSession();
             Account a = (Account) session.getAttribute("account");
             request.setAttribute("listAttend", list);
