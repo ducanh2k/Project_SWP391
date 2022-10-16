@@ -5,6 +5,7 @@
 package controller;
 
 import dal.AccountDAO;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -139,7 +140,10 @@ public class Login extends HttpServlet {
             session.setAttribute("account", account);
             response.sendRedirect("main");
         } else {
-            response.sendRedirect("login.jsp");
+
+            request.setAttribute("userError", "Username or password not correct");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.include(request, response);
         }
     }
 
