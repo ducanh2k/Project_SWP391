@@ -14,7 +14,8 @@ import model.Department;
  *
  * @author Dell
  */
-public class ContractDAO extends DBContext{
+public class ContractDAO extends DBContext {
+
     public void createContract(Contract con) {
         String sql = "insert into [Human Resource Service].[dbo].Contract (Eid,Did, name,StartingDate,EndDate,Status,workingTime,salary) \n"
                 + "values(?, ?, ?,?,?,?,?,?);";
@@ -33,7 +34,7 @@ public class ContractDAO extends DBContext{
             System.out.println(e);
         }
     }
-    
+
     public void editContract(Contract con) {
         String sql = "update Contract set StartingDate=?,EndDate=?,Status=?,workingTime=?,salary=? where Eid=?";
         try {
@@ -49,6 +50,7 @@ public class ContractDAO extends DBContext{
             System.out.println(e);
         }
     }
+
     public void deleteContract(String eid) throws SQLException {
         String sql = "update Contract set Status = 'Expired' where Eid=?";
         try {
