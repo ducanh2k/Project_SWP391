@@ -123,14 +123,14 @@
         </style>
     </head>
     <body>
-        <div class="container">
             <jsp:include page="sideMenu.jsp"></jsp:include>
+            <div class="container" >
                 <section class="ftco-section">
-                    <div class="container">
-                        <div class="row">
+                    <div class="container " style="margin-left: 40px">
+                        <div class="row col-auto">
                             <input class="form-control" id="myInput" type="text" placeholder="Search..">
                             <p><button onclick="sortTable()">Sort By Name</button></p>
-                            <div class="col-md-12">
+                            <div class="col-md-12 ">
                                 <div class="panel panel-primary filterable">
                                     <div class="mb-4 d-flex justify-content-between align-items-center">
                                         <h2>Employee List</h2>
