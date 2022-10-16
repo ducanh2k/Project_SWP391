@@ -102,7 +102,7 @@
                                 <button class="btn btn--radius btn--green" type="submit">Create</button>
                             </div>
                             <div class="p-t-30">
-                                <button class="btn btn--radius btn--green" type="button" onclick="window.window.location.href='main'">Cancel</button>
+                                <button class="btn btn--radius btn--green" type="button" onclick="window.window.location.href='Controller_Contract'">Cancel</button>
                             </div>
                         </form>
                     </div>
