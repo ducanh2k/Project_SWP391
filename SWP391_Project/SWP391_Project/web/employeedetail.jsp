@@ -74,15 +74,15 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Email</label>
-                                <input name="email" class="form-control" value="${e.getEmail()}" type="text" <%if(mode.equals("view")){%>readonly<%}%>/>
+                                <input name="email" class="form-control" value="${e.getEmail()}" type="text" pattern="^[A-Za-z0-9]+[@][a-z]+[.][a-z]+$" title="Format abc@xyz.edf" <%if(mode.equals("view")){%>readonly<%}%>/>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Emergency Contact</label>
-                                <input name="e_contact" class="form-control" value="${e.getEmergencyContact()}" type="text" <%if(mode.equals("view")){%>readonly<%}%>/>
+                                <input name="e_contact" class="form-control" value="${e.getEmergencyContact()}" type="text" pattern="^[+]?[0-9]{3,11}$" title="Only contain digits ( >3 digits and <11 digits), can be +. For example +84" <%if(mode.equals("view")){%>readonly<%}%>/>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Phone</label>
-                                <input name="phone" class="form-control" value="${e.getPhone()}" type="text" <%if(mode.equals("view")){%>readonly<%}%>/>
+                                <input name="phone" class="form-control" value="${e.getPhone()}" type="text" pattern="^[0-9]{10}$" title="Only contain 10 digits" <%if(mode.equals("view")){%>readonly<%}%>/>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Research Area</label>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Passport</label>
-                                <input name="passport" class="form-control" value="${e.getPassport()}" type="text" <%if(mode.equals("view")){%>readonly<%}%>/>
+                                <input name="passport" class="form-control" value="${e.getPassport()}" type="text" pattern="^[A-z][0-9]{7}$" title="Format A0123456. A upcase letter and 7 digits" <%if(mode.equals("view")){%>readonly<%}%>/>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Gender</label>
@@ -106,11 +106,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Visa Number</label>
-                                <input name="visa" class="form-control" value="${e.getVisaNumber()}" type="text" <%if(mode.equals("view")){%>readonly<%}%>>
+                                <input name="visa" class="form-control" value="${e.getVisaNumber()}" type="text" pattern="^[0-9]{16}$" title="Format 16 digits" <%if(mode.equals("view")){%>readonly<%}%>>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Work License Number</label>
-                                <input name="work_license" class="form-control" value="${e.getWorkLicenseNumber()}" type="text" <%if(mode.equals("view")){%>readonly<%}%>>
+                                <input name="work_license" class="form-control" value="${e.getWorkLicenseNumber()}" type="text" pattern="^[0-9]+$" title="Format digits" <%if(mode.equals("view")){%>readonly<%}%>>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Visa Expiration date</label>

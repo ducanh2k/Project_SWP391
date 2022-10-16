@@ -125,8 +125,8 @@
 
         <jsp:include page="sideMenu.jsp"></jsp:include>
             <section class="ftco-section">
-                <div class="container">
-                    <div class="row">
+                <div class="container" style="margin-left: 80px">
+                    <div class="row col-auto" >
                         <input class="form-control" id="myInput" type="text" placeholder="Search..">
                         <p><button onclick="sortTable()">Sort By Name</button></p>
                         <div class="col-md-12">
@@ -190,7 +190,7 @@
                                         <td><a href="Controller_Contract?service=view&cid=${c.getCid()}" class="fas fa-eye fa-2x"></a></td>
                                             <%if (role.trim().equalsIgnoreCase("admin")) {%>
                                         <td><a href="Controller_Contract?service=edit_del&edit=true&cid=${c.getCid()}" class="fas fa-edit fa-2x"></a></td>
-                                        <td><a href="Controller_Contract?service=edit_del&edit=true&cid=${c.getCid()}" class="fas fa-trash fa-2x"></a></td>
+                                        <td><a href="Controller_Contract?service=edit_del&delete=true&cid=${c.getCid()}" class="fas fa-trash fa-2x" onclick="return confirm('Do you want to delete?')"></a></td>
                                             <%}%>
                                     </tr>     
                                 </c:forEach>
@@ -204,7 +204,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>        
+        <script src="js/main.js"></script>   
         <script>
                             $(document).ready(function () {
                                 $("#myInput").on("keyup", function () {
@@ -294,4 +294,3 @@
     </body>
     <jsp:include page="footer.jsp"></jsp:include>
 </html>
-
