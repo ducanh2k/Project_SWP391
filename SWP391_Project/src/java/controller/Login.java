@@ -138,7 +138,8 @@ public class Login extends HttpServlet {
             }
             session.setAttribute("account", account);
             response.sendRedirect("main");
-        }
+        } else{
+            response.sendRedirect("login.jsp");
     }
 
     /**
