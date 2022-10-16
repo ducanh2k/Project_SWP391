@@ -38,22 +38,44 @@ public class ContractDAO extends DBContext {
 
     public ArrayList<Contract> getListContract() {
         ArrayList<Contract> list_contract = new ArrayList<Contract>();
-        String sql = "select c.*, e.name as Ename from Contract c\n" +
-                        "join Employee e on c.Eid = e.Eid";
+        String sql = "select c.*, e.name as Ename from Contract c\n"
+                + "join Employee e on c.Eid = e.Eid";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Contract c = new Contract(rs.getInt("Eid"), 
-                        rs.getInt("Did"), rs.getString("name"), 
-                        rs.getString("StartingDate"), rs.getString("EndDate"), 
-                        rs.getString("Status"), rs.getString("workingTime"), 
+                Contract c = new Contract(rs.getInt("Eid"),
+                        rs.getInt("Did"), rs.getString("name"),
+                        rs.getString("StartingDate"), rs.getString("EndDate"),
+                        rs.getString("Status"), rs.getString("workingTime"),
                         rs.getDouble("salary"));
                 c.setEname(rs.getString("Ename"));
                 c.setCid(rs.getInt("Cid"));
                 list_contract.add(c);
             }
             return list_contract;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public Contract getContract(int cid) {
+        String sql = "select c.*, e.name as Ename from Contract c\n"
+                + "join Employee e on c.Eid = e.Eid where c.Cid = " + cid;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Contract c = new Contract(rs.getInt("Eid"),
+                        rs.getInt("Did"), rs.getString("name"),
+                        rs.getString("StartingDate"), rs.getString("EndDate"),
+                        rs.getString("Status"), rs.getString("workingTime"),
+                        rs.getDouble("salary"));
+                c.setEname(rs.getString("Ename"));
+                c.setCid(rs.getInt("Cid"));
+                return c;
+            }
         } catch (SQLException e) {
             System.out.println(e);
         }

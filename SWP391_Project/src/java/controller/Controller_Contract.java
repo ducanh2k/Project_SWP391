@@ -49,9 +49,12 @@ public class Controller_Contract extends HttpServlet {
                 request.getRequestDispatcher("contract_list.jsp").forward(request, response);
             }
             
-            if (service.equals("view")) {                
-                request.setAttribute("list_contract", list_contract);
-                request.getRequestDispatcher("contract_list.jsp").forward(request, response);
+            if (service.equals("view")) {    
+                int cid = Integer.parseInt(request.getParameter("cid"));
+                Contract c = cdao.getContract(cid);
+                request.setAttribute("contract", c);
+                request.setAttribute("mode", "view");
+                request.getRequestDispatcher("contract_detail.jsp").forward(request, response);
             }
             
         }
