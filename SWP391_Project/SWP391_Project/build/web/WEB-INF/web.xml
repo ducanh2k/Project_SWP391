@@ -61,10 +61,6 @@
         <servlet-class>controller.ContractServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditContract</servlet-name>
-        <servlet-class>controller.EditContract</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AttendantServlet</servlet-name>
         <servlet-class>controller.AttendantServlet</servlet-class>
     </servlet>
@@ -131,10 +127,6 @@
     <servlet-mapping>
         <servlet-name>Contract</servlet-name>
         <url-pattern>/contract</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditContract</servlet-name>
-        <url-pattern>/EditContract</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AttendantServlet</servlet-name>

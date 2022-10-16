@@ -37,7 +37,7 @@ public class ContractDAO extends DBContext {
     }
 
     public void editContract(Contract con) {
-        String sql = "update Contract set StartingDate=?,EndDate=?,Status=?,workingTime=?,salary=? where Eid=?";
+        String sql = "update Contract set StartingDate=?,EndDate=?,Status=?,workingTime=?,salary=? where Cid=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, con.getStartingDate());
@@ -45,7 +45,7 @@ public class ContractDAO extends DBContext {
             st.setString(3, con.getStatus());
             st.setString(4, con.getWorkingTime());
             st.setDouble(5, con.getSalary());
-            st.setInt(6, con.getEid());
+            st.setInt(6, con.getCid());
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);

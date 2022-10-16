@@ -47,17 +47,18 @@
                     <!--                    <div class="card-heading"></div>-->
                     <div class="card-body">
                         <h2 class="title"><%if(mode.equals("edit")){%>Edit Contract<%}else if(mode.equals("view")){%>Contract Detail<%}%></h2>
-                        <form action="EditContract" method="POST">
+                        <form action="Controller_Contract" method="POST">
                             <div class="input-group">
                                 <label class="input--style-2 js-datepicker">Contract Name</label>
-                                <input class="input--style-2" type="text" placeholder="Contract Name" name="cName" value="<%=c.getName()%>">
+                                <input <%if (mode == "view") {%> readonly <%}%> class="input--style-2" type="text" placeholder="Contract Name" name="cName" value="<%=c.getName()%>">
                             </div>
                             <div class="row row-space">
                                 <div class="input-group">
-                                    <input type="hidden" name="eid" value="">
+                                    <input type="hidden" name="eid" value="<%=c.getEid()%>">
                                     <label class="input--style-2 js-datepicker">Employee Name</label>
-                                    <input class="input--style-2" type="text" placeholder="Employee Name" name="eName" value="<%=c.getEname()%>">
+                                    <input <%if (mode == "view" ) {%> readonly <%}%> class="input--style-2" type="text" placeholder="Employee Name" name="eName" value="<%=c.getEname()%>">
                                 </div>
+                                    <input type="hidden" name="did" value="<%=c.getDid()%>">
 <!--                                <div class="input-group">
                                     <input type="hidden" name="did" value="">
                                     <input class="input--style-2" type="text" placeholder=" Department Name" name="dName">
@@ -67,14 +68,14 @@
                                 <div class="col-2">
                                     <div class="input-group">
                                         <label class="input--style-2 js-datepicker">Starting Date</label>
-                                        <input class="input--style-2 js-datepicker" type="text" placeholder="Starting Date" name="start" value="<%=c.getStartingDate()%>">
+                                        <input <%if (mode == "view" ) {%> disabled <%}%> class="input--style-2 js-datepicker" type="text" placeholder="Starting Date" name="start" value="<%=c.getStartingDate()%>">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="input-group">
                                         <label class="input--style-2 js-datepicker">Ending Date</label>
-                                        <input class="input--style-2 js-datepicker" type="text" placeholder="End Date" name="end" value="<%=c.getEndDate()%>">
+                                        <input <%if (mode == "view" ) {%> disabled <%}%> class="input--style-2 js-datepicker" type="text" placeholder="End Date" name="end" value="<%=c.getEndDate()%>">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -83,7 +84,7 @@
                             <div class="input-group">
                                 <label class="input--style-2 js-datepicker">Working Time in week</label>
                                 <div class="rs-select2 js-select-simple select--no-search">
-                                    <select name="workingTime">
+                                    <select <%if (mode == "view" ) {%> disabled <%}%> name="workingTime">
                                         <!--<option disabled="disabled" selected="selected">Working Time in week</option>-->
                                         <option <%if(c.getWorkingTime().equals("")){%>selected<%}%>>/---/</option>
                                         <option <%if(c.getWorkingTime().equals("42h")){%>selected<%}%>>42h</option>
@@ -97,7 +98,7 @@
                                 <div class="col-2">
                                     <label class="input--style-2 js-datepicker">Status</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="status">
+                                        <select <%if (mode == "view") {%> disabled <%}%> name="status">
                                             <!--<option disabled="disabled" selected="selected">Status</option>-->
                                             <option <%if(c.getStatus().equals("")){%>selected<%}%>>/---/</option>
                                             <option <%if(c.getStatus().equals("Opened")){%>selected<%}%>>Opened</option>
@@ -109,7 +110,7 @@
                                 <div class="col-2">
                                     <label class="input--style-2 js-datepicker">Salary</label>
                                     <div class="input-group">
-                                        <input class="input--style-2" id="id_salary" type="number" name="salary" value="<%=c.getSalary()%>" pattern="[0-9]">
+                                        <input <%if (mode == "view") {%> readonly <%}%> class="input--style-2" id="id_salary" type="number" name="salary" value="<%=c.getSalary()%>" pattern="[0-9]">
                                     </div>
                                 </div>
                             </div>
@@ -117,9 +118,13 @@
                                 <%if(mode.equals("edit")){%>
                                 <input class="btn btn--radius btn--green" type="submit" name="save" value="Save">
                                 <input class="btn btn--radius btn--red" type="submit" name="cancel" value="Cancel">
+                                <input type="hidden" name="service" value="save_edit">
+                                <input type="hidden" name="cid" value="<%=c.getCid()%>">
                                 <%}else if(mode.equals("view")){%>
                                 <input class="btn btn--radius btn--green" type="submit" name="edit" value="Edit">
                                 <input class="btn btn--radius btn--red" type="submit" name="delete" value="Delete">
+                                <input type="hidden" name="service" value="edit_del">
+                                <input type="hidden" name="cid" value="<%=c.getCid()%>">
                                 <%}%>                                
                                 </div>
                         </form>
