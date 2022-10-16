@@ -42,10 +42,11 @@
                         </c:forEach>
                     </tbody>
                 </table>
+            </div><div class="p-t-30">
+                <button class="btn btn--radius btn--green" type="button" onclick="window.window.location.href = 'main'">BACK</button>
             </div>
-        </div><div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="button" onclick="window.window.location.href = 'main'">BACK</button>
         </div>
+
 
     </body>
 </html>

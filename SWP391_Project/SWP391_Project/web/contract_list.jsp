@@ -133,7 +133,7 @@
                             <div class="panel panel-primary filterable">
                                 <div class="mb-4 d-flex justify-content-between align-items-center">
                                     <h2>Contract List</h2>
-                                    <a role="button" href="Contract" class="font-weight-bold">ADD NEW</a>
+                                    <a role="button" href="contract.jsp" class="font-weight-bold">ADD NEW</a>
                                 </div>
 
                                 <div class="panel-heading">
