@@ -91,7 +91,7 @@ public class EmployeeDAO extends DBContext {
         statement.execute(sql);
     }
 
-       public ArrayList<Employee> getAllEmployee() {
+    public ArrayList<Employee> getAllEmployee() {
         ArrayList<Employee> list = new ArrayList<>();
         String sql = "select * from Employee where isActive=1";
         try {
@@ -316,8 +316,9 @@ public class EmployeeDAO extends DBContext {
     }
 
     public void deactiveEmployee(String eid) throws SQLException {
-        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=? "
-                + "UPDATE Account SET Account.isActive=0 From Employee e, Account a WHERE e.Eid=a.Eid AND e.Eid=?";
+        String sql = "UPDATE Employee SET Employee.isActive=0 From Employee e INNER JOIN Account a ON e.Eid=a.Eid INNER JOIN Contract c ON e.Eid=c.Eid AND e.Eid=? "
+                + "UPDATE Account SET Account.isActive=0 From Employee e INNER JOIN Account a ON e.Eid=a.Eid INNER JOIN Contract c ON e.Eid=c.Eid AND e.Eid=?"
+                + "UPDATE Contract SET Contract.Status='Expired' From Employee e INNER JOIN Account a ON e.Eid=a.Eid INNER JOIN Contract c ON e.Eid=c.Eid AND e.Eid=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, eid);
