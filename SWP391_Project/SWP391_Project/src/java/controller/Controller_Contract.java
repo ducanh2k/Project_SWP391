@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Contract;
 
 /**
@@ -65,9 +68,15 @@ public class Controller_Contract extends HttpServlet {
                     request.setAttribute("mode", "edit");
                     request.getRequestDispatcher("contract_detail.jsp").forward(request, response);
                 } else if (request.getParameter("delete") != null) {
-                    //
-                    response.sendRedirect("Controller_Contract");
+                    String cid = request.getParameter("cid");               
+                    try {
+                        cdao.deleteContract(cid);        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(NewPwd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    response.sendRedirect("Controller_Contract");         
                 }
+                
             }
 
             if (request.getParameter("save") != null) {
@@ -89,7 +98,7 @@ public class Controller_Contract extends HttpServlet {
                 }
                 response.sendRedirect("Controller_Contract");
             }
-            
+
             if (request.getParameter("cancel") != null) {
                 //cancel edit
                 int cid = Integer.parseInt(request.getParameter("cid"));

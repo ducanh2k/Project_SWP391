@@ -189,8 +189,8 @@
                                         <td><a href="EmployeeDetail?service=view&eid=${c.getEid()}" >${c.getEname()}</a></td>
                                         <td><a href="Controller_Contract?service=view&cid=${c.getCid()}" class="fas fa-eye fa-2x"></a></td>
                                             <%if (role.trim().equalsIgnoreCase("admin")) {%>
-                                        <td><a href="Department?service=edit_del_Dep&edit=true&did=${c.getCid()}" class="fas fa-edit fa-2x"></a></td>
-                                        <td><a href="Department?service=edit_del_Dep&delete=true&did=${c.getCid()}" class="fas fa-trash fa-2x"></a></td>
+                                        <td><a href="Controller_Contract?service=edit_del&edit=true&cid=${c.getCid()}" class="fas fa-edit fa-2x"></a></td>
+                                        <td><a href="Controller_Contract?service=edit_del&edit=true&cid=${c.getCid()}" class="fas fa-trash fa-2x"></a></td>
                                             <%}%>
                                     </tr>     
                                 </c:forEach>

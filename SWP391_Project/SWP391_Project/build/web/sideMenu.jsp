@@ -23,8 +23,8 @@
                             <a href="Department" class="nav_link"> <i class='bx bx-briefcase nav_icon'></i> <span class="nav_name">Department</span> </a> 
                             <a href="Controller_Contract" class="nav_link"> <i class='bx bx-task nav_icon'></i> <span class="nav_name">Contract</span> </a> 
                             <a href="#" class="nav_link"> <i class='bx bx-money nav_icon'></i> <span class="nav_name">Salary</span> </a> 
-                            <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Attendance</span> </a> </div>
-                    </div> <a href="Login.jsp" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Log out</span> </a>
+                            <a href="AttendantServlet" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Attendance</span> </a> </div>
+                    </div> <a href="login.jsp" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Log out</span> </a>
                 </nav>
             </div>
         </div>
