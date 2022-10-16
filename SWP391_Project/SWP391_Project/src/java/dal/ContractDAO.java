@@ -61,6 +61,7 @@ public class ContractDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
+        }
     public ArrayList<Contract> getListContract() {
         ArrayList<Contract> list_contract = new ArrayList<Contract>();
         String sql = "select c.*, e.name as Ename from Contract c\n"

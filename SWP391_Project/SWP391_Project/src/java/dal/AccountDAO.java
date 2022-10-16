@@ -103,16 +103,16 @@ public class AccountDAO extends DBContext {
                     return "Username already exist";
 //                } else if(email.equals(checkMail)){
 //                    return "Email already exist";
-                    
+               
                 } else {
                     st = connection.prepareStatement("INSERT INTO Account(username, password, roleid, email) VALUES(?,?,?,?)");
                     st.setString(1, username);
                     st.setString(2, password);
                     st.setInt(3, 1);
                     st.setString(4, email);
-                    
+
                     int i = st.executeUpdate();
-                    
+
                     if (i != 0) {
                         SendEmail se = new SendEmail(email, username);
                         se.sendMail();
