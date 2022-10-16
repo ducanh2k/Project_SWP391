@@ -1,3 +1,5 @@
+<%@page import="dal.AccountDAO"%>
+<%@page import="model.Account"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +62,13 @@
                 </div>
             </div>
         </section>
-        <jsp:include page="header.jsp"></jsp:include>
+        <%
+           String role = (String) session.getAttribute("role");
+        %>
+        <jsp:include page="header.jsp">
+            <jsp:param name="role" value="${role}"/>
+        </jsp:include>
+        
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="d-flex align-items-center">
             <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">

@@ -4,15 +4,15 @@
     Author     : User
 --%>
 
-<%@page import="model.Account"%>
 <%@page import="dal.AccountDAO"%>
+<%@page import="model.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Department List</title>
+        <title>Contract List</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -132,12 +132,12 @@
                         <div class="col-md-12">
                             <div class="panel panel-primary filterable">
                                 <div class="mb-4 d-flex justify-content-between align-items-center">
-                                    <h2>Department List</h2>
-                                    <a role="button" href="Department?service=add_Dep" class="font-weight-bold">ADD NEW</a>
+                                    <h2>Contract List</h2>
+                                    <a role="button" href="Contract" class="font-weight-bold">ADD NEW</a>
                                 </div>
 
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Department</h3>
+                                    <h3 class="panel-title">Contract</h3>
                                     <div class="pull-right">
                                         <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                                     </div>
@@ -145,43 +145,52 @@
                                 <table class="table" id="myTable">
                                     <thead>
                                         <tr class="filters">
-                                            <th><input type="text" class="form-control" disabled>Department ID</th>
-                                            <th><input type="text" class="form-control" disabled>Department Name</th>
-                                            <th><input type="text" class="form-control" disabled>Active Status</th>
-                                            <th><input type="text" class="form-control" disabled>Number of Employees</th>
+                                            <th><input type="text" class="form-control" disabled>#</th>
+                                            <th><input type="text" class="form-control" disabled>Contract No.</th>
+                                            <th><input type="text" class="form-control" disabled>Status</th>
+                                            <th><input type="text" class="form-control" disabled>Effective Date</th>
+                                            <th><input type="text" class="form-control" disabled>Expired Date</th>
+                                            <th><input type="text" class="form-control" disabled>Working Time</th>
+                                            <th><input type="text" class="form-control" disabled>Operation Salary</th>
+                                            <th><input type="text" class="form-control" disabled>Employee</th>
                                             <th>View</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
-
-
-                                    <th>Department ID</th>
-                                    <th>Department Name</th>
-                                    <th>Active Status</th>
-                                    <th>Number of Employees</th>
+                                    <th>#</th>
+                                    <th>Contract No.</th>
+                                    <th>Status</th>
+                                    <th>Effective Date</th>
+                                    <th>Expired Date</th>
+                                    <th>Working Time</th>
+                                    <th>Operation Salary</th>
+                                    <th>Employee</th>
                                     <th>View</th>
                                     <%
                                         HttpSession session1 = request.getSession();
                                         String role = (String) session1.getAttribute("role");
                                         if (role.trim().equalsIgnoreCase("admin")) {
                                     %>
-                                <p><%= role%></p>
                                 <th>Edit</th>
                                 <th>Delete</th>
                                     <%
                                         }
                                     %>
-                                    <c:forEach items="${list_dep}" var="o">
+                                    <c:forEach items="${list_contract}" var="c">
                                     <tr>
-                                        <td>${o.getDid()}</td>
-                                        <td>${o.getDname()}</td>
-                                        <td>${o.isIs_active()}</td>
-                                        <td><a href="EmployeeList?did=${o.getDid()}" >${o.getCount_employee()}</a></td>
-                                        <td><a href="Department?service=view_Dep&did=${o.getDid()}" class="fas fa-eye fa-2x"></a></td>
+                                        <td>${c.getCid()}</td>
+                                        <td><a href="Controller_Contract?service=view_pdf&cid=${c.getCid()}">${c.getName()}</a></td>
+                                        <td>${c.getStatus()}</td>
+                                        <td>${c.getStartingDate()}</td>
+                                        <td>${c.getEndDate()}</td>
+                                        <td>${c.getWorkingTime()}</td>
+                                        <td>${c.getSalary()}</td>
+                                        <td><a href="EmployeeDetail?service=view&eid=${c.getEid()}" >${c.getEname()}</a></td>
+                                        <td><a href="Controller_Contract?service=view&cid=${c.getCid()}" class="fas fa-eye fa-2x"></a></td>
                                             <%if (role.trim().equalsIgnoreCase("admin")) {%>
-                                        <td><a href="Department?service=edit_del_Dep&edit=true&did=${o.getDid()}" class="fas fa-edit fa-2x"></a></td>
-                                        <td><a href="Department?service=edit_del_Dep&delete=true&did=${o.getDid()}" class="fas fa-trash fa-2x"></a></td>
+                                        <td><a href="Department?service=edit_del_Dep&edit=true&did=${c.getCid()}" class="fas fa-edit fa-2x"></a></td>
+                                        <td><a href="Department?service=edit_del_Dep&delete=true&did=${c.getCid()}" class="fas fa-trash fa-2x"></a></td>
                                             <%}%>
                                     </tr>     
                                 </c:forEach>

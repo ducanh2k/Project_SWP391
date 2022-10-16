@@ -4,23 +4,22 @@
  */
 package controller;
 
-import dal.AccountDAO;
-import dal.EmployeeDAO;
+import dal.ContractDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
-import model.Employee;
+import model.Contract;
 
 /**
  *
- * @author Dell
+ * @author User
  */
-public class Main extends HttpServlet {
+public class Controller_Contract extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,17 +33,30 @@ public class Main extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ContractDAO cdao = new ContractDAO();
+        ArrayList<Contract> list_contract = cdao.getListContract();
+        
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Main</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Main at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             String service = "list_contract";
+             HttpSession session = (HttpSession) request.getSession();
+             
+            if (request.getParameter("service") != null) {
+                service = request.getParameter("service");
+            }
+            
+            if (service.equals("list_contract")) {     
+                request.setAttribute("list_contract", list_contract);
+                request.getRequestDispatcher("contract_list.jsp").forward(request, response);
+            }
+            
+            if (service.equals("view")) {    
+                int cid = Integer.parseInt(request.getParameter("cid"));
+                Contract c = cdao.getContract(cid);
+                request.setAttribute("contract", c);
+                request.setAttribute("mode", "view");
+                request.getRequestDispatcher("contract_detail.jsp").forward(request, response);
+            }
+            
         }
     }
 
@@ -60,17 +72,7 @@ public class Main extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        AccountDAO adao = new AccountDAO();
-        String role = adao.getRole(account);
-        Employee emp = new EmployeeDAO().getEmployee(account.getEid());
-//        out.print(account.toString());
-        out.print(account.getRoleid());
-        session.setAttribute("employee", emp);
-        session.setAttribute("role", role);
-        request.getRequestDispatcher("main.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
