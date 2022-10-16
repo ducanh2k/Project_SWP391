@@ -116,10 +116,10 @@
                             <div class="p-t-30">
                                 <%if(mode.equals("edit")){%>
                                 <input class="btn btn--radius btn--green" type="submit" name="save" value="Save">
-                                <input class="btn btn--radius btn--red" type="submit" name="save" value="Cancel">
+                                <input class="btn btn--radius btn--red" type="submit" name="cancel" value="Cancel">
                                 <%}else if(mode.equals("view")){%>
-                                <input class="btn btn--radius btn--green" type="submit" name="save" value="Edit">
-                                <input class="btn btn--radius btn--red" type="submit" name="save" value="Delete">
+                                <input class="btn btn--radius btn--green" type="submit" name="edit" value="Edit">
+                                <input class="btn btn--radius btn--red" type="submit" name="delete" value="Delete">
                                 <%}%>                                
                                 </div>
                         </form>

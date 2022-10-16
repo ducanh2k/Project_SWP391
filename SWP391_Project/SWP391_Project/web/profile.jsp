@@ -74,12 +74,12 @@
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <a class="nav-link active" id="work-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
                                 <i class="fa fa-home text-center mr-1"></i> 
-                                Work Information
+                                Work and Personal Information
                             </a>
-                            <a class="nav-link" id="personal-tab" data-toggle="pill" href="#personal" role="tab" aria-controls="personal" aria-selected="false">
+<!--                            <a class="nav-link" id="personal-tab" data-toggle="pill" href="#personal" role="tab" aria-controls="personal" aria-selected="false">
                                 <i class="fa fa-key text-center mr-1"></i> 
                                 Personal Information
-                            </a>
+                            </a>-->
                             <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
                                 <i class="fa fa-key text-center mr-1"></i> 
                                 Password
