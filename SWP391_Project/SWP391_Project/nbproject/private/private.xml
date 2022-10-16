@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Git/Project_SWP391/SWP391_Project/Project_SWP391/SWP391_Project/web/contract.jsp</file>
-            <file>file:/D:/Git/Project_SWP391/SWP391_Project/Project_SWP391/SWP391_Project/web/attendant.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/SWP391_Project/src/java/controller/DeactiveEmployee.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/SWP391_Project/src/java/dal/ContractDAO.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/SWP391_Project/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/SWP391_Project/src/java/controller/Login.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/SWP391_Project/src/java/dal/EmployeeDAO.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/Project_SWP391/SWP391_Project/SWP391_Project/src/java/controller/ForgotPwd.java</file>
         </group>
     </open-files>
 </project-private>
