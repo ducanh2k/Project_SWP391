@@ -56,7 +56,7 @@
                                 <div class="input-group">
                                     <input type="hidden" name="eid" value="<%=c.getEid()%>">
                                     <label class="input--style-2 js-datepicker">Employee Name</label>
-                                    <input <%if (mode == "view") {%> readonly <%}%> class="input--style-2" type="text" placeholder="Employee Name" name="eName" value="<%=c.getEname()%>">
+                                    <input readonly class="input--style-2" type="text" placeholder="Employee Name" name="eName" value="<%=c.getEname()%>">
                                 </div>
                                 <input type="hidden" name="did" value="<%=c.getDid()%>">
                                 <!--                                <div class="input-group">
