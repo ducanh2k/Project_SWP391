@@ -116,7 +116,7 @@
                             </div>
                             <div class="p-t-30">
                                 <%if (mode.equals("edit")) {%>
-                                <input class="btn btn--radius btn--green" type="submit" name="save" value="Save">
+                                <input class="btn btn--radius btn--green" type="submit" onclick="alert('Successful')" name="save" value="Save">
                                 <input class="btn btn--radius btn--red" type="submit" name="cancel" value="Cancel">
                                 <input type="hidden" name="service" value="save_edit">
                                 <input type="hidden" name="cid" value="<%=c.getCid()%>">
@@ -152,6 +152,9 @@
             });
             function confirmAction() {
                 let confirmAction = confirm("Are you sure?");
+                if (confirmAction) {
+                    alert("Successful");
+                }
             }
         </script>
 
