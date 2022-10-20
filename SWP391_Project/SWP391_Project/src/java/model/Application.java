@@ -13,8 +13,8 @@ public class Application {
     private int Eid;
     private int Did;
     private String Title;
-    private String Content;
-
+    private String Body;
+    private String Ename;
     public Application() {
     }
 
@@ -50,12 +50,27 @@ public class Application {
         this.Title = Title;
     }
 
-    public String getContent() {
-        return Content;
+    public String getBody() {
+        return Body;
     }
 
-    public void setContent(String Content) {
-        this.Content = Content;
+    public void setBody(String Body) {
+        this.Body = Body;
+    }
+
+    public String getEname() {
+        return Ename;
+    }
+
+    public void setEname(String Ename) {
+        this.Ename = Ename;
+    }
+
+    public Application(int Eid, int Did, String Title, String Body) {
+        this.Eid = Eid;
+        this.Did = Did;
+        this.Title = Title;
+        this.Body = Body;
     }
     
 }
