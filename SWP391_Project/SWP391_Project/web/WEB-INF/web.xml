@@ -68,6 +68,14 @@
         <servlet-name>Controller_Contract</servlet-name>
         <servlet-class>controller.Controller_Contract</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApplicationApproval</servlet-name>
+        <servlet-class>controller.ApplicationApproval</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApplicationList</servlet-name>
+        <servlet-class>controller.ApplicationList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -135,6 +143,14 @@
     <servlet-mapping>
         <servlet-name>Controller_Contract</servlet-name>
         <url-pattern>/Controller_Contract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApplicationApproval</servlet-name>
+        <url-pattern>/ApplicationApproval</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApplicationList</servlet-name>
+        <url-pattern>/ApplicationList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
