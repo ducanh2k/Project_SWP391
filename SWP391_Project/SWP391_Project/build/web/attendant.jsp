@@ -4,6 +4,7 @@
     Author     : Dell
 --%>
 
+<%@page import="java.io.PrintWriter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -16,7 +17,18 @@
     </head>
     <body>
         <div class="container">
+            <%
+                HttpSession session1 = request.getSession();
+                String eid = (String) session1.getAttribute("eid");
+            %>
             <h2>View Attendant</h2>
+            <form action="attendant" method="get">
+                <input type="text" hidden name="eid" value="<%= eid%>"/>
+                <input type="text" hidden name="Filter" value="true"/>
+                From: <input type="date" name="start" />
+                To: <input type="date" name="end" />
+                <input type="submit" value="Filter">
+            </form>
             <div class="table-responsive">          
                 <table class="table">
                     <thead>
@@ -43,7 +55,7 @@
                     </tbody>
                 </table>
             </div><div class="p-t-30">
-                <button class="btn btn--radius btn--green" type="button" onclick="window.window.location.href = 'main'">BACK</button>
+                <button class="btn btn--radius btn--green" type="button" onclick="window.window.location.href = 'EmployeeList'">BACK</button>
             </div>
         </div>
 
