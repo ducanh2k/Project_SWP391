@@ -80,6 +80,10 @@
         <servlet-name>ApplicationSubmit</servlet-name>
         <servlet-class>controller.ApplicationSubmit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SalaryServlet</servlet-name>
+        <servlet-class>controller.SalaryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>ApplicationSubmit</servlet-name>
         <url-pattern>/ApplicationSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SalaryServlet</servlet-name>
+        <url-pattern>/salary</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

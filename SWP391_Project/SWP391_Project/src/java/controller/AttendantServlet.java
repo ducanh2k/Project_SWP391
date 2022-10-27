@@ -165,7 +165,7 @@ public class AttendantServlet extends HttpServlet {
                 for (Attendant attendant : list) {
                     DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     attendDate = LocalDate.parse(attendant.getDate(), df);
-                    if (attendDate.toString().compareTo(start) > 0 && attendDate.toString().compareTo(end) < 0 && attendant.getEmployee().getEid() == Integer.parseInt(eid)) {
+                    if (attendDate.toString().compareTo(start) >= 0 && attendDate.toString().compareTo(end) <= 0 && attendant.getEmployee().getEid() == Integer.parseInt(eid)) {
                         listEmp.add(attendant);
                     }
                 }
@@ -197,9 +197,45 @@ public class AttendantServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String start = request.getParameter("start");
-        String end = request.getParameter("end");
-
+        try {
+            PrintWriter out = response.getWriter();
+            AccountDAO ad = new AccountDAO();
+            String path = this.getClass().getClassLoader().getResource("").getPath();
+            String fullPath = URLDecoder.decode(path, "UTF-8");
+            String pathArr[] = fullPath.split("/build/web/WEB-INF/classes/");
+            List<Attendant> list = readFromFile(pathArr[0] + "/src/java/data/EmployeeAttendant.txt");
+            HttpSession session = request.getSession();
+            String eid = request.getParameter("eid");
+            int count = 0;
+            for (Attendant attendant : list) {
+                if (attendant.getEmployee().getEid() == Integer.parseInt(eid)) {
+                    if (attendant.isStatus().equalsIgnoreCase("absent")) {
+                        count++;
+                    }
+                }
+            }
+            EmployeeDAO ed = new EmployeeDAO();
+            DepartmentDAO dd = new DepartmentDAO();
+            Employee e = ed.getEmployee(Integer.parseInt(eid));
+            double cs = 0;
+            if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("graduate")) {
+                cs += 2.1;
+            } else if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("bachelor")) {
+                cs += 2.34;
+            } else if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("master")) {
+                cs += 2.67;
+            } else if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("doctor")) {
+                cs += 3.0;
+            } else {
+                cs += 1.86;
+            }
+            request.setAttribute("eid", eid);
+            request.setAttribute("cs", cs);
+            request.setAttribute("ol", count);
+            request.getRequestDispatcher("salaryInformation").forward(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(AttendantServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
