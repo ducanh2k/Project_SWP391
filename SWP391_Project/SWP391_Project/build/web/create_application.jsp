@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dal.AccountDAO"%>
+<%@page import="model.Account"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,10 +36,13 @@
 
                         <form action="ApplicationSubmit" method="POST" enctype="multipart/form-data">
                             <div class="input-group">
-                                <input class="input--style-2" type="text" name="Title" placeholder="Title">
+                                <input class="input--style-2" type="text" name="Eid" value="1" readonly>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" name="title" placeholder="Title" required>
                             </div>
                             <div class="container">
-                                <textarea class="ckeditor" name="Content"></textarea>
+                                <textarea class="ckeditor" name="content" required></textarea>
                             </div>
                             <div class="p-t-30">
                                 <button class="btn btn--radius btn--green" type="submit">Submit</button>

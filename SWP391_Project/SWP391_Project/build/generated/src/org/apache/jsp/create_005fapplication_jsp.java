@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import dal.AccountDAO;
+import model.Account;
 
 public final class create_005fapplication_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +46,8 @@ public final class create_005fapplication_jsp extends org.apache.jasper.runtime.
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -73,10 +77,13 @@ public final class create_005fapplication_jsp extends org.apache.jasper.runtime.
       out.write("\n");
       out.write("                        <form action=\"ApplicationSubmit\" method=\"POST\" enctype=\"multipart/form-data\">\n");
       out.write("                            <div class=\"input-group\">\n");
-      out.write("                                <input class=\"input--style-2\" type=\"text\" name=\"Title\" placeholder=\"Title\">\n");
+      out.write("                                <input class=\"input--style-2\" type=\"text\" name=\"Eid\" value=\"1\" readonly>\n");
+      out.write("                            </div>\n");
+      out.write("                            <div class=\"input-group\">\n");
+      out.write("                                <input class=\"input--style-2\" type=\"text\" name=\"title\" placeholder=\"Title\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"container\">\n");
-      out.write("                                <textarea class=\"ckeditor\" name=\"Content\"></textarea>\n");
+      out.write("                                <textarea class=\"ckeditor\" name=\"content\" required></textarea>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"p-t-30\">\n");
       out.write("                                <button class=\"btn btn--radius btn--green\" type=\"submit\">Submit</button>\n");
