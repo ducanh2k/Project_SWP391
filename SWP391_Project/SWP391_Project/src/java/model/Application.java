@@ -10,11 +10,11 @@ package model;
  */
 public class Application {
     private int Aid;
-    private int Eid;
-    private int Did;
+    private String Eid;
     private String Title;
     private String Body;
     private String Ename;
+    private String Status;
     public Application() {
     }
 
@@ -26,20 +26,12 @@ public class Application {
         this.Aid = Aid;
     }
 
-    public int getEid() {
+    public String getEid() {
         return Eid;
     }
 
-    public void setEid(int Eid) {
+    public void setEid(String Eid) {
         this.Eid = Eid;
-    }
-
-    public int getDid() {
-        return Did;
-    }
-
-    public void setDid(int Did) {
-        this.Did = Did;
     }
 
     public String getTitle() {
@@ -66,11 +58,21 @@ public class Application {
         this.Ename = Ename;
     }
 
-    public Application(int Eid, int Did, String Title, String Body) {
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String Status) {
+        this.Status = Status;
+    }
+
+    public Application(String Eid, String Title, String Body, String Status) {
         this.Eid = Eid;
-        this.Did = Did;
         this.Title = Title;
         this.Body = Body;
+        this.Status = Status;
     }
+
+   
     
 }

@@ -16,25 +16,35 @@ import model.Application;
  */
 public class ApplicationDAO extends DBContext {
 
-    public void createApplication(Application con) {
-        String sql = "insert into Application (Eid,Did, Title,Body)" + "values(?, ?, ?, ?);";
+    public void createApplication(Application app) {
+        String sql = "insert into Application (Eid, Title, Body, Status) values(?, ?, ?, 'Processing');";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, con.getEid());
-            st.setInt(2, con.getDid());
-            st.setString(3, con.getTitle());
-            st.setString(4, con.getBody());
+            st.setString(1, app.getEid());
+            st.setString(2, app.getTitle());
+            st.setString(3, app.getBody());
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
 
-    public void approval(Application con) {
-        String sql = "update Application set Status = 1 where Aid=?";
+    public void approveApp(int aid) {
+        String sql = "update Application set Status = 'Approved' where Aid=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, con.getAid());
+            st.setInt(1, aid);
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void refuseApp(int aid) {
+        String sql = "update Application set Status = 'Refused' where Aid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, aid);
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);
@@ -49,9 +59,10 @@ public class ApplicationDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Application a = new Application(rs.getInt("Eid"),
-                        rs.getInt("Did"), rs.getString("Title"),
-                        rs.getString("Body"));
+                Application a = new Application(rs.getString("Eid"),
+                        rs.getString("Title"),
+                        rs.getString("Body"),
+                        rs.getString("Status"));
                 a.setEname(rs.getString("Ename"));
                 a.setAid(rs.getInt("Aid"));
                 list_application.add(a);
@@ -63,16 +74,17 @@ public class ApplicationDAO extends DBContext {
         return null;
     }
 
-    public Application getContract(int aid) {
+    public Application getApplication(int aid) {
         String sql = "select a.*, e.name as Ename from Application a\n"
                 + "join Employee e on a.Eid = e.Eid where a.Aid = " + aid;
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Application a = new Application(rs.getInt("Eid"),
-                        rs.getInt("Did"), rs.getString("Title"),
-                        rs.getString("Body"));
+                Application a = new Application(rs.getString("Eid"),
+                        rs.getString("Title"),
+                        rs.getString("Body"),
+                        rs.getString("Status"));
                 a.setEname(rs.getString("Ename"));
                 a.setAid(rs.getInt("Aid"));
                 return a;

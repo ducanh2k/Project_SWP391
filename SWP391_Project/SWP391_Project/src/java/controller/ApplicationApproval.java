@@ -4,12 +4,16 @@
  */
 package controller;
 
+import dal.ApplicationDAO;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.Application;
 
 /**
  *
@@ -29,17 +33,28 @@ public class ApplicationApproval extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ApplicationDAO adao = new ApplicationDAO();      
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ApplicationApproval</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ApplicationApproval at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String service = "view";
+            HttpSession session = (HttpSession) request.getSession();
+            if (service.equals("view")) {
+                int aid = Integer.parseInt(request.getParameter("aid"));
+                Application a = adao.getApplication(aid);
+                request.setAttribute("application", a);
+                request.setAttribute("mode", "view");
+                request.getRequestDispatcher("application.jsp").forward(request, response);
+            }
+            if (service.equals("approval")) {
+                if (request.getParameter("approve") != null) {
+                    int aid = Integer.parseInt(request.getParameter("aid"));
+                    adao.approveApp(aid);
+                } else if (request.getParameter("refuse") != null) {
+                    int aid = Integer.parseInt(request.getParameter("aid"));
+                    adao.refuseApp(aid);
+                    response.sendRedirect("ApplicationApproval");
+                }
+
+            }
         }
     }
 

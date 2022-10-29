@@ -4,12 +4,19 @@
  */
 package controller;
 
+import dal.ApplicationDAO;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.Application;
 
 /**
  *
@@ -29,17 +36,22 @@ public class ApplicationList extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        ApplicationDAO adao = new ApplicationDAO();
+        ArrayList<Application> list_application = adao.getListApplication();
+
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ApplicationList</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ApplicationList at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String service = "list_application";
+            HttpSession session = (HttpSession) request.getSession();
+
+            if (request.getParameter("service") != null) {
+                service = request.getParameter("service");
+            }
+
+            if (service.equals("list_application")) {
+                request.setAttribute("list_application", list_application);
+                request.getRequestDispatcher("application_list.jsp").forward(request, response);
+            }         
         }
     }
 

@@ -4,12 +4,14 @@
  */
 package controller;
 
+import dal.ApplicationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.Application;
 
 /**
  *
@@ -55,7 +57,6 @@ public class ApplicationSubmit extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -69,7 +70,13 @@ public class ApplicationSubmit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ApplicationDAO ad = new ApplicationDAO();
+        String eid = request.getParameter("Eid");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        Application app = new Application(eid, title, content, "Processing");
+        ad.createApplication(app);
+        request.getRequestDispatcher("create_application.jsp").forward(request, response);
     }
 
     /**
