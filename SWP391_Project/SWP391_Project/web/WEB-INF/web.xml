@@ -84,6 +84,14 @@
         <servlet-name>SalaryServlet</servlet-name>
         <servlet-class>controller.SalaryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApprovalServlet</servlet-name>
+        <servlet-class>controller.ApprovalServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessForm</servlet-name>
+        <servlet-class>controller.ProcessForm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -167,6 +175,14 @@
     <servlet-mapping>
         <servlet-name>SalaryServlet</servlet-name>
         <url-pattern>/salary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApprovalServlet</servlet-name>
+        <url-pattern>/approval</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessForm</servlet-name>
+        <url-pattern>/pform</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

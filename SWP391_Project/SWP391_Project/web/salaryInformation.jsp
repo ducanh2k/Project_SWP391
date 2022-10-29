@@ -26,41 +26,53 @@
                                     <input class="form-control" type="number" value="${cs}" name="cs" readonly />
                                 </div>
                             </div>
+                            <br/>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label form-control-label">number of days on leave</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="number" value="${ol}" name="ol" readonly />
                                 </div>
                             </div>
+                            <br/>
+
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label form-control-label">Holiday Wages</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="number" value="" name="hw"  />
+                                    <input class="form-control" type="number" value="" name="hw"  required/>
                                 </div>
                             </div>
+                            <br/>
+
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Special Allowance</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="number" value="" name="sa"  />
+                                    <input class="form-control" type="number" value="" name="sa"  required/>
                                 </div>
                             </div>
+                            <br/>
+
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Bonus</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="number" value="" name="bonus"  />
+                                    <input class="form-control" type="number" value="" name="bonus"  required/>
                                 </div>
                             </div>
+                            <br/>
+
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Individual Incentive</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="number" value="" name="ii"  />
+                                    <input class="form-control" type="number" value="" name="ii"  required/>
                                 </div>
                             </div>
+                            <br/>
+
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
-                                    <input type="reset" class="btn btn-secondary" value="Cancel">
-                                    <input type="submit" class="btn btn-primary" value="Calculate Salary">
+                                    <input type="button" class="btn btn-secondary" value="Cancel" style="font-size: 20px;background-color: #0099ff;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="submit" class="btn btn-primary" value="Calculate Salary" style="font-size: 20px;background-color: #0099ff;">
                                 </div>
                             </div>
                         </form>

@@ -19,6 +19,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.URLDecoder;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -157,6 +159,8 @@ public class SalaryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String day = request.getParameter("day");
+//        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        LocalDate attendDate = LocalDate.parse(day, df);
         String eid = request.getParameter("eid");
         String cs = request.getParameter("cs");
         String ol = request.getParameter("ol");
