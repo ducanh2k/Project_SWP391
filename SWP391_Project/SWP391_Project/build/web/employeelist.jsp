@@ -123,7 +123,7 @@
         </style>
     </head>
     <body>
-            <jsp:include page="sideMenu.jsp"></jsp:include>
+        <jsp:include page="sideMenu.jsp"></jsp:include>
             <div class="container" >
                 <section class="ftco-section">
                     <div class="container " style="margin-left: 40px">
@@ -188,9 +188,11 @@
                                                 %>
                                                 <td><a href="EmployeeDetail?service=view&eid=${e.getEid()}" class="fas fa-eye fa-2x"></a></td>
                                                 <td><a href="EmployeeDetail?service=edit&eid=${e.getEid()}" class="fas fa-edit fa-2x"></a></td>
-                                                    <%
-                                                        }
-                                                    %>
+                                                <td><a href="attendant?eid=${e.getEid()}">View Attendance</a></td>
+                                                <td><a href="salary?eid=${e.getEid()}">View Salary</a></td>
+                                                <%
+                                                    }
+                                                %>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
