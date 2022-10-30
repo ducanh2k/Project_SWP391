@@ -6,6 +6,7 @@
 package controller;
 
 import dal.DepartmentDAO;
+import dal.EmployeeDAO;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Department;
+import model.Employee;
 
 /**
  *
@@ -35,7 +37,9 @@ public class Controller_Department extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DepartmentDAO dep_dao = new DepartmentDAO();
+        EmployeeDAO e_dao = new EmployeeDAO();
         ArrayList<Department> list_dep = dep_dao.getListDep();
+        ArrayList<Employee> list_manager = e_dao.getListManager();
 
         try ( PrintWriter out = response.getWriter()) {
             HttpSession session = (HttpSession) request.getSession();
@@ -46,7 +50,7 @@ public class Controller_Department extends HttpServlet {
             }
 
             //department list
-            if (service.equals("list_dep")) {                
+            if (service.equals("list_dep")) {
                 request.setAttribute("list_dep", list_dep);
                 request.getRequestDispatcher("department_list.jsp").forward(request, response);
             }
@@ -56,6 +60,16 @@ public class Controller_Department extends HttpServlet {
                 int did = Integer.parseInt(request.getParameter("did"));
                 Department dep = dep_dao.getDep(did);
                 request.setAttribute("dep_detail", dep);
+                if (dep.getManagerID() != 0) {
+                    Employee e = e_dao.getEmployee(dep.getManagerID());
+                    list_manager.add(e);
+                } else {
+                    Employee e = new Employee();
+                    e.setEid(0);
+                    e.setName("---");
+                    list_manager.add(e);
+                }
+                request.setAttribute("list_manager", list_manager);
                 request.setAttribute("mode", "view");
                 request.getRequestDispatcher("department_view.jsp").forward(request, response);
             }
@@ -66,8 +80,23 @@ public class Controller_Department extends HttpServlet {
                     // edit deparment 
                     int did = Integer.parseInt(request.getParameter("did"));
                     Department dep = dep_dao.getDep(did);
+                    if (dep.getManagerID() != 0) {
+                        Employee e = e_dao.getEmployee(dep.getManagerID());
+                        list_manager.add(e);
+                    } else {
+                        Employee e = new Employee();
+                        e.setEid(0);
+                        e.setName("---");
+                        list_manager.add(e);
+                    }
+                    for (Employee employee : list_manager) {
+                        if (employee.getDid() != did) {
+                            list_manager.remove(employee);
+                        }
+                    }
                     request.setAttribute("dep_detail", dep);
                     request.setAttribute("list_dep", list_dep);
+                    request.setAttribute("list_manager", list_manager);
                     request.setAttribute("mode", "edit");
                     request.getRequestDispatcher("department_view.jsp").forward(request, response);
                 } else if (request.getParameter("delete") != null) {
@@ -87,7 +116,12 @@ public class Controller_Department extends HttpServlet {
                 int did = Integer.parseInt(request.getParameter("did"));
                 String dname = request.getParameter("dname");
                 boolean is_active = request.getParameter("is_active").equals("Active") ? true : false;
+                int managerID = 0;
+                if (request.getParameter("managerDep") != null) {
+                    managerID = Integer.parseInt(request.getParameter("managerDep"));
+                }
                 Department dep = new Department(did, dname, is_active);
+                dep.setManagerID(managerID);
                 if (service.equals("save_edit_Dep")) {
                     dep_dao.update(dep);
                 } else if (service.equals("save_add_Dep")) {
@@ -101,6 +135,16 @@ public class Controller_Department extends HttpServlet {
                 //cancel edit
                 int did = Integer.parseInt(request.getParameter("did"));
                 Department dep = dep_dao.getDep(did);
+                if (dep.getManagerID() != 0) {
+                    Employee e = e_dao.getEmployee(dep.getManagerID());
+                    list_manager.add(e);
+                } else {
+                    Employee e = new Employee();
+                    e.setEid(0);
+                    e.setName("---");
+                    list_manager.add(e);
+                }
+                request.setAttribute("list_manager", list_manager);
                 request.setAttribute("dep_detail", dep);
                 request.setAttribute("mode", "view");
                 request.getRequestDispatcher("department_view.jsp").forward(request, response);
@@ -118,6 +162,7 @@ public class Controller_Department extends HttpServlet {
                 dep.setDid(id_max + 1);
                 request.setAttribute("dep_detail", dep);
                 request.setAttribute("list_dep", list_dep);
+                request.setAttribute("list_manager", list_manager);
                 request.setAttribute("mode", "add");
                 request.getRequestDispatcher("department_view.jsp").forward(request, response);
             }

@@ -14,6 +14,8 @@ public class Department {
     private String Dname;
     private int count_employee;
     private boolean is_active;
+    private int managerID;
+    private String managerName;    
 
     public Department() {
     }
@@ -54,6 +56,22 @@ public class Department {
 
     public void setCount_employee(int count_employee) {
         this.count_employee = count_employee;
+    }
+
+    public int getManagerID() {
+        return managerID;
+    }
+
+    public void setManagerID(int managerID) {
+        this.managerID = managerID;
+    }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
     }
 
     @Override

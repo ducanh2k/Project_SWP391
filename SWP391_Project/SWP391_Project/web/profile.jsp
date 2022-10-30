@@ -32,6 +32,7 @@
         <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
         <!-- Template Main CSS File -->
         <link href="assets/css/style_1.css" rel="stylesheet">
@@ -109,19 +110,19 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Manager</label>
-                                                <input type="text" class="form-control" value="${o.getManager()}" name="manager">
+                                                <input readonly type="text" class="form-control" value="${o.getManager()}" name="manager">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Working time</label>
-                                                <input type="text" class="form-control" value="${o.getWorkingTime()}" name="workingTime">
+                                                <input readonly type="text" class="form-control" value="${o.getWorkingTime()}" name="workingTime">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Approver</label>
-                                                <input type="text" class="form-control" value="${o.getApprover()}" name="approver">
+                                                <input readonly type="text" class="form-control" value="${o.getApprover()}" name="approver">
                                             </div>
                                         </div>
 
@@ -134,27 +135,27 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Research Area</label>
-                                                <input type="text" class="form-control" value="${o.getResearchArea()}" name="researchArea">
+                                                <input readonly type="text" class="form-control" value="${o.getResearchArea()}" name="researchArea">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Id number</label>
-                                                <input type="number" class="form-control" value="${o.getIdNumber()}" name="idNumber">
+                                                <label>Citizen identification</label>
+                                                <input type="text" class="form-control" value="${o.getIdNumber()}" name="idNumber" pattern="^[0-9]{9}$|^[0-9]{12}$" title="Only contain 9 or 12 digits">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Passport</label>
-                                                <input type="number" class="form-control" value="${o.getPassport()}" name="passport">
+                                                <input type="text" class="form-control" value="${o.getPassport()}" name="passport">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Visa Number</label>
-                                                <input type="number" class="form-control" value="${o.getVisaNumber()}" name="visaNumber">
+                                                <input type="text" class="form-control" value="${o.getVisaNumber()}" name="visaNumber">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -166,19 +167,21 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Visa expiration date</label>
-                                                <input type="text" class="form-control" value="${o.getVisaExpirationDate()}" name="visaExpirationDate">
+                                                <input class="form-control js-datepicker" type="text" placeholder="Starting Date" value="${o.getVisaExpirationDate()}" name="visaExpirationDate" required>
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Work license expiration date</label>
-                                                <input type="text" class="form-control" value="${o.getWorkLicenseExpirationDate()}" name="workLicenseExpirationDate">
+                                                <input type="text" class="form-control js-datepicker" value="${o.getWorkLicenseExpirationDate()}" name="workLicenseExpirationDate" placeholder="Starting Date" required>
+                                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Position</label>
-                                                <input type="text" class="form-control" value="${o.getPosition()}" name="position">
+                                                <input type="text" class="form-control" value="${o.getPosition()}" name="position" readonly>
                                             </div>
                                         </div>
                                     </c:forEach>          
@@ -202,7 +205,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Department</label>
-                                        <input type="text" class="form-control" value="<%= depart%>" name="department">
+                                        <input type="text" class="form-control" value="<%= depart%>" name="department" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -214,7 +217,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mentor</label>
-                                        <input type="text" class="form-control" value="<%= mentor%>" name="mentor">
+                                        <input type="text" class="form-control" value="<%= mentor%>" name="mentor" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -226,7 +229,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Working Place</label>
-                                        <input type="text" class="form-control" value="${o.getWorkingPlace()}" name="workingPlace">
+                                        <input readonly type="text" class="form-control" value="${o.getWorkingPlace()}" name="workingPlace">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
