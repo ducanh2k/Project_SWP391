@@ -59,10 +59,6 @@
                                     <input readonly class="input--style-2" type="text" placeholder="Employee Name" name="eName" value="<%=c.getEname()%>">
                                 </div>
                                 <input type="hidden" name="did" value="<%=c.getDid()%>">
-                                <!--                                <div class="input-group">
-                                                                    <input type="hidden" name="did" value="">
-                                                                    <input class="input--style-2" type="text" placeholder=" Department Name" name="dName">
-                                                                </div>-->
                             </div>
                             <div class="row row-space">
                                 <div class="col-2">
@@ -81,38 +77,29 @@
                                 </div>
 
                             </div>
-                            <div class="input-group">
-                                <label class="input--style-2 js-datepicker">Working Time in week</label>
-                                <div class="rs-select2 js-select-simple select--no-search">
-                                    <select <%if (mode == "view") {%> disabled <%}%> name="workingTime">
-                                        <!--<option disabled="disabled" selected="selected">Working Time in week</option>-->
-                                        <option <%if (c.getWorkingTime().equals("")) {%>selected<%}%>>/---/</option>
-                                        <option <%if (c.getWorkingTime().equals("42h")) {%>selected<%}%>>42h</option>
-                                        <option <%if (c.getWorkingTime().equals("40h")) {%>selected<%}%>>40h</option>
-                                        <option <%if (c.getWorkingTime().equals("38h")) {%>selected<%}%>>38h</option>
-                                    </select>
-                                    <div class="select-dropdown"></div>
-                                </div>
-                            </div>
+
                             <div class="row row-space">
                                 <div class="col-2">
-                                    <label class="input--style-2 js-datepicker">Status</label>
+                                    <label class="input--style-2 js-datepicker">Contract Type</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select <%if (mode == "view") {%> disabled <%}%> name="status">
-                                            <!--<option disabled="disabled" selected="selected">Status</option>-->
-                                            <option <%if (c.getStatus().equals("")) {%>selected<%}%>>/---/</option>
-                                            <option <%if (c.getStatus().equals("Opened")) {%>selected<%}%>>Opened</option>
-                                            <option <%if (c.getStatus().equals("Expired")) {%>selected<%}%>>Expired</option>
+                                        <select <%if (mode == "view") {%> disabled <%}%> name="contractType">
+                                            <option <%if (c.getStatus().equals("Fulltime")) {%>selected<%}%>>Full time</option>
+                                            <option <%if (c.getStatus().equals("Parttime")) {%>selected<%}%>>Part time</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <label class="input--style-2 js-datepicker">Salary</label>
-                                    <div class="input-group">
-                                        <input <%if (mode == "view") {%> readonly <%}%> class="input--style-2" id="id_salary" type="number" name="salary" value="<%=c.getSalary()%>" pattern="[0-9]">
+                                    <label class="input--style-2 js-datepicker">Status</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select <%if (mode == "view") {%> disabled <%}%> name="status">
+                                            <option <%if (c.getStatus().equals("")) {%>selected<%}%>>/---/</option>
+                                            <option <%if (c.getStatus().equals("Effective")) {%>selected<%}%>>Effective</option>
+                                            <option <%if (c.getStatus().equals("Expired")) {%>selected<%}%>>Expired</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
                                     </div>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="p-t-30">
                                 <%if (mode.equals("edit")) {%>
@@ -120,12 +107,15 @@
                                 <input class="btn btn--radius btn--red" type="submit" name="cancel" value="Cancel">
                                 <input type="hidden" name="service" value="save_edit">
                                 <input type="hidden" name="cid" value="<%=c.getCid()%>">
-                                <%} else if (mode.equals("view")) {%>
+                                <%} else if (mode.equals("view")) {
+                                    if (role.trim().equalsIgnoreCase("admin")) {
+                                %>
                                 <input class="btn btn--radius btn--green" type="submit" name="edit" value="Edit">
                                 <input class="btn btn--radius btn--red" type="submit" onclick="confirmAction()" name ="delete" value="Delete">
                                 <input type="hidden" name="service" value="edit_del">
                                 <input type="hidden" name="cid" value="<%=c.getCid()%>">
-                                <%}%>                                
+                                <%}
+                                    }%>                                
                             </div>
                         </form>
                     </div>

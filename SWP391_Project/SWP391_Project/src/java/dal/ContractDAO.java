@@ -61,22 +61,30 @@ public class ContractDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        }
+    }
     public ArrayList<Contract> getListContract() {
         ArrayList<Contract> list_contract = new ArrayList<Contract>();
-        String sql = "select c.*, e.name as Ename from Contract c\n"
-                + "join Employee e on c.Eid = e.Eid";
+        String sql = "select c.Cid, c.Eid, d.Did, c.name,c.StartingDate, \n"
+                + "CONVERT(varchar(10),DATEADD(day, -1, DATEADD(month, 12, c.StartingDate)),101) as EndDate,\n"
+                + "c.ValidStatus, ct.ContractTypeID, ct.TypeName as ContractTypeName, ct.[WorkingTime(h)] as workingTime, ct.Salary, e.name as Ename "
+                + "from Contract c\n"
+                + "join Employee e on c.Eid = e.Eid\n"
+                + "join ContractType ct on c.TypeID=ct.ContractTypeID\n"
+                + "join Department d on e.Did = d.Did";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                String status = rs.getBoolean("ValidStatus")==true ? "Effective" : "Expired";
                 Contract c = new Contract(rs.getInt("Eid"),
                         rs.getInt("Did"), rs.getString("name"),
                         rs.getString("StartingDate"), rs.getString("EndDate"),
-                        rs.getString("Status"), rs.getString("workingTime"),
-                        rs.getDouble("salary"));
+                        status, rs.getString("workingTime"),
+                        rs.getDouble("Salary"));
                 c.setEname(rs.getString("Ename"));
                 c.setCid(rs.getInt("Cid"));
+                c.setContractTypeID(rs.getInt("ContractTypeID"));
+                c.setContractTypeName(rs.getString("ContractTypeName"));
                 list_contract.add(c);
             }
             return list_contract;
@@ -87,19 +95,27 @@ public class ContractDAO extends DBContext {
     }
 
     public Contract getContract(int cid) {
-        String sql = "select c.*, e.name as Ename from Contract c\n"
-                + "join Employee e on c.Eid = e.Eid where c.Cid = " + cid;
+        String sql = "select c.Cid, c.Eid, d.Did, c.name,c.StartingDate, \n"
+                + "CONVERT(varchar(10),DATEADD(day, -1, DATEADD(month, 12, c.StartingDate)),101) as EndDate,\n"
+                + "c.ValidStatus, ct.ContractTypeID, ct.TypeName as ContractTypeName, ct.[WorkingTime(h)] as workingTime, ct.Salary, e.name as Ename "
+                + "from Contract c\n"
+                + "join Employee e on c.Eid = e.Eid\n"
+                + "join ContractType ct on c.TypeID=ct.ContractTypeID\n"
+                + "join Department d on e.Did = d.Did where c.Cid = " + cid;
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                String status = rs.getBoolean("ValidStatus")==true ? "Effective" : "Expired";
                 Contract c = new Contract(rs.getInt("Eid"),
                         rs.getInt("Did"), rs.getString("name"),
                         rs.getString("StartingDate"), rs.getString("EndDate"),
-                        rs.getString("Status"), rs.getString("workingTime"),
-                        rs.getDouble("salary"));
+                        status, rs.getString("workingTime"),
+                        rs.getDouble("Salary"));
                 c.setEname(rs.getString("Ename"));
                 c.setCid(rs.getInt("Cid"));
+                c.setContractTypeID(rs.getInt("ContractTypeID"));
+                c.setContractTypeName(rs.getString("ContractTypeName"));
                 return c;
             }
         } catch (SQLException e) {

@@ -19,6 +19,8 @@ public class Contract {
     private String workingTime;
     private double Salary;
     private String Ename;
+    private int ContractTypeID;
+    private String ContractTypeName;
 
     public Contract(int Eid, int Did, String name, String StartingDate, String EndDate, String Status, String workingTime, double Salary) {
         this.Eid = Eid;
@@ -118,4 +120,21 @@ public class Contract {
     public void setSalary(double Salary) {
         this.Salary = Salary;
     }
+
+    public int getContractTypeID() {
+        return ContractTypeID;
+    }
+
+    public void setContractTypeID(int ContractTypeID) {
+        this.ContractTypeID = ContractTypeID;
+    }
+
+    public String getContractTypeName() {
+        return ContractTypeName;
+    }
+
+    public void setContractTypeName(String ContractTypeName) {
+        this.ContractTypeName = ContractTypeName;
+    }
+    
 }

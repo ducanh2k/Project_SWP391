@@ -26,6 +26,7 @@ public class DepartmentDAO extends DBContext {
                 Department d = new Department(rs.getInt("Did"),
                         rs.getString("name"), rs.getBoolean("is_active"));
                 d.setCount_employee(0);
+                d.setManagerID(rs.getInt("ManagerID"));
                 return d;
             }
         } catch (SQLException e) {
@@ -51,10 +52,12 @@ public class DepartmentDAO extends DBContext {
 
     public ArrayList<Department> getListDep() {
         ArrayList<Department> list_dept = new ArrayList<Department>();
-        String sql = "select d.Did as did, d.name as dname, count(e.Eid) as count_employee, d.is_active as is_active\n"
+        String sql = "select d.Did as did, d.name as dname, count(e.Eid) as count_employee,"
+                + " ISNULL(f.Eid,0) as managerID, ISNULL(f.name,'') as managerName, d.is_active as is_active\n"
                 + "from [Human Resource Service].[dbo].Department d\n"
-                + "left join [Human Resource Service].[dbo].Employee e\n"
-                + "on d.Did = e.Did group by d.Did, d.name, d.is_active";
+                + "left join [Human Resource Service].[dbo].Employee e on d.Did = e.Did \n"
+                + "left join [Human Resource Service].[dbo].Employee f on d.ManagerID=f.Eid\n"
+                + "group by d.Did, d.name,f.Eid, f.name, d.is_active";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -63,6 +66,8 @@ public class DepartmentDAO extends DBContext {
                 Department d = new Department(rs.getInt("did"),
                         rs.getString("dname"), rs.getBoolean("is_active"));
                 d.setCount_employee(rs.getInt("count_employee"));
+                d.setManagerID(rs.getInt("managerID"));
+                d.setManagerName(rs.getString("managerName"));
                 list_dept.add(d);
             }
             return list_dept;
@@ -116,11 +121,12 @@ public class DepartmentDAO extends DBContext {
     }
 
     public void addDep(Department dep) {
-        String sql = "insert into [Human Resource Service].[dbo].Department (Did, name, is_active) \n"
-                + "values(?, ?, 1);";
+        String sql = "insert into [Human Resource Service].[dbo].Department (Did, name, is_active, ManagerID) \n"
+                + "values(?, ?, 1, ?);";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, dep.getDid());
+            st.setInt(3, dep.getManagerID());
             st.setString(2, dep.getDname());
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
@@ -130,13 +136,14 @@ public class DepartmentDAO extends DBContext {
 
     public void update(Department dep) {
         String sql = "update [Human Resource Service].[dbo].Department "
-                + "set Did=?, name=?, is_active=? where Did=?;";
+                + "set Did=?, name=?, is_active=?, ManagerID=? where Did=?;";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, dep.getDid());
             st.setString(2, dep.getDname());
             st.setBoolean(3, dep.isIs_active());
-            st.setInt(4, dep.getDid());
+            st.setInt(4, dep.getManagerID());
+            st.setInt(5, dep.getDid());
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);
