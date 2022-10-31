@@ -15,6 +15,7 @@ public class Application {
     private String Body;
     private String Ename;
     private String Status;
+    private String Time;
     public Application() {
     }
 
@@ -66,11 +67,20 @@ public class Application {
         this.Status = Status;
     }
 
-    public Application(String Eid, String Title, String Body, String Status) {
+    public String getTime() {
+        return Time;
+    }
+
+    public void setTime(String Time) {
+        this.Time = Time;
+    }
+
+    public Application(String Eid, String Title, String Body, String Status, String Time) {
         this.Eid = Eid;
         this.Title = Title;
         this.Body = Body;
         this.Status = Status;
+        this.Time = Time;
     }
 
    

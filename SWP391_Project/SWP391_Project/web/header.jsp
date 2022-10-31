@@ -29,9 +29,15 @@
                 <li><a id="this" class="nav-link scrollto" href="EmployeeList">Employee</a></li>
                 <li><a id="this" class="nav-link scrollto " href="Department">Department</a></li>
                 <li><a id="this" class="nav-link scrollto" href="Controller_Contract">Contract</a></li>
+<<<<<<< HEAD
+                <li><a id="this" class="nav-link scrollto" href="ApplicationList">Application</a></li>
+                <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='profile'"><%= ad.getRoleName(a) %></button></li>
+                <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href='login.jsp'">Logout</button></li>
+=======
                 <li><a id="this" class="nav-link scrollto" href="pform">Approval</a></li>
                 <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href = 'profile'"><%= ad.getRoleName(a)%></button></li>
                 <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href = 'login.jsp'">Logout</button></li>
+>>>>>>> 88e9e1054be66115a5f7d5fc5d9fdaab6f68d411
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav> 
