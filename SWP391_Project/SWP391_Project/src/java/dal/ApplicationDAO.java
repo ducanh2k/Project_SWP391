@@ -17,12 +17,13 @@ import model.Application;
 public class ApplicationDAO extends DBContext {
 
     public void createApplication(Application app) {
-        String sql = "insert into Application (Eid, Title, Body, Status) values(?, ?, ?, 'Processing');";
+        String sql = "insert into Application (Eid, Title, Body, Status, Time) values(?, ?, ?, 'Processing', ?);";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, app.getEid());
             st.setString(2, app.getTitle());
             st.setString(3, app.getBody());
+            st.setString(3, app.getTime());
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);
