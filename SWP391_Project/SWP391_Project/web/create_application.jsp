@@ -36,7 +36,7 @@
 
                         <form action="ApplicationSubmit" method="POST" enctype="multipart/form-data">
                             <div class="input-group">
-                                <input class="input--style-2" type="text" name="Eid" value="1" readonly>
+                                <input class="input--style-2" type="text" name="Eid">
                             </div>
                             <div class="input-group">
                                 <input class="input--style-2" type="text" name="title" placeholder="Title" required>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="p-t-30">
                                 <button class="btn btn--radius btn--green" type="submit">Submit</button>
-                                <button class="btn btn--radius btn--red" type="button" onclick="window.window.location.href = 'create_application.jsp'">Cancel</button>
+                                <button class="btn btn--radius btn--red" type="button" onclick="window.window.location.href = 'application_list.jsp'">Cancel</button>
                             </div>
                         </form>
                     </div>

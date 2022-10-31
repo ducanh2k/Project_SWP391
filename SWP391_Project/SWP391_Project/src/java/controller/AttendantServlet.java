@@ -23,7 +23,12 @@ import java.net.URLDecoder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -120,17 +125,52 @@ public class AttendantServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
+
             AccountDAO ad = new AccountDAO();
             String path = this.getClass().getClassLoader().getResource("").getPath();
             String fullPath = URLDecoder.decode(path, "UTF-8");
             String pathArr[] = fullPath.split("/build/web/WEB-INF/classes/");
             List<Attendant> list = readFromFile(pathArr[0] + "/src/java/data/EmployeeAttendant.txt");
-            
             HttpSession session = request.getSession();
             Account a = (Account) session.getAttribute("account");
-            request.setAttribute("listAttend", list);
-            if (ad.getRoleName(a).equalsIgnoreCase("admin")) {
-                request.setAttribute("listAttend", list);
+            if (ad.getRoleName(a).equalsIgnoreCase("admin") && request.getParameter("Filter") == null) {
+                if (request.getParameter("eid") != null) {
+                    List<Attendant> listEmp = new ArrayList<>();
+                    for (Attendant attendant : list) {
+                        if (attendant.getEmployee().getEid() == Integer.parseInt(request.getParameter("eid"))) {
+                            listEmp.add(attendant);
+                        }
+                    }
+                    session.setAttribute("eid", request.getParameter("eid"));
+                    request.setAttribute("listAttend", listEmp);
+                } else {
+                    request.setAttribute("listAttend", list);
+                    List<Attendant> listEmp = new ArrayList<>();
+                    for (Attendant attendant : list) {
+                        if (attendant.getEmployee().getEid() == Integer.parseInt(request.getParameter("eid"))) {
+                            listEmp.add(attendant);
+                        }
+                    }
+                    request.setAttribute("listAttend", listEmp);
+                }
+                request.getRequestDispatcher("attendant.jsp").forward(request, response);
+            } else if (request.getParameter("Filter") != null) {
+                String eid = request.getParameter("eid");
+                String start = request.getParameter("start");
+                String end = request.getParameter("end");
+                List<Attendant> listEmp = new ArrayList<>();
+                out.print(eid);
+                LocalDate attendDate;
+                int count = 0;
+                for (Attendant attendant : list) {
+                    DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    attendDate = LocalDate.parse(attendant.getDate(), df);
+                    if (attendDate.toString().compareTo(start) >= 0 && attendDate.toString().compareTo(end) <= 0 && attendant.getEmployee().getEid() == Integer.parseInt(eid)) {
+                        listEmp.add(attendant);
+                    }
+                }
+                request.setAttribute("listAttend", listEmp);
+                request.getRequestDispatcher("attendant.jsp").forward(request, response);
             } else {
                 List<Attendant> listEmp = new ArrayList<>();
                 for (Attendant attendant : list) {
@@ -157,7 +197,45 @@ public class AttendantServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            PrintWriter out = response.getWriter();
+            AccountDAO ad = new AccountDAO();
+            String path = this.getClass().getClassLoader().getResource("").getPath();
+            String fullPath = URLDecoder.decode(path, "UTF-8");
+            String pathArr[] = fullPath.split("/build/web/WEB-INF/classes/");
+            List<Attendant> list = readFromFile(pathArr[0] + "/src/java/data/EmployeeAttendant.txt");
+            HttpSession session = request.getSession();
+            String eid = request.getParameter("eid");
+            int count = 0;
+            for (Attendant attendant : list) {
+                if (attendant.getEmployee().getEid() == Integer.parseInt(eid)) {
+                    if (attendant.isStatus().equalsIgnoreCase("absent")) {
+                        count++;
+                    }
+                }
+            }
+            EmployeeDAO ed = new EmployeeDAO();
+            DepartmentDAO dd = new DepartmentDAO();
+            Employee e = ed.getEmployee(Integer.parseInt(eid));
+            double cs = 0;
+            if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("graduate")) {
+                cs += 2.1;
+            } else if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("bachelor")) {
+                cs += 2.34;
+            } else if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("master")) {
+                cs += 2.67;
+            } else if (dd.getCName(e.getCertificateID()).equalsIgnoreCase("doctor")) {
+                cs += 3.0;
+            } else {
+                cs += 1.86;
+            }
+            request.setAttribute("eid", eid);
+            request.setAttribute("cs", cs);
+            request.setAttribute("ol", count);
+            request.getRequestDispatcher("salaryInformation").forward(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(AttendantServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

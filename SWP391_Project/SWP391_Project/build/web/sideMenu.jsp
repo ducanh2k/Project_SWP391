@@ -5,6 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dal.AccountDAO"%>
+<%@page import="model.Account"%>
+<%
+    HttpSession session1 = request.getSession(true);
+    Account a = (Account) session1.getAttribute("account");
+    AccountDAO ad = new AccountDAO();
+%>
 <!DOCTYPE html>
 <link href="assets/img/favicon.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -28,4 +35,15 @@
     </div> <a href="login.jsp" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Log out</span> </a>
 </nav>
 </div>
+                    <%
+                        if (!ad.getRoleName(a).equalsIgnoreCase("admin")) {
+                    %>
+                    }
+                    <a href="attendant" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Attendance</span> </a> </div>
+                    <%
+                        }
+                    %>
+            </div> <a href="login.jsp" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Log out</span> </a>
+        </nav>
+    </div>
 </div>

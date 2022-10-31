@@ -62,7 +62,8 @@ public class ApplicationDAO extends DBContext {
                 Application a = new Application(rs.getString("Eid"),
                         rs.getString("Title"),
                         rs.getString("Body"),
-                        rs.getString("Status"));
+                        rs.getString("Status"),
+                        rs.getString("Time"));
                 a.setEname(rs.getString("Ename"));
                 a.setAid(rs.getInt("Aid"));
                 list_application.add(a);
@@ -84,7 +85,8 @@ public class ApplicationDAO extends DBContext {
                 Application a = new Application(rs.getString("Eid"),
                         rs.getString("Title"),
                         rs.getString("Body"),
-                        rs.getString("Status"));
+                        rs.getString("Status"),
+                        rs.getString("Time"));
                 a.setEname(rs.getString("Ename"));
                 a.setAid(rs.getInt("Aid"));
                 return a;

@@ -77,7 +77,7 @@ public final class create_005fapplication_jsp extends org.apache.jasper.runtime.
       out.write("\n");
       out.write("                        <form action=\"ApplicationSubmit\" method=\"POST\" enctype=\"multipart/form-data\">\n");
       out.write("                            <div class=\"input-group\">\n");
-      out.write("                                <input class=\"input--style-2\" type=\"text\" name=\"Eid\" value=\"1\" readonly>\n");
+      out.write("                                <input class=\"input--style-2\" type=\"text\" name=\"Eid\">\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"input-group\">\n");
       out.write("                                <input class=\"input--style-2\" type=\"text\" name=\"title\" placeholder=\"Title\" required>\n");

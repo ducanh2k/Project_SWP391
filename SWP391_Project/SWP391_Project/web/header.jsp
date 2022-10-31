@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession session1 = request.getSession(true);
-    Account a =(Account)session1.getAttribute("account");
+    Account a = (Account) session1.getAttribute("account");
     AccountDAO ad = new AccountDAO();
 %>
 <header id="header" class="d-flex align-items-center">
@@ -19,13 +19,25 @@
 
         <nav id="navbar" class="navbar">
             <ul>
+                <%
+                    if (!ad.getRoleName(a).equalsIgnoreCase("admin")) {
+                %>
                 <li><a id="this" class="nav-link scrollto" href="attendant">Attendant</a></li>
+                    <%
+                        }
+                    %>
                 <li><a id="this" class="nav-link scrollto" href="EmployeeList">Employee</a></li>
                 <li><a id="this" class="nav-link scrollto " href="Department">Department</a></li>
                 <li><a id="this" class="nav-link scrollto" href="Controller_Contract">Contract</a></li>
-                <li><a id="this" class="nav-link scrollto" href="#">Certification</a></li>
+<<<<<<< HEAD
+                <li><a id="this" class="nav-link scrollto" href="ApplicationList">Application</a></li>
                 <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='profile'"><%= ad.getRoleName(a) %></button></li>
                 <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href='login.jsp'">Logout</button></li>
+=======
+                <li><a id="this" class="nav-link scrollto" href="pform">Approval</a></li>
+                <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href = 'profile'"><%= ad.getRoleName(a)%></button></li>
+                <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href = 'login.jsp'">Logout</button></li>
+>>>>>>> 88e9e1054be66115a5f7d5fc5d9fdaab6f68d411
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav> 

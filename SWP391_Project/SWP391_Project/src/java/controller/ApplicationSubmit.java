@@ -74,7 +74,7 @@ public class ApplicationSubmit extends HttpServlet {
         String eid = request.getParameter("Eid");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-        Application app = new Application(eid, title, content, "Processing");
+        Application app = new Application(eid, title, content, "Processing", "31-10-2022");
         ad.createApplication(app);
         request.getRequestDispatcher("create_application.jsp").forward(request, response);
     }

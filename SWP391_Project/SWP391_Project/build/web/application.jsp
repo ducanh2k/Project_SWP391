@@ -52,6 +52,8 @@
                             <div class="input-group">
                                 <label class="input--style-2 js-datepicker">Employee ID</label>
                                 <input readonly type="text" name="eid" value="<%=a.getEid()%>">
+                            </div>
+                            <div class="input-group">
                                 <label class="input--style-2 js-datepicker">Employee Name</label>
                                 <input readonly class="input--style-2" type="text" placeholder="Employee Name" name="eName" value="<%=a.getEname()%>">
                             </div>
@@ -60,9 +62,11 @@
                                     <label class="input--style-2 js-datepicker">Title</label>
                                     <input readonly type="text" name="title" value="<%=a.getTitle()%>">
                                 </div>
+                            </div>
+                            <div class="row row-space">
                                 <div class="input-group">
                                     <label class="input--style-2 js-datepicker">Content</label>
-                                    <textarea readonly type="text" name="content" value="<%=a.getBody()%>"></textarea>
+                                    <textarea readonly name="content"><%=a.getBody()%></textarea>
                                 </div>
                             </div>
                             <div class="row row-space">
@@ -71,17 +75,18 @@
                                     <input readonly type="text" name="status" value="<%=a.getStatus()%>">
                                 </div>
                             </div>
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="input--style-2 js-datepicker">Submit Time</label>
+                                    <input readonly type="text" name="Time" value="<%=a.getTime()%>">
+                                </div>
+                            </div>
                             <div class="p-t-30">
-                                <%if (mode.equals("approve")) {%>
+
                                 <input class="btn btn--radius btn--green" type="submit" onclick="alert('Successful')" name="approve" value="Approve">
                                 <input class="btn btn--radius btn--red" type="submit" name="refuce" value="Refuse">
                                 <input type="hidden" name="approval" value="approval">
-                                <input type="hidden" name="aid" value="<%=a.getAid()%>">
-                                <%} else if (mode.equals("view")) {%>
-                                <input class="btn btn--radius btn--green" type="submit" name="cancel" value="Cancel">
-
-                                <input type="hidden" name="aid" value="<%=a.getAid()%>">
-                                <%}%>                                
+                                <input type="hidden" name="aid" value="<%=a.getAid()%>">                                       
                             </div>
                         </form>
                     </div>

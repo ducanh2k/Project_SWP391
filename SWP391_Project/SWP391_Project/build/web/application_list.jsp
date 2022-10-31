@@ -151,9 +151,8 @@
                                             <th><input type="text" class="form-control" disabled>Title</th>
                                             <th><input type="text" class="form-control" disabled>Content</th>
                                             <th><input type="text" class="form-control" disabled>Status</th>
+                                            <th><input type="text" class="form-control" disabled>Submit Time</th>
                                             <th>View</th>
-                                            <th>Approve</th>
-                                            <th>Refuse</th>
                                         </tr>
                                     </thead>
                                     <th>#</th>
@@ -162,18 +161,17 @@
                                     <th>Title</th>
                                     <th>Content</th>
                                     <th>Status</th>
+                                    <th>Submit Time</th>
                                     <th>View</th>
-                                    <%
-                                        HttpSession session1 = request.getSession();
-                                        String role = (String) session1.getAttribute("role");
-                                        if (role.trim().equalsIgnoreCase("admin")) {
-                                    %>
-                                <th>Approve</th>
-                                <th>Refuse</th>
-                                    <%
-                                        }
-                                    %>
-                                    <c:forEach items="${list_application}" var="c">
+                                <%
+                                    HttpSession session1 = request.getSession();
+                                    String role = (String) session1.getAttribute("role");
+                                    if (role.trim().equalsIgnoreCase("admin")) {
+                                %>
+                                <%
+                                    }
+                                %>
+                                <c:forEach items="${list_application}" var="c">
                                     <tr>
                                         <td>${c.getAid()}</td>
                                         <td><a href="EmployeeDetail?service=view&eid=${c.getEid()}" >${c.getEname()}</a></td>
@@ -181,6 +179,7 @@
                                         <td>${c.getTitle()}</td>
                                         <td>${c.getBody()}</td>
                                         <td>${c.getStatus()}</td>
+                                        <td>${c.getTime()}</td>
                                         <td><a href="ApplicationApproval?service=view&aid=${c.getAid()}" class="fas fa-eye fa-2x"></a></td>
                                     </tr>     
                                 </c:forEach>
