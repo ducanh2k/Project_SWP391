@@ -11,6 +11,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import model.Application;
 
 /**
@@ -36,7 +38,7 @@ public class ApplicationSubmit extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ApplicationSubmit</title>");            
+            out.println("<title>Servlet ApplicationSubmit</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ApplicationSubmit at " + request.getContextPath() + "</h1>");
@@ -74,7 +76,10 @@ public class ApplicationSubmit extends HttpServlet {
         String eid = request.getParameter("Eid");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-        Application app = new Application(eid, title, content, "Processing", "31-10-2022");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String time = dtf.format(now);
+        Application app = new Application(eid, title, content, "Processing", time);
         ad.createApplication(app);
         request.getRequestDispatcher("create_application.jsp").forward(request, response);
     }
