@@ -96,7 +96,7 @@ public class ContractDAO extends DBContext {
     }
 
     public Contract getContract(int cid) {
-        String sql = "select c.Cid, c.Eid, d.Did, c.name,c.StartingDate, \n"
+        String sql = "select c.Cid, c.Eid, d.Did, c.name,c.StartingDate,c.YearValid as monthValid, \n"
                 + "CONVERT(varchar(10),DATEADD(day, -1, DATEADD(month, 12, c.StartingDate)),101) as EndDate,\n"
                 + "c.ValidStatus, ct.ContractTypeID, ct.TypeName as ContractTypeName, ct.[WorkingTime(h)] as workingTime, ct.Salary, e.name as Ename "
                 + "from Contract c\n"
@@ -117,6 +117,7 @@ public class ContractDAO extends DBContext {
                 c.setCid(rs.getInt("Cid"));
                 c.setContractTypeID(rs.getInt("ContractTypeID"));
                 c.setContractTypeName(rs.getString("ContractTypeName"));
+                c.setMonth_valid(rs.getInt("monthValid"));
                 return c;
             }
         } catch (SQLException e) {
@@ -125,27 +126,53 @@ public class ContractDAO extends DBContext {
         return null;
     }
 
-    public void createContract(int eid, String name, String start, String contractType, int month_valid, Boolean status) {
-        String sql2 = "select ContractTypeID from ContractType where TypeName = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql2);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                int typeID = rs.getInt("ContractTypeID");
-                String sql = "insert into [Human Resource Service].[dbo].Contract ([Eid], [name], [StartingDate], [YearValid], [ValidStatus], [TypeID]) \n"
+    public void createContract(int eid, String name, String start, int contractTypeID, int month_valid, Boolean status) {
+        String sql = "insert into [Human Resource Service].[dbo].Contract ([Eid], [name], [StartingDate], [YearValid], [ValidStatus], [TypeID]) \n"
                         + "values(?, ?, ?,?,?,?);";
-                st = connection.prepareStatement(sql);
-                st.setInt(1, eid);
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            st.setInt(1, eid);
                 st.setString(2, name);
                 st.setString(3, start);
                 st.setInt(4, month_valid);
                 st.setBoolean(5, status);
-                st.setInt(6, typeID);
-                rs = st.executeQuery();
-            }
+                st.setInt(6, contractTypeID);
+            rs = st.executeQuery();
+            
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
+
+    public int getContractTypeID(String contractType) {
+        String sql = "select * from ContractType where TypeName = " + contractType;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("ContractTypeID");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
+    }
+
+    public void editContract(int cid, int eid, String name, String start, int contractTypeID, int month_valid, Boolean status) {
+         String sql = "update Contract set Eid=?,name=?,StartingDate=?,YearValid=?,ValidStatus=?, TypeID=? where Cid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, eid);
+            st.setString(2, name);
+            st.setString(3, start);
+            st.setInt(4, contractTypeID);
+            st.setInt(5, month_valid);
+            st.setBoolean(6, status);
+            st.setInt(7, cid);
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }}
 
 }

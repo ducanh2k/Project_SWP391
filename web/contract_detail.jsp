@@ -67,6 +67,7 @@
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
+                                        <%if (mode == "view") {%>
                                 <div class="col-2">
                                     <div class="input-group">
                                         <label class="input--style-2 js-datepicker">Ending Date</label>
@@ -74,6 +75,14 @@
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
+                                        <%}else{%>
+                                         <div class="col-2">
+                                    <div class="input-group">
+                                        <label>Month Valid</label>
+                                    <input class="input--style-2" type="number" value="<%=c.getMonth_valid()%>" name="monthValid" required>
+                            </div>
+                                </div>
+                                        <%}%>
 
                             </div>
 
@@ -110,7 +119,6 @@
                                     if (role.trim().equalsIgnoreCase("admin")) {
                                 %>
                                 <input class="btn btn--radius btn--green" type="submit" name="edit" value="Edit">
-                                <input class="btn btn--radius btn--red" type="submit" onclick="confirmAction()" name ="delete" value="Delete">
                                 <input type="hidden" name="service" value="edit_del">
                                 <input type="hidden" name="cid" value="<%=c.getCid()%>">
                                 <%}

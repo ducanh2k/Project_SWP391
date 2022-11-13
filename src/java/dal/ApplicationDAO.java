@@ -42,8 +42,8 @@ public class ApplicationDAO extends DBContext {
         }
     }
 
-    public void refuseApp(int aid) {
-        String sql = "update Application set Status = 'Refused' where Aid=?";
+    public void rejectApp(int aid) {
+        String sql = "update Application set Status = 'Rejected' where Aid=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, aid);

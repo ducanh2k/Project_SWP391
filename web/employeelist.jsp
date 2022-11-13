@@ -51,7 +51,7 @@
     </style>
 
     <jsp:include page="sideMenu.jsp"></jsp:include>
-        <body style="margin-left:148px">
+        <body style="margin-left:152px; min-height: 100vh" class="d-flex flex-column justify-content-between">
             <div class="container" >
                 <h2>Employee List</h2>
             <%if (role.trim().equalsIgnoreCase("admin")) {%>

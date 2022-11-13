@@ -20,7 +20,7 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>
         <title>Application</title>
         <style>
-            input[type=text], select, textarea {
+            input, select, textarea {
                 width: 100%; /* Full width */
                 padding: 12px; /* Some padding */
                 border: 1px solid #ccc; /* Gray border */
@@ -30,7 +30,6 @@
                 margin-bottom: 16px; /* Bottom margin */
                 resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
             }
-
             /* Style the submit button with a specific background color etc */
             input[type=submit] {
                 background-color: #04AA6D;
@@ -58,16 +57,16 @@
         <div class="container">
             <form action="ApplicationSubmit" method="POST">
 
-                <label for="fname">ID</label>
-                <input type="text" id="fname" name="Eid" placeholder="ID">
+                <label for="id">ID</label>
+                <input type="number" id="eid" name="Eid" placeholder="ID">
 
-                <label for="lname">Title</label>
-                <input type="text" id="lname" name="title" placeholder="Title">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Title">
 
-                <label for="subject">Subject</label>
+                <label for="subject">Content</label>
                 <textarea id="subject" name="content" placeholder="Write something.." style="height:200px"></textarea>
 
-                <input type="submit" class="btn btn--radius btn--green" value="Submit">
+                <input type="submit" class="btn btn--radius btn--green" value="Submit" onclick="alert('Successful')">
 
                 <input class="btn btn--radius btn--red" type="button" onclick="window.window.location.href = 'ApplicationList'" value="Cancel">
 

@@ -17,6 +17,15 @@
         list_dep = (ArrayList<Department>) request.getAttribute("list_dep");
     }
     ArrayList<Employee> list_manager = (ArrayList<Employee>) request.getAttribute("list_manager");
+
+    ArrayList<String> namesArray = new ArrayList<>();
+    // iterate list using for loop and add all the elements into namesArray one by one to convert names list into an array  
+    for (int i = 0; i < list_dep.size(); i++) {
+        if (!list_dep.get(i).getDname().equals(dep_detail.getDname())) {
+
+            namesArray.add(list_dep.get(i).getDname());
+        }
+    }
 %>
 
 <html style="font-size: 16px;" lang="en">
@@ -31,7 +40,7 @@
         <%if (mode == "view") {%>
         <title>Department Detail</title>
         <%} else if (mode == "edit") {%>
-        <title>Edit Department </title>
+        <title>Edit Department</title>
         <%} else if (mode == "add") {%>
         <title>Add Department </title>
         <%}%>
@@ -42,13 +51,13 @@
     %>
     <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
         <jsp:include page="sideMenu.jsp"></jsp:include>
-            <section class="u-clearfix u-section-1" id="carousel_e146">
+            <section class="u-clearfix u-section-1" id="carousel_e146" style="margin-left:140px; padding: 0px">
                 <div class="u-clearfix u-sheet u-sheet-1">
                     <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
                         <div class="u-layout">
                             <div class="u-layout-row">
                                 <div class="u-align-left u-container-style u-layout-cell u-palette-1-light-3 u-size-41 u-layout-cell-1">
-                                    <div class="u-container-layout u-container-layout-1">                                        
+                                    <div class="u-container-layout u-container-layout-1" style="padding: 0px">                                        
                                     <%if (mode == "view") {%>
                                     <h2 class="u-custom-font u-font-montserrat u-text u-text-1">Department detail</h2>
                                     <%} else if (mode == "edit") {%>
@@ -65,8 +74,9 @@
                                             <div class="u-form-email u-form-group u-label-left u-form-group-2">
                                                 <label for="email-e0f0" class="u-label u-spacing-12 u-label-2">Department name : </label>
                                                 <input <%if (mode.equals("add")) {%> value="" <%} else if (mode.equals("view")) {%> disabled value="${dep_detail.getDname()}"<%} else if (mode.equals("edit")) {%> value="${dep_detail.getDname()}" <%}%>
-                                                                                     type="text" placeholder="Department name" id="name-e0f0" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""
-                                                                                     <%if (mode.equals("add") || mode.equals("edit")) {%> onfocusout="myFunction()" <%}%>/>
+                                                                                     type="text" placeholder="Department name" id="name-e0f00" name="dname" class="u-input u-input-rectangle u-radius-7 u-white u-input-2" required=""
+                                                                                     <%if (mode.equals("add") || mode.equals("edit")) {%>  <%}%>/>
+                                                <input type="hidden" id="listDepCheck" value="<%=namesArray%>"/>
                                             </div>
 
                                             <div class="u-form-email u-form-group u-label-left u-form-group-2">
@@ -107,18 +117,18 @@
                                                         if (role.trim().equalsIgnoreCase("admin")) {
                                                     %>
                                                     <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="edit" value="EDIT"/>      
-                                                    <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="delete" value="DELETE"/> 
+                                                    <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="delete" value="DELETE" onclick="deleteDep()"/> 
                                                     <%}%>
                                                     <a role="button" href="Department" class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1">BACK TO LIST</a>
                                                     <input type="hidden" name="service" value="edit_del_Dep"/>
                                                     <input type="hidden" name="did" value="${dep_detail.getDid()}"/>
                                                     <%} else if (mode == "edit") {%>
-                                                    <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="save" value="SAVE"/>      
+                                                    <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="save" value="SAVE" onclick="myFunction()"/>      
                                                     <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="cancel" value="CANCEL"/>  
                                                     <input type="hidden" name="service" value="save_edit_Dep"/>
                                                     <input type="hidden" name="did" value="${dep_detail.getDid()}"/>
                                                     <%} else if (mode == "add") {%>
-                                                    <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="save" value="SAVE"/>     
+                                                    <input class="u-btn u-btn-round u-btn-submit u-button-style u-radius-4 u-btn-1" type="submit" name="save" value="SAVE" />     
                                                     <input type="hidden" name="service" value="save_add_Dep"/>
                                                     <input type="hidden" name="did" value="${dep_detail.getDid()}"/>
                                                     <input type="hidden" name="is_active" value="Active"/>
@@ -135,18 +145,27 @@
             </div>
         </div>
     </section>
-    <jsp:include page="footer.jsp"></jsp:include>
+    <%--<jsp:include page="footer.jsp"></jsp:include>--%>
     <script>
         function myFunction() {
-            var dname = document.getElementById('name-e0f0').value;
-            if (dname.length === 0)
-            {
-                window.alert("Department name is required.\n");
-            }
+            var dname = document.getElementById('name-e0f00').value;
+            var dlist = document.getElementById('listDepCheck').value;
 
+            const myArray = dlist.replace("[", "").replace("]", "").split(",");
+            for (var i = 0; i < myArray.length; i++)
+            {
+                var name = myArray[i].trim();
+                if (name === dname) {
+                    event.preventDefault();
+                    window.alert("Department name is duplicated.\n");
+                    return false;
+                }
+            }
+            alert("Update department successfully.\n");
         }
-        }
-    </script>
+    </script>   
+    
+   
 </body>
 
 </html>

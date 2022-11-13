@@ -163,6 +163,7 @@
                                         <a href="forgotPassword.jsp" style="color: #fff">Forgot Password</a>
                                     </div>
                                 </div>
+                                <input type="hidden" name="service" value="login"/>
                             </form>
                             <p class="w-100 text-center">&mdash; Not having account? &mdash;</p>
                             <div class="social d-flex text-center">

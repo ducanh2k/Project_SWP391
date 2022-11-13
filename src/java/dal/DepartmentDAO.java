@@ -136,14 +136,13 @@ public class DepartmentDAO extends DBContext {
 
     public void update(Department dep) {
         String sql = "update [Human Resource Service].[dbo].Department "
-                + "set Did=?, name=?, is_active=?, ManagerID=? where Did=?;";
+                + "set name=?, is_active=?, ManagerID=? where Did=?;";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, dep.getDid());
-            st.setString(2, dep.getDname());
-            st.setBoolean(3, dep.isIs_active());
-            st.setInt(4, dep.getManagerID());
-            st.setInt(5, dep.getDid());
+            st.setString(1, dep.getDname());
+            st.setBoolean(2, dep.isIs_active());
+            st.setInt(3, dep.getManagerID());
+            st.setInt(4, dep.getDid());
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);

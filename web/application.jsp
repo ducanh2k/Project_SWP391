@@ -83,7 +83,7 @@
                             </div>
                             <div class="p-t-30">
                                 <input class="btn btn--radius btn--green" id="approve" type="submit" onclick="alert('Successful')" name="approve" value="Approve">
-                                <input class="btn btn--radius btn--red" id="refuse" type="submit" onclick="alert('Successful')" name="refuse" value="Refuse">
+                                <input class="btn btn--radius btn--red" id="reject" type="submit" onclick="alert('Successful')" name="reject" value="Reject">
                                 <input type="hidden" name="service" value="approval">
                                 <input type="hidden" name="aid" value="<%=a.getAid()%>">                                       
                             </div>

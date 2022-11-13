@@ -91,19 +91,19 @@ public class Controller_Contract extends HttpServlet {
             if (request.getParameter("save") != null) {
                 int cid = Integer.parseInt(request.getParameter("cid"));
                 int eid = Integer.parseInt(request.getParameter("eid"));
-                int did = Integer.parseInt(request.getParameter("did"));
                 String name = request.getParameter("cName");
                 String start = request.getParameter("start");
-                String end = request.getParameter("end");
-                String status = request.getParameter("status");
-                String workingTime = request.getParameter("workingTime");
-                Double salary = Double.parseDouble(request.getParameter("salary"));
-                Contract c = new Contract(eid, did, name, start, end, status, workingTime, salary);
-                c.setCid(cid);
+                String contractType = request.getParameter("contractType");
+                int month_valid = Integer.parseInt(request.getParameter("monthValid"));
+                Boolean status = true;
+                int contractTypeID = 1;
+                if (contractType.trim().equals("Parttime")) {
+                    contractTypeID = 2;
+                }
                 ContractDAO cd = new ContractDAO();
 
                 if (service.equals("save_edit")) {
-                    cd.editContract(c);
+                    cd.editContract(cid, eid, name, start, contractTypeID, month_valid, status);
                 }
                 response.sendRedirect("Controller_Contract");
             }

@@ -5,8 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<footer id="footer">
-    <div class="footer-top">
+<!--<footer id="footer" class="py-4 position-fixed bottom-0 w-100">-->
+    <footer id="footer" class="">
+
+    <div class="pt-2">
         <div class="container">
             <div class="row">
                 <div class="col-6 col-sm-6 col-md-3 col-lg-6 footer-contact">

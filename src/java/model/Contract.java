@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Dell
@@ -21,6 +23,15 @@ public class Contract {
     private String Ename;
     private int ContractTypeID;
     private String ContractTypeName;
+    private int month_valid;
+
+    public int getMonth_valid() {
+        return month_valid;
+    }
+
+    public void setMonth_valid(int month_valid) {
+        this.month_valid = month_valid;
+    }
 
     public Contract(int Eid, int Did, String name, String StartingDate, String EndDate, String Status, String workingTime, double Salary) {
         this.Eid = Eid;
@@ -115,6 +126,10 @@ public class Contract {
 
     public double getSalary() {
         return Salary;
+    }
+    
+    public String getStrSalary(){
+        return new BigDecimal(Salary).toPlainString();
     }
 
     public void setSalary(double Salary) {

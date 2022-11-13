@@ -76,12 +76,12 @@ public class ApplicationSubmit extends HttpServlet {
         String eid = request.getParameter("Eid");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String time = dtf.format(now);
         Application app = new Application(eid, title, content, "Processing", time);
         ad.createApplication(app);
-        request.getRequestDispatcher("create_application.jsp").forward(request, response);
+        response.sendRedirect("ApplicationList");
     }
 
     /**

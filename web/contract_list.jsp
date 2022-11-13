@@ -54,7 +54,7 @@
     </style>
 
     <jsp:include page="sideMenu.jsp"></jsp:include>
-        <body style="margin-left:148px">
+        <body style="margin-left:152px; min-height: 100vh" class="d-flex flex-column justify-content-between">
             <div class="container" >
                 <h2>Contract List</h2>
             <%if (role.trim().equalsIgnoreCase("admin")) {%>
@@ -92,7 +92,7 @@
                             <td>${c.getEndDate()}</td>
                             <td>${c.getContractTypeName()}</td>
                             <td>${c.getWorkingTime()}</td>
-                            <td>${c.getSalary()}</td>
+                            <td>${c.getStrSalary()}</td>
                             <td><a href="EmployeeDetail?service=view&eid=${c.getEid()}" >${c.getEname()}</a></td>                             
                             <td class="remove-this"><a href="Controller_Contract?service=view&cid=${c.getCid()}" class="fas fa-eye fa-x"></a></td>
                                 <%if (role.trim().equalsIgnoreCase("admin")) {%>
@@ -131,6 +131,6 @@ a.click();
       }
     })()
 </script>
-    </body>
     <jsp:include page="footer.jsp"></jsp:include>
+    </body>
 </html>

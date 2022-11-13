@@ -72,6 +72,7 @@ public class ContractServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         String message = "";
         EmployeeDAO ed = new EmployeeDAO();
         DepartmentDAO dd = new DepartmentDAO();
@@ -82,8 +83,12 @@ public class ContractServlet extends HttpServlet {
         String contractType = request.getParameter("contractType");
         int month_valid = Integer.parseInt(request.getParameter("monthValid"));
         Boolean status = true;
-        cd.createContract(eid, name, start, contractType, month_valid, status);
-        message = "create successful";
+        int contractTypeID = 1;
+        if (contractType.trim().equals("Parttime")) {
+            contractTypeID = 2;
+        }
+        cd.createContract(eid, name, start, contractTypeID, month_valid, status);
+        message = "Create successful";
         request.setAttribute("mes", message);
         request.getRequestDispatcher("Controller_Contract").forward(request, response);
     }

@@ -14,8 +14,6 @@
         <meta name="generator" content="Nicepage 4.18.5, nicepage.com">
         <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
-
-
         <script type="application/ld+json">{
             "@context": "http://schema.org",
             "@type": "Organization",
@@ -25,10 +23,8 @@
         <meta property="og:title" content="Page 3">
         <meta property="og:type" content="website">
     </head>
-    <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-f9a6"><div class="u-clearfix u-sheet u-sheet-1"></div></header>
-        <section class="u-align-center u-clearfix u-section-1" id="sec-992b">
-            <div class="u-clearfix u-sheet u-valign-middle u-sheet-1"></div>
-        </section>
+    <body class="u-body u-xl-mode" data-lang="en">
+        
         <section class="u-align-center u-clearfix u-image u-shading u-section-2" src="" id="sec-4b3d" data-image-width="256" data-image-height="256">
             <div class="u-align-left u-clearfix u-sheet u-sheet-1">
                 <h1 class="u-text u-text-default u-text-1">Create new Employee</h1>

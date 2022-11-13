@@ -32,7 +32,7 @@
                 <li><a id="this" class="nav-link scrollto" href="ApplicationList">Application</a></li>
                 <li><a id="this" class="nav-link scrollto" href="pform">Approval</a></li>
                 <li><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href = 'profile'"><%= ad.getRoleName(a)%></button></li>
-                <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href = 'login.jsp'">Logout</button></li>
+                <li><button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href = 'login?service=logout'">Logout</button></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav> 

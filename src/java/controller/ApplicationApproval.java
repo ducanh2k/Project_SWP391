@@ -50,9 +50,9 @@ public class ApplicationApproval extends HttpServlet {
                 if (request.getParameter("approve") != null) {
                     int aid = Integer.parseInt(request.getParameter("aid"));
                     adao.approveApp(aid);
-                } else if (request.getParameter("refuse") != null) {
+                } else if (request.getParameter("reject") != null) {
                     int aid = Integer.parseInt(request.getParameter("aid"));
-                    adao.refuseApp(aid);
+                    adao.rejectApp(aid);
                     response.sendRedirect("ApplicationList");
                 }
 
@@ -90,16 +90,16 @@ public class ApplicationApproval extends HttpServlet {
             int aid = Integer.parseInt(request.getParameter("aid"));
             adao.approveApp(aid);
             try {
-                request.getRequestDispatcher("ApplicationList").forward(request, response);
-            } catch (ServletException | IOException ex) {
+                response.sendRedirect("ApplicationList");
+            } catch (IOException ex) {
                 Logger.getLogger(ApplicationApproval.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (request.getParameter("refuse") != null) {
+        } else if (request.getParameter("reject") != null) {
             int aid = Integer.parseInt(request.getParameter("aid"));
-            adao.refuseApp(aid);
+            adao.rejectApp(aid);
             try {
-                request.getRequestDispatcher("ApplicationList").forward(request, response);
-            } catch (ServletException | IOException ex) {
+                response.sendRedirect("ApplicationList");
+            } catch (IOException ex) {
                 Logger.getLogger(ApplicationApproval.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
