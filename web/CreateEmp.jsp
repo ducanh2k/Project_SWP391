@@ -1,3 +1,7 @@
+<%@page import="model.Employee"%>
+<%@page import="model.Certificate"%>
+<%@page import="model.Department"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <!DOCTYPE html>
@@ -13,7 +17,7 @@
         <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
         <meta name="generator" content="Nicepage 4.18.5, nicepage.com">
         <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-
+ 
         <script type="application/ld+json">{
             "@context": "http://schema.org",
             "@type": "Organization",
@@ -23,6 +27,13 @@
         <meta property="og:title" content="Page 3">
         <meta property="og:type" content="website">
     </head>
+    <%
+    ArrayList<Department> list_dep = (ArrayList<Department>) request.getAttribute("list_dep");
+    ArrayList<Certificate> list_cert = (ArrayList<Certificate>) request.getAttribute("list_cert");
+    ArrayList<Employee> list_manager= (ArrayList<Employee>) request.getAttribute("list_manager");    
+    ArrayList<Employee> list_e= (ArrayList<Employee>) request.getAttribute("list_e");    
+    
+%>
     <body class="u-body u-xl-mode" data-lang="en">
         
         <section class="u-align-center u-clearfix u-image u-shading u-section-2" src="" id="sec-4b3d" data-image-width="256" data-image-height="256">
@@ -32,24 +43,27 @@
                     <form action="MiddleServlet" method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
                         <div class="u-form-group u-form-name u-form-partition-factor-2">
                             <label for="text-b9da" class="u-label">Name</label>
-                            <input type="text" placeholder="Enter Employee Name" id="name-2be9" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
+                            <input required type="text" placeholder="Enter Employee Name" id="name-2be9" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-2">
                             <label for="text-b9da" class="u-label">Phone</label>
-                            <input type="number" placeholder="Enter your phone" id="text-b9da" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
+                            <input required type="number" placeholder="Enter your phone" id="text-b9da" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
                         </div>
                         <div class="u-form-email u-form-group u-form-partition-factor-2">
                             <label for="email-2be9" class="u-label">Email</label>
-                            <input type="email" placeholder="Enter a valid email address" id="email-2be9" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
+                            <input required type="email" placeholder="Enter a valid email address" pattern="^[A-Za-z0-9]+[@][a-z]+[.][a-z]+$" title="Format abc@xyz.edf" id="email-2be9" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
                             <label for="text-d9b8" class="u-label">Manager</label>
-                            <input type="text" placeholder="Enter your manager" id="text-d9b8" name="manager" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
-                        </div>
+                            <select required id="text-a22e" name="manager" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                    <% for (Employee d : list_manager) {%>
+                                    <option value="<%=d.getEid()%>" ><%=d.getName()%></option>
+                                    <%}%>
+                                </select></div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-5">
                             <label for="select-3b17" class="u-label">Gender</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-3b17" name="gender" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                <select required id="select-3b17" name="gender" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
@@ -57,13 +71,17 @@
                             </div>
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-6">
-                            <label for="text-a22e" class="u-label">Department Name</label>
-                            <input type="text" placeholder="Department Name" id="text-a22e" name="dname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
+                            <label for="text-a22e" class="u-label">Department</label>
+                            <select required id="text-a22e" name="dname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                    <% for (Department d : list_dep) {%>
+                                    <option value="<%=d.getDid()%>" ><%=d.getDname()%></option>
+                                    <%}%>
+                                </select>
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-7">
                             <label for="select-82b1" class="u-label">Working Place</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-82b1" name="workingPlace" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                <select required id="select-82b1" name="workingPlace" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                                     <option value="Ha Noi">Ha Noi</option>
                                     <option value="HCM city">HCM city</option>
                                     <option value="Da Nang">Da Nang</option>
@@ -77,12 +95,12 @@
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-9">
                             <label for="text-0076" class="u-label">Emergency Contact</label>
-                            <input type="number" id="text-0076" name="eContact" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="Enter your Emergency Contact" >
+                            <input required type="number" id="text-0076" name="eContact" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="Enter your Emergency Contact" >
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-10">
                             <label for="select-9165" class="u-label">Nationality</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-9165" name="nationality" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                <select required id="select-9165" name="nationality" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                                     <option value="Viet Nam">Viet Nam</option>
                                     <option value="Germany">Germany</option>
                                     <option value="England">England</option>
@@ -93,15 +111,15 @@
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-11">
                             <label for="text-1931" class="u-label">Passport</label>
-                            <input type="number" placeholder="Enter your passport " id="text-1931" name="passport" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
+                            <input required type="number" placeholder="Enter your passport " id="text-1931" name="passport" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-12">
                             <label for="text-62e7" class="u-label">Visa Number</label>
-                            <input type="number" placeholder="Enter your visa number" id="text-62e7" name="visaNumber" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <input required type="number" placeholder="Enter your visa number" id="text-62e7" name="visaNumber" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-13">
                             <label for="text-114b" class="u-label">Work license number</label>
-                            <input type="number" id="text-114b" name="work" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="Work license number" >
+                            <input required type="number" id="text-114b" name="work" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="Work license number" >
                         </div>
                         <div class="u-form-group u-form-partition-factor-2 u-form-group-15">
                             <label for="text-a3e9" class="u-label">Approver</label>
@@ -110,7 +128,7 @@
                         <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-16">
                             <label for="select-5c64" class="u-label">Certificate Level</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-5c64" name="cerLevel" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                <select required id="select-5c64" name="cerLevel" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                                     <option value="Graduate">Graduate</option>
                                     <option value="Bachelor">Bachelor</option>
                                     <option value="Master">Master</option>

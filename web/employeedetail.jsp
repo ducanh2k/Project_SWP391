@@ -4,13 +4,26 @@
     Author     : Admin
 --%>
 
+<%@page import="model.Certificate"%>
+<%@page import="model.Employee"%>
+<%@page import="model.Department"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
+    ArrayList<Department> list_dep = new ArrayList<Department>();
+    ArrayList<Certificate> list_cert = new ArrayList<Certificate>();
+    ArrayList<Employee> list_manager= new ArrayList<Employee>();
+    Employee e = (Employee) request.getAttribute("e");
     String mode = "view";
     if (request.getAttribute("mode") != null) {
         mode = (String) request.getAttribute("mode");
+    }
+    if (mode.equals("edit")) {
+        list_dep = (ArrayList<Department>) request.getAttribute("list_dep");
+        list_cert = (ArrayList<Certificate>) request.getAttribute("list_cert");
+        list_manager = (ArrayList<Employee>) request.getAttribute("list_manager");
     }
 %>
 <!DOCTYPE html>
@@ -40,7 +53,7 @@
                     <div class="col-md-10">
                         <form class="form-control" method="POST" 
                         <%if (mode.equals("view")) {%> action="DeactiveEmployee" onSubmit="return confirm('Do you want to deactive this employee?')"
-                        <%} else {%> action="EmployeeDetail"
+                        <%} else if (mode.equals("edit")){%> action="EmployeeDetail"
                         <%}%>>
                         <div class="row">
                             <div class="col-md-6">
@@ -52,17 +65,53 @@
                                 <input name="ename" class="form-control" value="${e.getName()}" type="text" <%if (mode.equals("view")) {%>readonly<%}%>/>
                             </div>
                             <div class="col-md-6">
-                                <label class="label-control">Department ID</label>
+                                <label class="label-control">Department</label>
+                                <%if (mode.equals("view")) {
+                                %>                            
                                 <input name="did" class="form-control" value="${e.getDid()}" type="text" <%if (mode.equals("view")) {%>readonly<%}%>/>
+
+                                <%} else if (mode.equals("edit")) {
+                                %>
+                                <select id="select-73f7" name="did" class="form-control">
+                                    <% for (Department d : list_dep) {%>
+                                    <option value="<%=d.getDid()%>" <%if (d.getDid() == e.getDid()) {%> selected <%}%>><%=d.getDname()%></option>
+                                    <%}%>
+                                </select>
+                                <%}%>
                             </div>
+                            
                             <div class="col-md-6">
-                                <label class="label-control">Certificate ID</label>
+                                <label class="label-control">Certificate</label>
+                                <%if (mode.equals("view")) {
+                                %>                            
                                 <input name="cid" class="form-control" value="${e.getCertificateID()}" type="text" <%if (mode.equals("view")) {%>readonly<%}%>/>
+
+                                <%} else if (mode.equals("edit")) {
+                                %>
+                                <select id="select-73f7" name="cid" class="form-control">
+                                    <% for (Certificate c : list_cert) {%>
+                                    <option value="<%=c.getCertificateID()%>" <%if (c.getCertificateID() == e.getCertificateID()) {%> selected <%}%>><%=c.getCName()%></option>
+                                    <%}%>
+                                </select>
+                                <%}%>
                             </div>
+                            
                             <div class="col-md-6">
                                 <label class="label-control">Manager</label>
+                                <%if (mode.equals("view")) {
+                                %>                            
                                 <input name="manager" class="form-control" value="${e.getManager()}" type="text" <%if (mode.equals("view")) {%>readonly<%}%>/>
+
+                                <%} else if (mode.equals("edit")) {
+                                %>
+                                <select id="select-73f7" name="manager" class="form-control">
+                                    <% for (Employee c : list_manager) {%>
+                                    <option value="<%=c.getEid()%>" <%if (c.getEid() == e.getEid()) {%> selected <%}%>><%=c.geteAccount()%></option>
+                                    <%}%>
+                                </select>
+                                <%}%>
                             </div>
+                            
                             <div class="col-md-6">
                                 <label class="label-control">Working time</label>
                                 <input name="work_time" class="form-control" value="${e.getWorkingTime()}" type="text" <%if (mode.equals("view")) {%>readonly<%}%>/>
@@ -98,7 +147,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Passport</label>
-                                <input name="passport" class="form-control" value="${e.getPassport()}" type="text" pattern="^[A-z][0-9]{7}$" title="Format A0123456. A upcase letter and 7 digits" <%if (mode.equals("view")) {%>readonly<%}%>/>
+                                <input name="passport" class="form-control" value="${e.getPassport()}" type="text" pattern="^[0-9]{7}$" title="Format 0123456. 7 digits" <%if (mode.equals("view")) {%>readonly<%}%>/>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Gender</label>
@@ -110,7 +159,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Visa Number</label>
-                                <input name="visa" class="form-control" value="${e.getVisaNumber()}" type="text" pattern="^[0-9]{16}$" title="Format 16 digits" <%if (mode.equals("view")) {%>readonly<%}%>>
+                                <input name="visa" class="form-control" value="${e.getStrVisa()}" type="text" pattern="^[0-9]{16}$" title="Format 16 digits" <%if (mode.equals("view")) {%>readonly<%}%>>
                             </div>
                             <div class="col-md-6">
                                 <label class="label-control">Work License Number</label>

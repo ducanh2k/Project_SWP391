@@ -55,7 +55,7 @@
             <div class="container" >
                 <h2>Employee List</h2>
             <%if (role.trim().equalsIgnoreCase("admin")) {%>
-            <a  role="button" href="CreateEmp.jsp" class="font-weight-bold">NEW</a>
+            <a  role="button" href="EmployeeDetail?service=add" class="font-weight-bold">NEW</a>
             <%}%>
             <a onclick="tableToExcel('tableID', 'Employee List')" role="button" class="font-weight-bold">EXPORT EXCEL</a><br /><br />
             <!--HTML table with student data-->

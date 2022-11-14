@@ -61,6 +61,10 @@ public class Main extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        HttpSession session1 = request.getSession(false);
+        if (session1 == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }else{
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         AccountDAO adao = new AccountDAO();
@@ -70,7 +74,7 @@ public class Main extends HttpServlet {
         out.print(account.getRoleid());
         session.setAttribute("employee", emp);
         session.setAttribute("role", role);
-        request.getRequestDispatcher("main.jsp").forward(request, response);
+        request.getRequestDispatcher("main.jsp").forward(request, response);}
     }
 
     /**

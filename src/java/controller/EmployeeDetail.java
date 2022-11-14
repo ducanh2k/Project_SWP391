@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.DepartmentDAO;
 import dal.EmployeeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Certificate;
+import model.Department;
 import model.Employee;
 
 /**
@@ -37,6 +40,7 @@ public class EmployeeDetail extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         EmployeeDAO edao = new EmployeeDAO();
+        DepartmentDAO dao = new DepartmentDAO();
         ArrayList<Employee> list_e = edao.getAllEmployee();
 
         try ( PrintWriter out = response.getWriter()) {
@@ -56,37 +60,62 @@ public class EmployeeDetail extends HttpServlet {
 
             if (service.equals("edit")) {
                 // edit deparment 
+                ArrayList<Department> list_dep = dao.getListDep();
+                ArrayList<Certificate> list_cert = edao.getListCert();
                 String eid = request.getParameter("eid");
                 Employee e = edao.getEmployeeDetail(eid);
+                ArrayList<Employee> list_manager = edao.getAllManager(e.getDid());
                 request.setAttribute("e", e);
                 request.setAttribute("list_e", list_e);
+                request.setAttribute("list_dep", list_dep);
+                request.setAttribute("list_cert", list_cert);
+                request.setAttribute("list_manager", list_manager);
                 request.setAttribute("mode", "edit");
                 request.getRequestDispatcher("employeedetail.jsp").forward(request, response);
+            }
+            if (service.equals("add")) {
+                 ArrayList<Department> list_dep = dao.getListDep();
+                ArrayList<Certificate> list_cert = edao.getListCert();                
+                ArrayList<Employee> list_manager = edao.getAllManager(0);
+                request.setAttribute("list_dep", list_dep);
+                request.setAttribute("list_e", list_e);
+                request.setAttribute("list_cert", list_cert);
+                request.setAttribute("list_manager", list_manager);
+                request.getRequestDispatcher("CreateEmp.jsp").forward(request, response);
             }
             
             if (service.equals("save_edit_em")) {
                 Employee e = new Employee();
                 e.setEid(Integer.parseInt(request.getParameter("eid")));
+                
                 e.setName(request.getParameter("ename"));
+              
                 e.setDid(Integer.parseInt(request.getParameter("did")));
+                   
                 e.setCertificateID(Integer.parseInt(request.getParameter("cid")));
                 e.setManager(request.getParameter("manager"));
+               
                 e.setWorkingTime(request.getParameter("work_time"));
+                
                 e.setApprover(request.getParameter("approver"));
+                 
                 e.setWorkingPlace(request.getParameter("work_place"));
+               
                 e.setEmail(request.getParameter("email"));
+               
                 e.setEmergencyContact(Integer.parseInt(request.getParameter("e_contact")));
                 e.setResearchArea(request.getParameter("reserach_area"));
                 e.setPhone(Integer.parseInt(request.getParameter("phone")));
                 e.setNationality(request.getParameter("nation"));
-                e.setPassport(Integer.parseInt(request.getParameter("passport")));    
-                e.setBirthPlace(request.getParameter("birth_place"));    
-                e.setVisaNumber(Integer.parseInt(request.getParameter("visa")));    
-                e.setWorkLicenseNumber(Integer.parseInt(request.getParameter("work_license")));    
-                e.setVisaExpirationDate(request.getParameter("visa_date"));    
+                e.setPassport(Integer.parseInt(request.getParameter("passport"))); 
+                e.setBirthPlace(request.getParameter("birth_place"));  
+                e.setStrVisa(request.getParameter("visa")); 
+                e.setWorkLicenseNumber(Integer.parseInt(request.getParameter("work_license"))); 
+                e.setVisaExpirationDate(request.getParameter("visa_date"));  
                 e.setPosition(request.getParameter("position"));    
                 boolean gender = request.getParameter("gender").equals("Male") ? true : false;
                 edao.UpdateEmployee(e);
+//                out.print(e);
                 response.sendRedirect("EmployeeList");
             }
         }

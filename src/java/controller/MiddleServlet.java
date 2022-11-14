@@ -79,34 +79,38 @@ public class MiddleServlet extends HttpServlet {
         String name = request.getParameter("name");
         int phone = Integer.parseInt(request.getParameter("phone"));
         String email = request.getParameter("email");
-        String manager = request.getParameter("manager");
+        int managerID = Integer.parseInt(request.getParameter("manager"));
         String gender = request.getParameter("gender");
         boolean gender_raw = true;
         if (gender.equalsIgnoreCase("female")) {
             gender_raw = false;
         }
-        String dname = request.getParameter("dname");
-        int did = dd.getDepID(dname);
-        String workPlace = request.getParameter("workingPlace");
+        int did = Integer.parseInt(request.getParameter("dname"));
+        String workPlace = request.getParameter("workingPlace");        
+        
         String mentor = request.getParameter("mentor");
         int mid = ed.getEmID(mentor);
         int eContact = Integer.parseInt(request.getParameter("eContact"));
         String nation = request.getParameter("nationality");
         int passport = Integer.parseInt(request.getParameter("passport"));
-        int visa = Integer.parseInt(request.getParameter("visaNumber"));
+//        int visa = Integer.parseInt(request.getParameter("visaNumber"));
         int work = Integer.parseInt(request.getParameter("work"));
         String approver = request.getParameter("approver");
         String cerLevel = request.getParameter("cerLevel");
-        int cerID = dd.getCerID(cerLevel);
+        int cerID = dd.getCerID(cerLevel);      
+        
         int idNumber = Integer.parseInt(request.getParameter("idNumber"));
         String research = request.getParameter("research");
         String visaDate = request.getParameter("visaDate");
         String workDate = request.getParameter("workDate");
         String position = request.getParameter("position");
         String workTime = request.getParameter("workTime");
+        
         String cerLink = request.getParameter("cerLink");
         String birth = request.getParameter("birthPlace");
-        Employee e = new Employee(did, name, mid, cerID, manager, workTime, approver, workPlace, email, eContact, phone, cerLink, research, nation, idNumber, passport, gender_raw, birth, visa, work, visaDate, workDate, position);
+        Employee e = new Employee(did, name, mid, cerID, managerID+"", workTime, approver, workPlace, email, eContact, phone, cerLink, research, nation, idNumber, passport, gender_raw, birth, 0, work, visaDate, workDate, position);
+
+        e.setStrVisa(request.getParameter("visaNumber"));
         ed.insertEmp(e);
         response.sendRedirect("EmployeeList");
     }

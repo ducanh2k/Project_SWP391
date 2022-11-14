@@ -156,8 +156,15 @@ public class AttendantServlet extends HttpServlet {
                 request.getRequestDispatcher("attendant.jsp").forward(request, response);
             } else if (request.getParameter("Filter") != null) {
                 String eid = request.getParameter("eid");
-                String start = request.getParameter("start");
-                String end = request.getParameter("end");
+                String start = "";
+                if (request.getParameter("start") != null) {
+                    start = request.getParameter("start");
+                }
+
+                String end = "";
+                if (request.getParameter("end") != null) {
+                    end = request.getParameter("end");
+                }
                 List<Attendant> listEmp = new ArrayList<>();
                 out.print(eid);
                 LocalDate attendDate;
@@ -165,9 +172,24 @@ public class AttendantServlet extends HttpServlet {
                 for (Attendant attendant : list) {
                     DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     attendDate = LocalDate.parse(attendant.getDate(), df);
-                    if (attendDate.toString().compareTo(start) >= 0 && attendDate.toString().compareTo(end) <= 0 && attendant.getEmployee().getEid() == Integer.parseInt(eid)) {
-                        listEmp.add(attendant);
+                    if (attendant.getEmployee().getEid() == Integer.parseInt(eid)) {
+                        if ((!start.equals("")) & (!end.equals(""))) {
+                            if (attendDate.toString().compareTo(start) >= 0 && attendDate.toString().compareTo(end) <= 0) {
+                                listEmp.add(attendant);
+                            }
+                        }else if (!start.equals("")) {
+                            if (attendDate.toString().compareTo(start) >= 0) {
+                                listEmp.add(attendant);
+                            }
+                        }else if(!end.equals("")){
+                            if (attendDate.toString().compareTo(end) <= 0) {
+                                listEmp.add(attendant);
+                            }
+                        }else{
+                            listEmp.add(attendant);
+                        }                                
                     }
+
                 }
                 request.setAttribute("listAttend", listEmp);
                 request.getRequestDispatcher("attendant.jsp").forward(request, response);

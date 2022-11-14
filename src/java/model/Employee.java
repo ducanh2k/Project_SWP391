@@ -14,6 +14,15 @@ public class Employee {
     private int Did;
     private String name;
     private int mentor;
+    private String strVisa;
+
+    public String getStrVisa() {
+        return strVisa;
+    }
+
+    public void setStrVisa(String strVisa) {
+        this.strVisa = strVisa;
+    }
 
     public Employee(int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position) {
         this.Did = Did;
@@ -90,6 +99,16 @@ public class Employee {
     private String workLicenseExpirationDate;
     private String position;
     private boolean isActive;
+    private String eAccount;
+
+    public String geteAccount() {
+        return eAccount;
+    }
+
+    public void seteAccount(String eAccount) {
+        this.eAccount = eAccount;
+    }
+    
     public Employee(int Eid, int Did, String name, int mentor, int CertificateID, String manager, String workingTime, String approver, String workingPlace, String email, int emergencyContact, int phone, String certificateLevel, String researchArea, String nationality, int idNumber, int passport, boolean gender, String birthPlace, int visaNumber, int workLicenseNumber, String visaExpirationDate, String workLicenseExpirationDate, String position) {
         this.Eid = Eid;
         this.Did = Did;

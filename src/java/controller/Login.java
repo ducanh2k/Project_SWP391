@@ -72,6 +72,16 @@ public class Login extends HttpServlet {
         if (service.equals("logout")) {
             HttpSession session = request.getSession();
             session.removeAttribute("account");
+
+            session.invalidate();
+
+            response.setHeader("Pragma", "no-cache");
+
+            response.setHeader("Cache-Control", "no-store");
+
+            response.setHeader("Expires", "0");
+
+            response.setDateHeader("Expires", -1);
 //            session = request.getSession(false);
 ////            session.invalidate();
 //            out.print(session.getAttribute("account"));
@@ -127,11 +137,19 @@ public class Login extends HttpServlet {
 //
 //        if (service.equals("logout")) {
 //            HttpSession session = request.getSession();
-//            session.removeAttribute("account");
-//            session = request.getSession(false);
-//            session.invalidate();
-//            out.print(session);
-////            response.sendRedirect("login.jsp");
+//            session.removeAttribute("uid");
+//
+//session.invalidate();
+//
+//response.setHeader("Pragma","no-cache");
+//
+//response.setHeader("Cache-Control","no-store");
+//
+//response.setHeader("Expires","0");
+//
+//response.setDateHeader("Expires",-1);
+//
+//response.sendRedirect("../index.jsp");
 //        }
 
         if (service.equals("login")) {
